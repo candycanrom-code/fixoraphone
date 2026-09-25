@@ -285,11 +285,30 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL="https://vvkgaswwrwzdejakvytv.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_hFwgyt8T-pbTb5_zjKpFdw_kyd8kjSX";
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+async function supabaseRpc(functionName, body){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),15000);
+  try{
+    const response=await fetch(SUPABASE_URL+"/rest/v1/rpc/"+functionName,{
+      method:"POST",
+      headers:{"apikey":SUPABASE_PUBLISHABLE_KEY,"Authorization":"Bearer "+SUPABASE_PUBLISHABLE_KEY,"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify(body),signal:controller.signal
+    });
+    const text=await response.text();
+    let data; try{data=text?JSON.parse(text):null}catch(_){data=text}
+    if(!response.ok){
+      const msg=typeof data==='object'&&data ? (data.message||data.error_description||data.hint||JSON.stringify(data)) : String(data||response.statusText);
+      const e=new Error(msg); e.code=String(response.status); e.details=typeof data==='object'&&data?data.details:""; e.hint=typeof data==='object'&&data?data.hint:""; throw e;
+    }
+    return {data,error:null};
+  }catch(e){
+    if(e.name==='AbortError'){const x=new Error('Supabase request timed out. Check your internet connection or Supabase project URL.');x.code='TIMEOUT';throw x;}
+    throw e;
+  }finally{clearTimeout(timer)}
+}
 
 const T={
 en:{
@@ -424,7 +443,7 @@ async function trackRepair(){
   if(!code){setTrackingMessage(lang==="kn"?"ದಯವಿಟ್ಟು ನಿಮ್ಮ ರಿಪೇರಿ ID ನಮೂದಿಸಿ.":"Please enter your repair ID.","error");return}
   setTrackingMessage(lang==="kn"?"ರಿಪೇರಿ ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ…":"Checking repair status…");
   try{
-    const {data,error}=await supabaseClient.rpc("track_repair",{p_code:code});
+    const {data,error}=await supabaseRpc("track_repair",{p_code:code});
     if(error)throw error;
     const row=Array.isArray(data)?data[0]:data;
     if(!row){setTrackingMessage(lang==="kn"?"ಈ Repair ID ಕಂಡುಬಂದಿಲ್ಲ. ID ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.":"Repair ID not found. Please check the ID and try again.","error");return}
@@ -465,7 +484,7 @@ document.getElementById("repairForm").addEventListener("submit",async function(e
   const originalText=btn.textContent;
   btn.disabled=true;btn.textContent=lang==="kn"?"ಸೇವ್ ಮಾಡಲಾಗುತ್ತಿದೆ…":"Saving repair request…";
   try{
-    const {data,error}=await supabaseClient.rpc("create_repair",{
+    const {data,error}=await supabaseRpc("create_repair",{
       p_customer_name:name,p_customer_phone:phone,p_phone_model:model,p_repair_type:service,
       p_service_option:visit,p_service_location:location,p_problem_description:problem
     });
