@@ -3,164 +3,409 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="FixoraPhone - mobile repair, doorstep service and phone accessories.">
+<meta name="description" content="FixoraPhone — mobile repair, doorstep service and quality phone accessories. Built to Fix.">
+<meta name="theme-color" content="#071016">
 <title>FixoraPhone — Built to Fix</title>
 <style>
-:root{--bg:#070b10;--card:#0d141c;--card2:#111b24;--text:#f4f8fb;--muted:#9aa9b5;--line:#1d2b35;--a:#20d7cf;--a2:#22aef2;--green:#39e58c}
+:root{--bg:#05090d;--bg2:#08131a;--card:#0b151d;--card2:#0f1d26;--text:#f5fbff;--muted:#9badb8;--line:rgba(145,190,205,.15);--cyan:#20d7cf;--blue:#24aef4;--green:#39e58c;--shadow:0 24px 70px rgba(0,0,0,.35)}
 *{box-sizing:border-box;scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 70% 10%,#07313b 0,#070b10 35%,#05080c 100%);color:var(--text);font-family:Arial,sans-serif}
-a{color:inherit;text-decoration:none}
-.wrap{width:min(1120px,92%);margin:auto}
-.nav{position:sticky;top:0;z-index:50;background:rgba(7,11,16,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-.brand img{height:52px;width:auto;display:block}
-.links{display:flex;gap:24px;align-items:center;font-size:14px}
-.links a:hover{color:var(--a)}
-.menu{display:none;border:1px solid var(--line);background:var(--card);color:white;border-radius:14px;padding:10px 14px;font-size:24px}
-.hero{padding:70px 0 55px}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center}
-.eyebrow{color:var(--a);font-weight:700;letter-spacing:2px}
-h1{font-size:clamp(42px,7vw,76px);line-height:.98;margin:12px 0 20px}
-h1 span{color:var(--a)}
-.hero p,.section-head p{color:var(--muted);font-size:18px;line-height:1.7}
-.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
-.btn{border:1px solid var(--line);padding:16px 22px;border-radius:16px;font-weight:700;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
-.primary{background:linear-gradient(100deg,var(--a),var(--a2));color:#031016;border:0}
-.whatsapp{border-color:#248a63;color:#8ff0bd}
-.hero-card{border:1px solid #22333f;border-radius:28px;background:linear-gradient(145deg,#101a23,#081016);padding:28px;box-shadow:0 25px 70px rgba(0,0,0,.35)}
-.logo-stage{min-height:310px;border:1px solid #263944;border-radius:24px;background:radial-gradient(circle,#123b47,#071117 65%);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.logo-stage img{width:min(82%,360px);height:auto;display:block}
-.status{display:flex;justify-content:space-between;gap:20px;margin-top:24px;color:var(--muted)}
-.dot{display:inline-block;width:12px;height:12px;background:var(--a);border-radius:50%;margin-right:10px;box-shadow:0 0 18px var(--a)}
-section{padding:70px 0}
-.section-head{margin-bottom:28px}.section-head h2{font-size:42px;margin:0 0 10px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:rgba(13,20,28,.86);border:1px solid var(--line);border-radius:20px;padding:24px}
-.card h3{margin:10px 0}.icon{font-size:30px}.card p{color:var(--muted);line-height:1.6}
-.booking{background:linear-gradient(145deg,#0d1820,#091016);border:1px solid #20313b;border-radius:26px;padding:28px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}
-label{font-weight:700;font-size:14px}
-input,select,textarea{width:100%;background:#081017;color:white;border:1px solid #263843;border-radius:13px;padding:14px;font:inherit}
-textarea{min-height:120px;resize:vertical}
-input[type=file]{padding:12px}
+html{background:var(--bg)}
+body{margin:0;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(900px 500px at 85% -5%,rgba(32,215,207,.14),transparent 60%),radial-gradient(700px 450px at -10% 30%,rgba(36,174,244,.09),transparent 60%),var(--bg);overflow-x:hidden}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}.wrap{width:min(1160px,92%);margin:auto}
+
+/* Language screen */
+.language-screen{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%,#12353f,#05090d 62%);transition:opacity .35s,visibility .35s}
+.language-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.language-box{width:min(440px,90%);text-align:center;padding:38px 26px;border:1px solid var(--line);border-radius:28px;background:rgba(8,17,23,.92);box-shadow:var(--shadow)}
+.language-logo{width:min(250px,75%);margin:0 auto 20px;display:block}
+.language-box h1{font-size:30px;letter-spacing:-1px;margin:8px 0}
+.language-box p{color:var(--muted);margin:0 0 25px}
+.lang-buttons{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lang-btn{padding:17px;border-radius:15px;border:1px solid var(--line);background:#0d1a22;color:#fff;font-weight:800;cursor:pointer;transition:.2s}
+.lang-btn:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.lang-btn:first-child{background:linear-gradient(100deg,var(--cyan),var(--blue));color:#031016;border:0}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(5,9,13,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav .wrap{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand img{height:48px;width:auto;display:block}
+.links{display:flex;align-items:center;gap:23px;font-size:14px;font-weight:700}
+.links a{color:#d9e6eb;transition:.2s}.links a:hover{color:var(--cyan)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.lang-switch{border:1px solid var(--line);background:#0b151d;color:#dce9ee;border-radius:12px;padding:9px 11px;font-weight:800;cursor:pointer}
+.menu{display:none;border:1px solid var(--line);background:var(--card);color:white;border-radius:13px;padding:8px 12px;font-size:23px;cursor:pointer}
+
+/* Hero */
+.hero{padding:82px 0 65px}.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:52px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--cyan);font-size:13px;font-weight:800;letter-spacing:2.4px}
+.eyebrow:before{content:"";width:26px;height:2px;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+h1{font-size:clamp(46px,7vw,82px);line-height:.96;letter-spacing:-3px;margin:17px 0 23px;max-width:720px}
+h1 span{background:linear-gradient(100deg,var(--cyan),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:18px;line-height:1.75;max-width:650px;margin:0}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{border:1px solid var(--line);padding:14px 19px;border-radius:14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px);border-color:rgba(32,215,207,.5)}
+.primary{background:linear-gradient(100deg,var(--cyan),var(--blue));color:#031016;border:0;box-shadow:0 10px 35px rgba(32,215,207,.12)}
+.whatsapp{border-color:rgba(57,229,140,.35);color:#8ff0bd}
+.hero-card{border:1px solid var(--line);border-radius:30px;background:linear-gradient(145deg,rgba(17,31,41,.94),rgba(6,13,18,.96));padding:18px;box-shadow:var(--shadow)}
+.logo-stage{min-height:365px;border:1px solid var(--line);border-radius:24px;background:radial-gradient(circle at 50% 45%,rgba(32,215,207,.18),transparent 42%),radial-gradient(circle at 50% 50%,#12323c,#071016 67%);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.logo-stage img{width:min(84%,390px);height:auto;display:block;filter:drop-shadow(0 18px 35px rgba(32,215,207,.13))}
+.status{display:flex;justify-content:space-between;gap:15px;margin:18px 6px 3px;color:var(--muted);font-size:13px}
+.dot{display:inline-block;width:9px;height:9px;background:var(--cyan);border-radius:50%;margin-right:8px;box-shadow:0 0 15px var(--cyan)}
+
+/* Sections */
+section{padding:78px 0}.section-head{margin-bottom:30px;max-width:760px}
+.section-head h2{font-size:clamp(32px,5vw,46px);letter-spacing:-1.5px;margin:0 0 10px}
+.section-head p{color:var(--muted);font-size:17px;line-height:1.7;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.card{background:linear-gradient(145deg,rgba(13,24,32,.9),rgba(8,15,21,.9));border:1px solid var(--line);border-radius:20px;padding:24px;min-height:170px;transition:.25s}
+.card:hover{transform:translateY(-4px);border-color:rgba(32,215,207,.28);box-shadow:0 18px 45px rgba(0,0,0,.22)}
+.icon{font-size:28px}.card h3{margin:13px 0 8px;font-size:19px}.card p{color:var(--muted);line-height:1.65;margin:0}
+.brand-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.brand-pill{border:1px solid var(--line);background:rgba(13,24,32,.75);padding:10px 15px;border-radius:999px;color:#dce9ee;font-weight:700;font-size:14px}
+
+/* Booking */
+.booking{background:linear-gradient(145deg,rgba(13,25,33,.95),rgba(7,14,19,.95));border:1px solid var(--line);border-radius:26px;padding:28px;box-shadow:var(--shadow)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}
+label{font-weight:750;font-size:14px;color:#dce8ed}
+input,select,textarea{width:100%;background:#071017;color:white;border:1px solid #263843;border-radius:13px;padding:14px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:rgba(32,215,207,.7);box-shadow:0 0 0 3px rgba(32,215,207,.08)}
+textarea{min-height:120px;resize:vertical}input[type=file]{padding:12px}
 .note{font-size:13px;color:var(--muted);line-height:1.5}
-footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted)}
-.chat{position:fixed;right:22px;bottom:22px;z-index:60}
-.chat button{border:0;background:linear-gradient(100deg,var(--a),var(--a2));color:#041016;font-weight:800;padding:17px 22px;border-radius:999px;font-size:16px;box-shadow:0 12px 35px rgba(0,0,0,.35)}
-@media(max-width:800px){
- .links{display:none}.menu{display:block}.hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.hero{padding-top:42px}.logo-stage{min-height:270px}.status{font-size:14px}
+
+/* Contact / footer */
+.contact-box{display:flex;justify-content:space-between;gap:25px;align-items:center;padding:28px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#0c1a22,#071016)}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
+.footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}
+
+/* Chat */
+.chat-launch{position:fixed;right:20px;bottom:20px;z-index:200;border:0;background:linear-gradient(100deg,var(--cyan),var(--blue));color:#041016;font-weight:900;padding:16px 20px;border-radius:999px;box-shadow:0 12px 35px rgba(0,0,0,.4);cursor:pointer}
+.chat-window{position:fixed;right:20px;bottom:85px;width:min(370px,calc(100vw - 30px));height:500px;z-index:201;display:none;flex-direction:column;border:1px solid var(--line);border-radius:23px;overflow:hidden;background:#071016;box-shadow:0 25px 80px rgba(0,0,0,.55)}
+.chat-window.open{display:flex}
+.chat-head{padding:17px 18px;background:linear-gradient(100deg,#0e2730,#0b1720);display:flex;align-items:center;justify-content:space-between}
+.chat-title{font-weight:900}.chat-sub{font-size:12px;color:#8fa7b1;margin-top:2px}
+.chat-close{border:0;background:transparent;color:white;font-size:22px;cursor:pointer}
+.chat-body{flex:1;overflow:auto;padding:16px;background:radial-gradient(circle at 20% 10%,rgba(32,215,207,.08),transparent 40%),#071016}
+.msg{max-width:84%;padding:11px 13px;border-radius:15px;margin-bottom:10px;line-height:1.45;font-size:14px}
+.bot{background:#10202a;border:1px solid var(--line);border-top-left-radius:5px}
+.user{margin-left:auto;background:linear-gradient(100deg,var(--cyan),var(--blue));color:#031016;border-top-right-radius:5px}
+.quick{display:flex;flex-wrap:wrap;gap:7px;margin:4px 0 12px}
+.quick button{border:1px solid rgba(32,215,207,.25);background:#0d1c24;color:#cde8ec;border-radius:999px;padding:8px 10px;font-size:12px;cursor:pointer}
+.chat-form{display:flex;gap:8px;padding:11px;border-top:1px solid var(--line);background:#08131a}
+.chat-form input{padding:11px;border-radius:12px}.chat-form button{border:0;border-radius:12px;padding:0 15px;background:var(--cyan);color:#031016;font-weight:900}
+
+/* Mobile */
+@media(max-width:900px){
+  .links{display:none;position:absolute;left:4%;right:4%;top:70px;flex-direction:column;align-items:stretch;padding:15px;background:#09131a;border:1px solid var(--line);border-radius:16px}
+  .links a{padding:10px}.menu{display:block}.nav-actions{margin-left:auto}
+  .hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.hero{padding-top:50px}
 }
-@media(max-width:520px){.grid{grid-template-columns:1fr}.section-head h2{font-size:34px}.hero-card{padding:18px}.logo-stage{min-height:250px}.logo-stage img{width:92%}}
+@media(max-width:560px){
+  .brand img{height:42px}.lang-switch{padding:8px 9px}.hero{padding-top:40px}
+  h1{letter-spacing:-2px}.hero p{font-size:16px}.grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}.logo-stage{min-height:270px}.logo-stage img{width:92%}
+  .status{font-size:12px}.contact-box,.footer-row{flex-direction:column;align-items:flex-start}
+  .chat-window{right:15px;bottom:82px;height:470px}.chat-launch{right:15px;bottom:15px}
+}
 </style>
 </head>
+
 <body>
 
-<header class="nav">
-<div class="wrap">
-<a class="brand" href="#home"><img src="fixora-logo.png" alt="Fixora"></a>
-<nav class="links">
-<a href="#home">Home</a><a href="#repair">Repair</a><a href="#accessories">Accessories</a><a href="#track">Track Repair</a><a href="#contact">Contact</a>
-</nav>
-<button class="menu" onclick="document.querySelector('.links').style.display=document.querySelector('.links').style.display==='flex'?'none':'flex'">☰</button>
+<!-- First-visit language choice -->
+<div class="language-screen" id="languageScreen">
+  <div class="language-box">
+    <img class="language-logo" src="fixora-logo.png" alt="Fixora">
+    <h1 id="languageTitle">Choose your language</h1>
+    <p id="languageSub">Select a language to continue.</p>
+    <div class="lang-buttons">
+      <button class="lang-btn" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+      <button class="lang-btn" onclick="setLanguage('en')">English</button>
+    </div>
+  </div>
 </div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#home"><img src="fixora-logo.png" alt="Fixora"></a>
+    <nav class="links" id="navLinks">
+      <a href="#home" data-i18n="navHome">Home</a>
+      <a href="#repair" data-i18n="navRepair">Repair</a>
+      <a href="#accessories" data-i18n="navAccessories">Accessories</a>
+      <a href="#track" data-i18n="navTrack">Track Repair</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="lang-switch" onclick="toggleLanguage()" id="langSwitch">ಕನ್ನಡ</button>
+      <button class="menu" onclick="toggleMenu()">☰</button>
+    </div>
+  </div>
 </header>
 
 <main id="home">
+
 <section class="hero">
-<div class="wrap hero-grid">
-<div>
-<div class="eyebrow">BUILT TO FIX</div>
-<h1>Phone broken?<br><span>Fixora handles it.</span></h1>
-<p>Professional mobile repair with doorstep service when practical, workshop repair when needed, plus quality phone accessories.</p>
-<div class="btns">
-<a class="btn primary" href="#booking">🔧 Book a Repair</a>
-<a class="btn" href="#booking">💬 Chat with Fixora</a>
-<a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank">🟢 WhatsApp Fixora</a>
-</div>
-</div>
-<div class="hero-card">
-<div class="logo-stage"><img src="fixora-logo.png" alt="Fixora — Built to Fix"></div>
-<div class="status"><span><i class="dot"></i>Repair support</span><span>Home • On-site • Workshop</span></div>
-</div>
-</div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow" data-i18n="eyebrow">BUILT TO FIX</div>
+      <h1><span data-i18n="heroTitle1">Phone broken?</span><br><span data-i18n="heroTitle2">Fixora handles it.</span></h1>
+      <p data-i18n="heroText">Professional mobile repair with doorstep service when practical, workshop repair when needed, plus quality phone accessories.</p>
+      <div class="btns">
+        <a class="btn primary" href="#booking" data-i18n="bookRepair">🔧 Book a Repair</a>
+        <button class="btn" onclick="openChat()" data-i18n="chatFixora">💬 Chat with Fixora</button>
+        <a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank">🟢 WhatsApp Fixora</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="logo-stage"><img src="fixora-logo.png" alt="Fixora — Built to Fix"></div>
+      <div class="status">
+        <span><i class="dot"></i><span data-i18n="support">Repair support</span></span>
+        <span data-i18n="serviceModes">Home • On-site • Workshop</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="repair">
-<div class="wrap">
-<div class="section-head"><h2>Repair services</h2><p>Tell us what's wrong. Fixora can arrange the practical repair route for your device.</p></div>
-<div class="grid">
-<div class="card"><div class="icon">🖥️</div><h3>Display & Glass</h3><p>Cracked, broken or damaged screen repairs.</p></div>
-<div class="card"><div class="icon">🔋</div><h3>Battery</h3><p>Battery replacement and power problems.</p></div>
-<div class="card"><div class="icon">⚡</div><h3>Charging Port</h3><p>Charging, connector and cable-related faults.</p></div>
-<div class="card"><div class="icon">💻</div><h3>Software</h3><p>Software issues, setup and troubleshooting.</p></div>
-<div class="card"><div class="icon">🛠️</div><h3>Motherboard</h3><p>Board-level diagnosis and repair.</p></div>
-<div class="card"><div class="icon">💧</div><h3>Water Damage</h3><p>Inspection and recovery assessment.</p></div>
-</div>
-</div>
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="repairTitle">Repair services</h2>
+      <p data-i18n="repairText">Tell us what's wrong. Fixora can arrange the practical repair route for your device.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="icon">🖥️</div><h3 data-i18n="display">Display & Glass</h3><p data-i18n="displayText">Cracked, broken or damaged screen repairs.</p></div>
+      <div class="card"><div class="icon">🔋</div><h3 data-i18n="battery">Battery</h3><p data-i18n="batteryText">Battery replacement and power problems.</p></div>
+      <div class="card"><div class="icon">⚡</div><h3 data-i18n="charging">Charging Port</h3><p data-i18n="chargingText">Charging, connector and cable-related faults.</p></div>
+      <div class="card"><div class="icon">💻</div><h3 data-i18n="software">Software</h3><p data-i18n="softwareText">Software issues, setup and troubleshooting.</p></div>
+      <div class="card"><div class="icon">🛠️</div><h3 data-i18n="motherboard">Motherboard</h3><p data-i18n="motherboardText">Board-level diagnosis and repair.</p></div>
+      <div class="card"><div class="icon">💧</div><h3 data-i18n="water">Water Damage</h3><p data-i18n="waterText">Inspection and recovery assessment.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="models">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="modelsTitle">Phones we work with</h2>
+      <p data-i18n="modelsText">Popular brands supported. If you don't see your model, ask Fixora.</p>
+    </div>
+    <div class="brand-strip">
+      <span class="brand-pill">Apple</span><span class="brand-pill">Samsung</span><span class="brand-pill">OnePlus</span>
+      <span class="brand-pill">Xiaomi</span><span class="brand-pill">Redmi</span><span class="brand-pill">POCO</span>
+      <span class="brand-pill">OPPO</span><span class="brand-pill">vivo</span><span class="brand-pill">realme</span>
+      <span class="brand-pill">Motorola</span><span class="brand-pill">Nothing</span><span class="brand-pill">Google Pixel</span>
+    </div>
+  </div>
 </section>
 
 <section id="booking">
-<div class="wrap">
-<div class="section-head"><h2>Book a Repair</h2><p>Send us the details. We'll review the request and contact you about the practical repair option.</p></div>
-<div class="booking">
-<form id="repairForm">
-<div class="form-grid">
-<div class="field"><label for="name">Your name</label><input id="name" required placeholder="Enter your name"></div>
-<div class="field"><label for="phone">Phone number</label><input id="phone" required type="tel" placeholder="10-digit mobile number"></div>
-<div class="field"><label for="model">Phone model</label><input id="model" required placeholder="e.g. Samsung S24 Ultra"></div>
-<div class="field"><label for="service">Repair needed</label><select id="service" required><option value="">Choose repair</option><option>Display / Glass</option><option>Battery</option><option>Charging Port</option><option>Software</option><option>Motherboard</option><option>Water Damage</option><option>Other</option></select></div>
-<div class="field"><label for="visit">Service option</label><select id="visit"><option>On-site / Home</option><option>Workshop</option><option>Not sure — advise me</option></select></div>
-<div class="field"><label for="location">Service location</label><input id="location" placeholder="Area / locality"></div>
-<div class="field full"><label for="photo">Phone photo</label><input id="photo" type="file" accept="image/*" multiple><div class="note">You can select photos of the damage. The current demo opens WhatsApp with your request; attach the photos there as well.</div></div>
-<div class="field full"><label for="problem">What happened?</label><textarea id="problem" required placeholder="Describe the problem, damage, or symptoms..."></textarea></div>
-<div class="field full"><button class="btn primary" type="submit">Send Repair Request →</button></div>
-</div>
-</form>
-<p class="note">For now this form sends the request to Fixora WhatsApp. A private customer database, real-time chat and admin/technician dashboard can be connected as the next backend step.</p>
-</div>
-</div>
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="bookingTitle">Book a Repair</h2>
+      <p data-i18n="bookingText">Send us the details. We'll review the request and contact you about the practical repair option.</p>
+    </div>
+    <div class="booking">
+      <form id="repairForm">
+        <div class="form-grid">
+          <div class="field"><label for="name" data-i18n="nameLabel">Your name</label><input id="name" required placeholder="Enter your name"></div>
+          <div class="field"><label for="phone" data-i18n="phoneLabel">Phone number</label><input id="phone" required type="tel" placeholder="10-digit mobile number"></div>
+          <div class="field"><label for="model" data-i18n="modelLabel">Phone model</label><input id="model" required placeholder="e.g. Samsung S24 Ultra"></div>
+          <div class="field"><label for="service" data-i18n="serviceLabel">Repair needed</label>
+            <select id="service" required>
+              <option value="" data-i18n="chooseRepair">Choose repair</option>
+              <option data-i18n="optDisplay">Display / Glass</option><option data-i18n="optBattery">Battery</option>
+              <option data-i18n="optCharging">Charging Port</option><option data-i18n="optSoftware">Software</option>
+              <option data-i18n="optMotherboard">Motherboard</option><option data-i18n="optWater">Water Damage</option><option data-i18n="optOther">Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="visit" data-i18n="visitLabel">Service option</label>
+            <select id="visit"><option data-i18n="homeService">On-site / Home</option><option data-i18n="workshop">Workshop</option><option data-i18n="notSure">Not sure — advise me</option></select>
+          </div>
+          <div class="field"><label for="location" data-i18n="locationLabel">Service location</label><input id="location" placeholder="Area / locality"></div>
+          <div class="field full"><label for="photo" data-i18n="photoLabel">Phone photo</label><input id="photo" type="file" accept="image/*" multiple><div class="note" data-i18n="photoNote">You can select photos of the damage. Attach them in WhatsApp too.</div></div>
+          <div class="field full"><label for="problem" data-i18n="problemLabel">What happened?</label><textarea id="problem" required placeholder="Describe the problem, damage, or symptoms..."></textarea></div>
+          <div class="field full"><button class="btn primary" type="submit" data-i18n="sendRequest">Send Repair Request →</button></div>
+        </div>
+      </form>
+      <p class="note" data-i18n="formNote">This form prepares a WhatsApp repair request. A private customer database and technician dashboard can be connected later.</p>
+    </div>
+  </div>
 </section>
 
 <section id="accessories">
-<div class="wrap">
-<div class="section-head"><h2>Accessories</h2><p>Quality phone accessories can also be requested through Fixora.</p></div>
-<div class="grid"><div class="card"><h3>Cases & Covers</h3><p>Protection for popular phone models.</p></div><div class="card"><h3>Chargers & Cables</h3><p>Charging essentials and replacements.</p></div><div class="card"><h3>Audio & Power</h3><p>Earphones, power banks and everyday accessories.</p></div></div>
-</div>
+  <div class="wrap">
+    <div class="section-head"><h2 data-i18n="accessoriesTitle">Accessories</h2><p data-i18n="accessoriesText">Quality phone accessories can also be requested through Fixora.</p></div>
+    <div class="grid">
+      <div class="card"><div class="icon">🛡️</div><h3 data-i18n="cases">Cases & Covers</h3><p data-i18n="casesText">Protection for popular phone models.</p></div>
+      <div class="card"><div class="icon">⚡</div><h3 data-i18n="chargers">Chargers & Cables</h3><p data-i18n="chargersText">Charging essentials and replacements.</p></div>
+      <div class="card"><div class="icon">🎧</div><h3 data-i18n="audio">Audio & Power</h3><p data-i18n="audioText">Earphones, power banks and everyday accessories.</p></div>
+    </div>
+  </div>
 </section>
 
 <section id="track">
-<div class="wrap">
-<div class="section-head"><h2>Track Repair</h2><p>Repair tracking will be connected to the Fixora backend.</p></div>
-<div class="booking"><input id="repairId" placeholder="Enter your repair ID"><button class="btn primary" onclick="alert('Tracking will be available after the Fixora backend is connected.')">Check status</button></div>
-</div>
+  <div class="wrap">
+    <div class="section-head"><h2 data-i18n="trackTitle">Track Repair</h2><p data-i18n="trackText">Enter your repair ID to check your repair status.</p></div>
+    <div class="booking" style="display:flex;gap:10px;flex-wrap:wrap">
+      <input id="repairId" style="flex:1;min-width:220px" placeholder="Enter your repair ID">
+      <button class="btn primary" onclick="trackRepair()" data-i18n="checkStatus">Check status</button>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
-<div class="wrap">
-<div class="section-head"><h2>Contact Fixora</h2><p>For immediate enquiries, message Fixora directly on WhatsApp.</p></div>
-<a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank">🟢 Message Fixora on WhatsApp</a>
-</div>
+  <div class="wrap">
+    <div class="contact-box">
+      <div><div class="section-head" style="margin:0"><h2 data-i18n="contactTitle">Contact Fixora</h2><p data-i18n="contactText">For immediate enquiries, message Fixora directly on WhatsApp.</p></div></div>
+      <a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank">🟢 <span data-i18n="messageWhatsApp">Message Fixora</span></a>
+    </div>
+  </div>
 </section>
+
 </main>
 
-<footer><div class="wrap">© 2026 FixoraPhone • <strong>BUILT TO FIX</strong></div></footer>
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 FixoraPhone</span>
+    <strong>BUILT TO FIX</strong>
+  </div>
+</footer>
 
-<div class="chat"><button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">💬 Chat with Fixora</button></div>
+<!-- Simple Fixora chat -->
+<button class="chat-launch" onclick="toggleChat()" id="chatLaunch">💬 <span data-i18n="chatButton">Chat with Fixora</span></button>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div><div class="chat-title">Fixora</div><div class="chat-sub" data-i18n="chatOnline">Online • How can we help?</div></div>
+    <button class="chat-close" onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-form">
+    <input id="chatInput" type="text" data-i18n-placeholder="chatPlaceholder" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChat()">
+    <button onclick="sendChat()">➤</button>
+  </div>
+</div>
 
 <script>
-document.getElementById('repairForm').addEventListener('submit',function(e){
-e.preventDefault();
-const name=document.getElementById('name').value.trim();
-const phone=document.getElementById('phone').value.trim();
-const model=document.getElementById('model').value.trim();
-const service=document.getElementById('service').value;
-const visit=document.getElementById('visit').value;
-const location=document.getElementById('location').value.trim();
-const problem=document.getElementById('problem').value.trim();
-const msg=`Hello Fixora! I want to book a repair.%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AModel: ${encodeURIComponent(model)}%0ARepair: ${encodeURIComponent(service)}%0AService: ${encodeURIComponent(visit)}%0ALocation: ${encodeURIComponent(location)}%0AProblem: ${encodeURIComponent(problem)}%0A%0AI will send the phone photos here.`;
-window.open('https://wa.me/919591182590?text='+msg,'_blank');
+const T={
+en:{
+navHome:"Home",navRepair:"Repair",navAccessories:"Accessories",navTrack:"Track Repair",navContact:"Contact",
+eyebrow:"BUILT TO FIX",heroTitle1:"Phone broken?",heroTitle2:"Fixora handles it.",
+heroText:"Professional mobile repair with doorstep service when practical, workshop repair when needed, plus quality phone accessories.",
+bookRepair:"🔧 Book a Repair",chatFixora:"💬 Chat with Fixora",support:"Repair support",serviceModes:"Home • On-site • Workshop",
+repairTitle:"Repair services",repairText:"Tell us what's wrong. Fixora can arrange the practical repair route for your device.",
+display:"Display & Glass",displayText:"Cracked, broken or damaged screen repairs.",battery:"Battery",batteryText:"Battery replacement and power problems.",charging:"Charging Port",chargingText:"Charging, connector and cable-related faults.",
+software:"Software",softwareText:"Software issues, setup and troubleshooting.",motherboard:"Motherboard",motherboardText:"Board-level diagnosis and repair.",water:"Water Damage",waterText:"Inspection and recovery assessment.",
+modelsTitle:"Phones we work with",modelsText:"Popular brands supported. If you don't see your model, ask Fixora.",
+bookingTitle:"Book a Repair",bookingText:"Send us the details. We'll review the request and contact you about the practical repair option.",
+nameLabel:"Your name",phoneLabel:"Phone number",modelLabel:"Phone model",serviceLabel:"Repair needed",chooseRepair:"Choose repair",
+optDisplay:"Display / Glass",optBattery:"Battery",optCharging:"Charging Port",optSoftware:"Software",optMotherboard:"Motherboard",optWater:"Water Damage",optOther:"Other",
+visitLabel:"Service option",homeService:"On-site / Home",workshop:"Workshop",notSure:"Not sure — advise me",locationLabel:"Service location",photoLabel:"Phone photo",
+photoNote:"You can select photos of the damage. Attach them in WhatsApp too.",problemLabel:"What happened?",sendRequest:"Send Repair Request →",
+formNote:"This form prepares a WhatsApp repair request. A private customer database and technician dashboard can be connected later.",
+accessoriesTitle:"Accessories",accessoriesText:"Quality phone accessories can also be requested through Fixora.",cases:"Cases & Covers",casesText:"Protection for popular phone models.",
+chargers:"Chargers & Cables",chargersText:"Charging essentials and replacements.",audio:"Audio & Power",audioText:"Earphones, power banks and everyday accessories.",
+trackTitle:"Track Repair",trackText:"Enter your repair ID to check your repair status.",checkStatus:"Check status",
+contactTitle:"Contact Fixora",contactText:"For immediate enquiries, message Fixora directly on WhatsApp.",messageWhatsApp:"Message Fixora",
+chatButton:"Chat with Fixora",chatOnline:"Online • How can we help?",chatPlaceholder:"Type a message...",
+hello:"Hello 👋 Welcome to Fixora! How can I help you today?",chatHint:"You can ask about repairs, accessories, your phone model, or booking a repair.",
+quickRepair:"Book a repair",quickPrice:"Ask about price",quickAccessory:"Accessories",quickWhatsApp:"WhatsApp Fixora",
+repairReply:"Sure 🔧 Tell me your phone model and what problem you're having. I'll guide you to the next step.",
+priceReply:"I can help with a repair estimate. Please tell me your phone model and the repair needed.",
+accessoryReply:"Sure 🛍️ We can help with cases, chargers, cables, earphones and power banks. Tell me what you need.",
+unknownReply:"Got it 👍 Tell me your phone model and what you need help with, and I'll guide you.",
+tracking:"Repair tracking will be connected to the Fixora backend. Please contact Fixora on WhatsApp for the current status.",
+languageTitle:"Choose your language",languageSub:"Select a language to continue."
+},
+kn:{
+navHome:"ಮುಖಪುಟ",navRepair:"ರಿಪೇರಿ",navAccessories:"ಆಕ್ಸೆಸರೀಸ್",navTrack:"ರಿಪೇರಿ ಟ್ರ್ಯಾಕ್",navContact:"ಸಂಪರ್ಕ",
+eyebrow:"BUILT TO FIX",heroTitle1:"ಫೋನ್ ಹಾಳಾಯಿತೇ?",heroTitle2:"Fixora ನೋಡಿಕೊಳ್ಳುತ್ತದೆ.",
+heroText:"ನಿಮ್ಮ ಮೊಬೈಲ್‌ಗೆ ವೃತ್ತಿಪರ ರಿಪೇರಿ ಸೇವೆ. ಸಾಧ್ಯವಾದಲ್ಲಿ ಮನೆ/ಆನ್-ಸೈಟ್ ಸೇವೆ, ಅಗತ್ಯವಿದ್ದರೆ ವರ್ಕ್‌ಶಾಪ್ ರಿಪೇರಿ ಮತ್ತು ಗುಣಮಟ್ಟದ ಆಕ್ಸೆಸರೀಸ್.",
+bookRepair:"🔧 ರಿಪೇರಿ ಬುಕ್ ಮಾಡಿ",chatFixora:"💬 Fixora ಜೊತೆ ಚಾಟ್",support:"ರಿಪೇರಿ ಸಹಾಯ",serviceModes:"ಮನೆ • ಆನ್-ಸೈಟ್ • ವರ್ಕ್‌ಶಾಪ್",
+repairTitle:"ರಿಪೇರಿ ಸೇವೆಗಳು",repairText:"ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ ಏನು ಸಮಸ್ಯೆ ಎಂದು ತಿಳಿಸಿ. Fixora ಸೂಕ್ತ ರಿಪೇರಿ ಮಾರ್ಗವನ್ನು ತಿಳಿಸುತ್ತದೆ.",
+display:"ಡಿಸ್ಪ್ಲೇ & ಗ್ಲಾಸ್",displayText:"ಒಡೆದ, ಹಾನಿಯಾದ ಅಥವಾ ಕ್ರ್ಯಾಕ್ ಆದ ಸ್ಕ್ರೀನ್ ರಿಪೇರಿ.",battery:"ಬ್ಯಾಟರಿ",batteryText:"ಬ್ಯಾಟರಿ ಬದಲಾವಣೆ ಮತ್ತು ಪವರ್ ಸಮಸ್ಯೆಗಳು.",charging:"ಚಾರ್ಜಿಂಗ್ ಪೋರ್ಟ್",chargingText:"ಚಾರ್ಜಿಂಗ್, ಕನೆಕ್ಟರ್ ಮತ್ತು ಕೇಬಲ್ ಸಮಸ್ಯೆಗಳು.",
+software:"ಸಾಫ್ಟ್‌ವೇರ್",softwareText:"ಸಾಫ್ಟ್‌ವೇರ್ ಸಮಸ್ಯೆಗಳು, ಸೆಟಪ್ ಮತ್ತು ಟ್ರಬಲ್‌ಶೂಟಿಂಗ್.",motherboard:"ಮದರ್‌ಬೋರ್ಡ್",motherboardText:"ಬೋರ್ಡ್ ಲೆವೆಲ್ ಡಯಾಗ್ನೋಸಿಸ್ ಮತ್ತು ರಿಪೇರಿ.",water:"ನೀರಿನ ಹಾನಿ",waterText:"ಪರಿಶೀಲನೆ ಮತ್ತು ರಿಕವರಿ ಅಸೆಸ್ಮೆಂಟ್.",
+modelsTitle:"ನಾವು ಕೆಲಸ ಮಾಡುವ ಫೋನ್‌ಗಳು",modelsText:"ಜನಪ್ರಿಯ ಬ್ರ್ಯಾಂಡ್‌ಗಳು ಲಭ್ಯ. ನಿಮ್ಮ ಮಾದರಿ ಕಾಣಿಸದಿದ್ದರೆ Fixoraಗೆ ಕೇಳಿ.",
+bookingTitle:"ರಿಪೇರಿ ಬುಕ್ ಮಾಡಿ",bookingText:"ವಿವರಗಳನ್ನು ಕಳುಹಿಸಿ. ನಾವು ಪರಿಶೀಲಿಸಿ ಸೂಕ್ತ ರಿಪೇರಿ ಆಯ್ಕೆಯ ಬಗ್ಗೆ ಸಂಪರ್ಕಿಸುತ್ತೇವೆ.",
+nameLabel:"ನಿಮ್ಮ ಹೆಸರು",phoneLabel:"ಫೋನ್ ನಂಬರ್",modelLabel:"ಫೋನ್ ಮಾದರಿ",serviceLabel:"ಬೇಕಾದ ರಿಪೇರಿ",chooseRepair:"ರಿಪೇರಿ ಆಯ್ಕೆ ಮಾಡಿ",
+optDisplay:"ಡಿಸ್ಪ್ಲೇ / ಗ್ಲಾಸ್",optBattery:"ಬ್ಯಾಟರಿ",optCharging:"ಚಾರ್ಜಿಂಗ್ ಪೋರ್ಟ್",optSoftware:"ಸಾಫ್ಟ್‌ವೇರ್",optMotherboard:"ಮದರ್‌ಬೋರ್ಡ್",optWater:"ನೀರಿನ ಹಾನಿ",optOther:"ಇತರೆ",
+visitLabel:"ಸೇವೆಯ ಆಯ್ಕೆ",homeService:"ಮನೆ / ಆನ್-ಸೈಟ್",workshop:"ವರ್ಕ್‌ಶಾಪ್",notSure:"ಗೊತ್ತಿಲ್ಲ — ಸಲಹೆ ನೀಡಿ",locationLabel:"ಸೇವೆಯ ಸ್ಥಳ",photoLabel:"ಫೋನ್ ಫೋಟೋ",
+photoNote:"ಹಾನಿಯ ಫೋಟೋಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಬಹುದು. WhatsApp‌ನಲ್ಲೂ ಫೋಟೋ ಕಳುಹಿಸಿ.",problemLabel:"ಏನಾಯಿತು?",sendRequest:"ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ ಕಳುಹಿಸಿ →",
+formNote:"ಈ ಫಾರ್ಮ್ WhatsApp ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ ಸಿದ್ಧಪಡಿಸುತ್ತದೆ. ನಂತರ ಖಾಸಗಿ ಕಸ್ಟಮರ್ ಡೇಟಾಬೇಸ್ ಮತ್ತು ಟೆಕ್ನಿಷಿಯನ್ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಸಂಪರ್ಕಿಸಬಹುದು.",
+accessoriesTitle:"ಆಕ್ಸೆಸರೀಸ್",accessoriesText:"ಗುಣಮಟ್ಟದ ಫೋನ್ ಆಕ್ಸೆಸರೀಸ್‌ಗಳನ್ನು ಕೂಡ Fixora ಮೂಲಕ ಕೇಳಬಹುದು.",cases:"ಕೇಸ್ & ಕವರ್",casesText:"ಜನಪ್ರಿಯ ಫೋನ್ ಮಾದರಿಗಳಿಗೆ ರಕ್ಷಣೆ.",
+chargers:"ಚಾರ್ಜರ್ & ಕೇಬಲ್",chargersText:"ಚಾರ್ಜಿಂಗ್ ಅಗತ್ಯ ವಸ್ತುಗಳು ಮತ್ತು ಬದಲಿ ಕೇಬಲ್‌ಗಳು.",audio:"ಆಡಿಯೋ & ಪವರ್",audioText:"ಇಯರ್‌ಫೋನ್, ಪವರ್ ಬ್ಯಾಂಕ್ ಮತ್ತು ದಿನನಿತ್ಯದ ಆಕ್ಸೆಸರೀಸ್.",
+trackTitle:"ರಿಪೇರಿ ಟ್ರ್ಯಾಕ್",trackText:"ನಿಮ್ಮ ರಿಪೇರಿ ID ನಮೂದಿಸಿ ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಿ.",checkStatus:"ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಿ",
+contactTitle:"Fixora ಸಂಪರ್ಕ",contactText:"ತಕ್ಷಣದ ವಿಚಾರಣೆಗಾಗಿ WhatsApp‌ನಲ್ಲಿ Fixoraಗೆ ಮೆಸೇಜ್ ಮಾಡಿ.",messageWhatsApp:"Fixoraಗೆ ಮೆಸೇಜ್ ಮಾಡಿ",
+chatButton:"Fixora ಜೊತೆ ಚಾಟ್",chatOnline:"ಆನ್‌ಲೈನ್ • ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?",chatPlaceholder:"ಮೆಸೇಜ್ ಟೈಪ್ ಮಾಡಿ...",
+hello:"ನಮಸ್ಕಾರ 👋 Fixoraಗೆ ಸ್ವಾಗತ! ನಿಮಗೆ ಇಂದು ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",chatHint:"ರಿಪೇರಿ, ಆಕ್ಸೆಸರೀಸ್, ಫೋನ್ ಮಾದರಿ ಅಥವಾ ರಿಪೇರಿ ಬುಕ್ಕಿಂಗ್ ಬಗ್ಗೆ ಕೇಳಬಹುದು.",
+quickRepair:"ರಿಪೇರಿ ಬುಕ್",quickPrice:"ಬೆಲೆ ಕೇಳಿ",quickAccessory:"ಆಕ್ಸೆಸರೀಸ್",quickWhatsApp:"WhatsApp Fixora",
+repairReply:"ಖಂಡಿತ 🔧 ನಿಮ್ಮ ಫೋನ್ ಮಾದರಿ ಮತ್ತು ಸಮಸ್ಯೆಯನ್ನು ತಿಳಿಸಿ. ಮುಂದಿನ ಹಂತವನ್ನು ನಾನು ತಿಳಿಸುತ್ತೇನೆ.",
+priceReply:"ರಿಪೇರಿ ಅಂದಾಜಿಗೆ ಸಹಾಯ ಮಾಡುತ್ತೇನೆ. ನಿಮ್ಮ ಫೋನ್ ಮಾದರಿ ಮತ್ತು ಬೇಕಾದ ರಿಪೇರಿ ತಿಳಿಸಿ.",
+accessoryReply:"ಖಂಡಿತ 🛍️ ಕೇಸ್, ಚಾರ್ಜರ್, ಕೇಬಲ್, ಇಯರ್‌ಫೋನ್ ಮತ್ತು ಪವರ್ ಬ್ಯಾಂಕ್ ಬಗ್ಗೆ ಸಹಾಯ ಮಾಡಬಹುದು. ಏನು ಬೇಕು ಎಂದು ತಿಳಿಸಿ.",
+unknownReply:"ಸರಿ 👍 ನಿಮ್ಮ ಫೋನ್ ಮಾದರಿ ಮತ್ತು ನಿಮಗೆ ಬೇಕಾದ ಸಹಾಯವನ್ನು ತಿಳಿಸಿ. ನಾನು ಮಾರ್ಗದರ್ಶನ ಮಾಡುತ್ತೇನೆ.",
+tracking:"ರಿಪೇರಿ ಟ್ರ್ಯಾಕಿಂಗ್ Fixora backend ಸಂಪರ್ಕಿಸಿದ ನಂತರ ಲಭ್ಯವಾಗುತ್ತದೆ. ಪ್ರಸ್ತುತ ಸ್ಟೇಟಸ್‌ಗಾಗಿ WhatsApp‌ನಲ್ಲಿ Fixoraಗೆ ಸಂಪರ್ಕಿಸಿ.",
+languageTitle:"ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ",languageSub:"ಮುಂದುವರಿಯಲು ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ."
+}};
+
+let lang=localStorage.getItem("fixoraLanguage")||"";
+function setLanguage(l){
+  lang=l;localStorage.setItem("fixoraLanguage",l);
+  document.getElementById("languageScreen").classList.add("hidden");
+  applyLanguage();initChat();
+}
+function toggleLanguage(){setLanguage(lang==="en"?"kn":"en")}
+function applyLanguage(){
+  const t=T[lang||"en"];
+  document.documentElement.lang=lang||"en";
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(t[k])el.textContent=t[k]});
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{const k=el.getAttribute("data-i18n-placeholder");if(t[k])el.placeholder=t[k]});
+  document.getElementById("langSwitch").textContent=lang==="en"?"ಕನ್ನಡ":"English";
+  document.getElementById("languageTitle").textContent=t.languageTitle;
+  document.getElementById("languageSub").textContent=t.languageSub;
+}
+function toggleMenu(){const n=document.getElementById("navLinks");n.style.display=n.style.display==="flex"?"none":"flex"}
+function openChat(){document.getElementById("chatWindow").classList.add("open");document.getElementById("chatInput").focus()}
+function toggleChat(){document.getElementById("chatWindow").classList.toggle("open")}
+function addMsg(text,type="bot"){const b=document.getElementById("chatBody");const d=document.createElement("div");d.className="msg "+type;d.textContent=text;b.appendChild(d);b.scrollTop=b.scrollHeight}
+function addQuick(){
+  const b=document.getElementById("chatBody"),t=T[lang||"en"],q=document.createElement("div");q.className="quick";
+  [["quickRepair","repair"],["quickPrice","price"],["quickAccessory","accessory"],["quickWhatsApp","wa"]].forEach(([k,a])=>{
+    const x=document.createElement("button");x.textContent=t[k];x.onclick=()=>quickChat(a);q.appendChild(x);
+  });b.appendChild(q)
+}
+function initChat(){
+  const b=document.getElementById("chatBody");b.innerHTML="";
+  const t=T[lang||"en"];addMsg(t.hello);addMsg(t.chatHint);addQuick();
+}
+function quickChat(a){
+  const t=T[lang||"en"];
+  if(a==="wa"){window.open("https://wa.me/919591182590","_blank");return}
+  addMsg(t[a==="repair"?"quickRepair":a==="price"?"quickPrice":"quickAccessory"],"user");
+  setTimeout(()=>{addMsg(t[a==="repair"?"repairReply":a==="price"?"priceReply":"accessoryReply"]);addQuick()},250);
+}
+function sendChat(){
+  const i=document.getElementById("chatInput"),v=i.value.trim();if(!v)return;
+  addMsg(v,"user");i.value="";
+  const t=T[lang||"en"];const s=v.toLowerCase();
+  setTimeout(()=>{
+    if(s.includes("hello")||s.includes("hi")||s.includes("ನಮಸ್ಕಾರ")) addMsg(t.hello);
+    else if(s.includes("price")||s.includes("cost")||s.includes("ಬೆಲೆ")) addMsg(t.priceReply);
+    else if(s.includes("repair")||s.includes("ರಿಪೇರಿ")||s.includes("broken")||s.includes("ಹಾಳ")) addMsg(t.repairReply);
+    else if(s.includes("case")||s.includes("charger")||s.includes("accessor")||s.includes("ಆಕ್ಸೆಸರ")) addMsg(t.accessoryReply);
+    else addMsg(t.unknownReply);
+    addQuick();
+  },350)
+}
+function trackRepair(){alert(T[lang||"en"].tracking)}
+document.getElementById("repairForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  const t=T[lang||"en"];
+  const name=document.getElementById("name").value.trim(),phone=document.getElementById("phone").value.trim();
+  const model=document.getElementById("model").value.trim(),service=document.getElementById("service").value;
+  const visit=document.getElementById("visit").value,location=document.getElementById("location").value.trim();
+  const problem=document.getElementById("problem").value.trim();
+  const msg=`${lang==="kn"?"ನಮಸ್ಕಾರ Fixora! ನನಗೆ ರಿಪೇರಿ ಬುಕ್ ಮಾಡಬೇಕು.":"Hello Fixora! I want to book a repair."}%0A%0A${lang==="kn"?"ಹೆಸರು":"Name"}: ${encodeURIComponent(name)}%0A${lang==="kn"?"ಫೋನ್":"Phone"}: ${encodeURIComponent(phone)}%0A${lang==="kn"?"ಮಾದರಿ":"Model"}: ${encodeURIComponent(model)}%0A${lang==="kn"?"ರಿಪೇರಿ":"Repair"}: ${encodeURIComponent(service)}%0A${lang==="kn"?"ಸೇವೆ":"Service"}: ${encodeURIComponent(visit)}%0A${lang==="kn"?"ಸ್ಥಳ":"Location"}: ${encodeURIComponent(location)}%0A${lang==="kn"?"ಸಮಸ್ಯೆ":"Problem"}: ${encodeURIComponent(problem)}%0A%0A${lang==="kn"?"ಫೋಟೋಗಳನ್ನು ಇಲ್ಲಿ ಕಳುಹಿಸುತ್ತೇನೆ.":"I will send the phone photos here."}`;
+  window.open("https://wa.me/919591182590?text="+msg,"_blank");
 });
+if(lang){document.getElementById("languageScreen").classList.add("hidden");applyLanguage();initChat()}
 </script>
 </body>
 </html>
