@@ -478,8 +478,9 @@ document.getElementById("repairForm").addEventListener("submit",async function(e
     alert(lang==="kn"?`ರಿಪೇರಿ ಬುಕ್ ಆಗಿದೆ! ನಿಮ್ಮ Repair ID: ${code}`:`Repair booked successfully! Your Repair ID: ${code}`);
     this.reset();
   }catch(err){
-    console.error(err);
-    alert(lang==="kn"?"ರಿಪೇರಿ ಸೇವ್ ಆಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ WhatsApp ಮೂಲಕ ಸಂಪರ್ಕಿಸಿ.":"The repair request could not be saved. Please try again or contact Fixora on WhatsApp.");
+    console.error("Fixora booking error:", err);
+    const detail = [err?.code, err?.message, err?.details, err?.hint].filter(Boolean).join("\n");
+    alert((lang==="kn"?"ರಿಪೇರಿ ಸೇವ್ ಆಗಲಿಲ್ಲ.\n\n":"The repair request could not be saved.\n\n") + (detail || "Unknown Supabase error. Check the browser console."));
   }finally{btn.disabled=false;btn.textContent=originalText;}
 });
 if(lang){document.getElementById("languageScreen").classList.add("hidden");applyLanguage();initChat()}
