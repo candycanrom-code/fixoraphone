@@ -249,6 +249,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
       <input id="repairId" style="flex:1;min-width:220px" placeholder="Enter your repair ID">
       <button class="btn primary" onclick="trackRepair()" data-i18n="checkStatus">Check status</button>
     </div>
+    <div id="trackingResult" style="margin-top:18px"></div>
   </div>
 </section>
 
@@ -284,7 +285,12 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+const SUPABASE_URL="https://vvkgaswwrwzdejakvytv.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_hFwgyt8T-pbTb5_zjKpFdw_kyd8kjSX";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+
 const T={
 en:{
 navHome:"Home",navRepair:"Repair",navAccessories:"Accessories",navTrack:"Track Repair",navContact:"Contact",
@@ -300,7 +306,7 @@ nameLabel:"Your name",phoneLabel:"Phone number",modelLabel:"Phone model",service
 optDisplay:"Display / Glass",optBattery:"Battery",optCharging:"Charging Port",optSoftware:"Software",optMotherboard:"Motherboard",optWater:"Water Damage",optOther:"Other",
 visitLabel:"Service option",homeService:"On-site / Home",workshop:"Workshop",notSure:"Not sure — advise me",locationLabel:"Service location",photoLabel:"Phone photo",
 photoNote:"You can select photos of the damage. Attach them in WhatsApp too.",problemLabel:"What happened?",sendRequest:"Send Repair Request →",
-formNote:"This form prepares a WhatsApp repair request. A private customer database and technician dashboard can be connected later.",
+formNote:"Your repair request is saved securely in Fixora's repair database. You'll receive a repair ID to track the status.",
 accessoriesTitle:"Accessories",accessoriesText:"Quality phone accessories can also be requested through Fixora.",cases:"Cases & Covers",casesText:"Protection for popular phone models.",
 chargers:"Chargers & Cables",chargersText:"Charging essentials and replacements.",audio:"Audio & Power",audioText:"Earphones, power banks and everyday accessories.",
 trackTitle:"Track Repair",trackText:"Enter your repair ID to check your repair status.",checkStatus:"Check status",
@@ -312,7 +318,7 @@ repairReply:"Sure 🔧 Tell me your phone model and what problem you're having. 
 priceReply:"I can help with a repair estimate. Please tell me your phone model and the repair needed.",
 accessoryReply:"Sure 🛍️ We can help with cases, chargers, cables, earphones and power banks. Tell me what you need.",
 unknownReply:"Got it 👍 Tell me your phone model and what you need help with, and I'll guide you.",
-tracking:"Repair tracking will be connected to the Fixora backend. Please contact Fixora on WhatsApp for the current status.",
+tracking:"Enter your Fixora repair ID to check the latest status.",
 languageTitle:"Choose your language",languageSub:"Select a language to continue."
 },
 kn:{
@@ -329,7 +335,7 @@ nameLabel:"ನಿಮ್ಮ ಹೆಸರು",phoneLabel:"ಫೋನ್ ನಂಬ�
 optDisplay:"ಡಿಸ್ಪ್ಲೇ / ಗ್ಲಾಸ್",optBattery:"ಬ್ಯಾಟರಿ",optCharging:"ಚಾರ್ಜಿಂಗ್ ಪೋರ್ಟ್",optSoftware:"ಸಾಫ್ಟ್‌ವೇರ್",optMotherboard:"ಮದರ್‌ಬೋರ್ಡ್",optWater:"ನೀರಿನ ಹಾನಿ",optOther:"ಇತರೆ",
 visitLabel:"ಸೇವೆಯ ಆಯ್ಕೆ",homeService:"ಮನೆ / ಆನ್-ಸೈಟ್",workshop:"ವರ್ಕ್‌ಶಾಪ್",notSure:"ಗೊತ್ತಿಲ್ಲ — ಸಲಹೆ ನೀಡಿ",locationLabel:"ಸೇವೆಯ ಸ್ಥಳ",photoLabel:"ಫೋನ್ ಫೋಟೋ",
 photoNote:"ಹಾನಿಯ ಫೋಟೋಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಬಹುದು. WhatsApp‌ನಲ್ಲೂ ಫೋಟೋ ಕಳುಹಿಸಿ.",problemLabel:"ಏನಾಯಿತು?",sendRequest:"ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ ಕಳುಹಿಸಿ →",
-formNote:"ಈ ಫಾರ್ಮ್ WhatsApp ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ ಸಿದ್ಧಪಡಿಸುತ್ತದೆ. ನಂತರ ಖಾಸಗಿ ಕಸ್ಟಮರ್ ಡೇಟಾಬೇಸ್ ಮತ್ತು ಟೆಕ್ನಿಷಿಯನ್ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಸಂಪರ್ಕಿಸಬಹುದು.",
+formNote:"ನಿಮ್ಮ ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ Fixora ರಿಪೇರಿ ಡೇಟಾಬೇಸ್‌ನಲ್ಲಿ ಸುರಕ್ಷಿತವಾಗಿ ಸೇವ್ ಆಗುತ್ತದೆ. ಸ್ಟೇಟಸ್ ಟ್ರ್ಯಾಕ್ ಮಾಡಲು ರಿಪೇರಿ ID ಸಿಗುತ್ತದೆ.",
 accessoriesTitle:"ಆಕ್ಸೆಸರೀಸ್",accessoriesText:"ಗುಣಮಟ್ಟದ ಫೋನ್ ಆಕ್ಸೆಸರೀಸ್‌ಗಳನ್ನು ಕೂಡ Fixora ಮೂಲಕ ಕೇಳಬಹುದು.",cases:"ಕೇಸ್ & ಕವರ್",casesText:"ಜನಪ್ರಿಯ ಫೋನ್ ಮಾದರಿಗಳಿಗೆ ರಕ್ಷಣೆ.",
 chargers:"ಚಾರ್ಜರ್ & ಕೇಬಲ್",chargersText:"ಚಾರ್ಜಿಂಗ್ ಅಗತ್ಯ ವಸ್ತುಗಳು ಮತ್ತು ಬದಲಿ ಕೇಬಲ್‌ಗಳು.",audio:"ಆಡಿಯೋ & ಪವರ್",audioText:"ಇಯರ್‌ಫೋನ್, ಪವರ್ ಬ್ಯಾಂಕ್ ಮತ್ತು ದಿನನಿತ್ಯದ ಆಕ್ಸೆಸರೀಸ್.",
 trackTitle:"ರಿಪೇರಿ ಟ್ರ್ಯಾಕ್",trackText:"ನಿಮ್ಮ ರಿಪೇರಿ ID ನಮೂದಿಸಿ ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಿ.",checkStatus:"ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಿ",
@@ -341,7 +347,7 @@ repairReply:"ಖಂಡಿತ 🔧 ನಿಮ್ಮ ಫೋನ್ ಮಾದರಿ �
 priceReply:"ರಿಪೇರಿ ಅಂದಾಜಿಗೆ ಸಹಾಯ ಮಾಡುತ್ತೇನೆ. ನಿಮ್ಮ ಫೋನ್ ಮಾದರಿ ಮತ್ತು ಬೇಕಾದ ರಿಪೇರಿ ತಿಳಿಸಿ.",
 accessoryReply:"ಖಂಡಿತ 🛍️ ಕೇಸ್, ಚಾರ್ಜರ್, ಕೇಬಲ್, ಇಯರ್‌ಫೋನ್ ಮತ್ತು ಪವರ್ ಬ್ಯಾಂಕ್ ಬಗ್ಗೆ ಸಹಾಯ ಮಾಡಬಹುದು. ಏನು ಬೇಕು ಎಂದು ತಿಳಿಸಿ.",
 unknownReply:"ಸರಿ 👍 ನಿಮ್ಮ ಫೋನ್ ಮಾದರಿ ಮತ್ತು ನಿಮಗೆ ಬೇಕಾದ ಸಹಾಯವನ್ನು ತಿಳಿಸಿ. ನಾನು ಮಾರ್ಗದರ್ಶನ ಮಾಡುತ್ತೇನೆ.",
-tracking:"ರಿಪೇರಿ ಟ್ರ್ಯಾಕಿಂಗ್ Fixora backend ಸಂಪರ್ಕಿಸಿದ ನಂತರ ಲಭ್ಯವಾಗುತ್ತದೆ. ಪ್ರಸ್ತುತ ಸ್ಟೇಟಸ್‌ಗಾಗಿ WhatsApp‌ನಲ್ಲಿ Fixoraಗೆ ಸಂಪರ್ಕಿಸಿ.",
+tracking:"ನಿಮ್ಮ Fixora ರಿಪೇರಿ ID ನಮೂದಿಸಿ ಇತ್ತೀಚಿನ ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಿ.",
 languageTitle:"ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ",languageSub:"ಮುಂದುವರಿಯಲು ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ."
 }};
 
@@ -394,16 +400,87 @@ function sendChat(){
     addQuick();
   },350)
 }
-function trackRepair(){alert(T[lang||"en"].tracking)}
-document.getElementById("repairForm").addEventListener("submit",function(e){
+function setTrackingMessage(message,type="info"){
+  const box=document.getElementById("trackingResult");
+  box.innerHTML="";
+  const d=document.createElement("div");
+  d.className="card";
+  d.style.borderColor=type==="error"?"#7f3340":type==="success"?"#1f7358":"#263843";
+  d.innerHTML=`<p style="margin:0;color:${type==="error"?"#ffb4bd":"var(--text)"};line-height:1.6">${message}</p>`;
+  box.appendChild(d);
+}
+function esc(v){return String(v??"").replace(/[&<>\"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[m]));}
+function statusClass(status){
+  const s=String(status||"").toLowerCase();
+  if(s.includes("ready"))return "success";
+  if(s.includes("delivered"))return "success";
+  if(s.includes("cancel"))return "error";
+  return "info";
+}
+async function trackRepair(){
+  const input=document.getElementById("repairId");
+  const code=input.value.trim().toUpperCase();
+  const t=T[lang||"en"];
+  if(!code){setTrackingMessage(lang==="kn"?"ದಯವಿಟ್ಟು ನಿಮ್ಮ ರಿಪೇರಿ ID ನಮೂದಿಸಿ.":"Please enter your repair ID.","error");return}
+  setTrackingMessage(lang==="kn"?"ರಿಪೇರಿ ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ…":"Checking repair status…");
+  try{
+    const {data,error}=await supabaseClient.rpc("track_repair",{p_code:code});
+    if(error)throw error;
+    const row=Array.isArray(data)?data[0]:data;
+    if(!row){setTrackingMessage(lang==="kn"?"ಈ Repair ID ಕಂಡುಬಂದಿಲ್ಲ. ID ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.":"Repair ID not found. Please check the ID and try again.","error");return}
+    const updated=row.updated_at?new Date(row.updated_at).toLocaleString():"—";
+    const status=row.status||"Received";
+    const box=document.getElementById("trackingResult");
+    box.innerHTML=`<div class="card" style="border-color:#1f7358">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
+        <div><div class="note">${lang==="kn"?"ರಿಪೇರಿ ID":"Repair ID"}</div><h3 style="margin:4px 0 0">${esc(code)}</h3></div>
+        <div style="padding:9px 13px;border:1px solid #2b6f60;border-radius:999px;color:#8ff0bd;font-weight:800">${esc(status)}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:20px">
+        <div><div class="note">${lang==="kn"?"ಫೋನ್ ಮಾದರಿ":"Phone model"}</div><strong>${esc(row.phone_model||"—")}</strong></div>
+        <div><div class="note">${lang==="kn"?"ರಿಪೇರಿ":"Repair"}</div><strong>${esc(row.repair_type||"—")}</strong></div>
+        <div><div class="note">${lang==="kn"?"ಅಂದಾಜು":"Estimated"}</div><strong>${row.estimated_amount!=null?"₹"+esc(row.estimated_amount):"—"}</strong></div>
+        <div><div class="note">${lang==="kn"?"ಅಂತಿಮ ಮೊತ್ತ":"Final amount"}</div><strong>${row.final_amount!=null?"₹"+esc(row.final_amount):"—"}</strong></div>
+      </div>
+      <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)">
+        <div class="note">${lang==="kn"?"ಟೆಕ್ನಿಷಿಯನ್ ನೋಟ್ಸ್":"Technician note"}</div>
+        <div style="margin-top:5px;line-height:1.6">${esc(row.technician_note||"—")}</div>
+      </div>
+      <div class="note" style="margin-top:14px">${lang==="kn"?"ಕೊನೆಯ ಅಪ್‌ಡೇಟ್":"Last updated"}: ${esc(updated)}</div>
+    </div>`;
+  }catch(err){
+    console.error(err);
+    setTrackingMessage(lang==="kn"?"ಸ್ಟೇಟಸ್ ಪಡೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಸ್ವಲ್ಪ ಸಮಯದ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.":"Could not load the repair status. Please try again in a moment.","error");
+  }
+}
+
+document.getElementById("repairForm").addEventListener("submit",async function(e){
   e.preventDefault();
   const t=T[lang||"en"];
   const name=document.getElementById("name").value.trim(),phone=document.getElementById("phone").value.trim();
   const model=document.getElementById("model").value.trim(),service=document.getElementById("service").value;
   const visit=document.getElementById("visit").value,location=document.getElementById("location").value.trim();
   const problem=document.getElementById("problem").value.trim();
-  const msg=`${lang==="kn"?"ನಮಸ್ಕಾರ Fixora! ನನಗೆ ರಿಪೇರಿ ಬುಕ್ ಮಾಡಬೇಕು.":"Hello Fixora! I want to book a repair."}%0A%0A${lang==="kn"?"ಹೆಸರು":"Name"}: ${encodeURIComponent(name)}%0A${lang==="kn"?"ಫೋನ್":"Phone"}: ${encodeURIComponent(phone)}%0A${lang==="kn"?"ಮಾದರಿ":"Model"}: ${encodeURIComponent(model)}%0A${lang==="kn"?"ರಿಪೇರಿ":"Repair"}: ${encodeURIComponent(service)}%0A${lang==="kn"?"ಸೇವೆ":"Service"}: ${encodeURIComponent(visit)}%0A${lang==="kn"?"ಸ್ಥಳ":"Location"}: ${encodeURIComponent(location)}%0A${lang==="kn"?"ಸಮಸ್ಯೆ":"Problem"}: ${encodeURIComponent(problem)}%0A%0A${lang==="kn"?"ಫೋಟೋಗಳನ್ನು ಇಲ್ಲಿ ಕಳುಹಿಸುತ್ತೇನೆ.":"I will send the phone photos here."}`;
-  window.open("https://wa.me/919591182590?text="+msg,"_blank");
+  const btn=this.querySelector('button[type="submit"]');
+  const originalText=btn.textContent;
+  btn.disabled=true;btn.textContent=lang==="kn"?"ಸೇವ್ ಮಾಡಲಾಗುತ್ತಿದೆ…":"Saving repair request…";
+  try{
+    const {data,error}=await supabaseClient.rpc("create_repair",{
+      p_customer_name:name,p_customer_phone:phone,p_phone_model:model,p_repair_type:service,
+      p_service_option:visit,p_service_location:location,p_problem_description:problem
+    });
+    if(error)throw error;
+    const result=Array.isArray(data)?data[0]:data;
+    if(!result||!result.repair_code)throw new Error("No repair code returned");
+    const code=result.repair_code;
+    const msg=`${lang==="kn"?"ನಮಸ್ಕಾರ Fixora! ನನ್ನ ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ ಬುಕ್ ಆಗಿದೆ.":"Hello Fixora! My repair request has been booked."}%0A%0A${lang==="kn"?"Repair ID":"Repair ID"}: ${encodeURIComponent(code)}%0A${lang==="kn"?"ಹೆಸರು":"Name"}: ${encodeURIComponent(name)}%0A${lang==="kn"?"ಫೋನ್":"Phone"}: ${encodeURIComponent(phone)}%0A${lang==="kn"?"ಮಾದರಿ":"Model"}: ${encodeURIComponent(model)}%0A${lang==="kn"?"ರಿಪೇರಿ":"Repair"}: ${encodeURIComponent(service)}%0A${lang==="kn"?"ಸೇವೆ":"Service"}: ${encodeURIComponent(visit)}%0A${lang==="kn"?"ಸ್ಥಳ":"Location"}: ${encodeURIComponent(location)}%0A${lang==="kn"?"ಸಮಸ್ಯೆ":"Problem"}: ${encodeURIComponent(problem)}%0A%0A${lang==="kn"?"ಫೋಟೋಗಳನ್ನು ಇಲ್ಲಿ ಕಳುಹಿಸುತ್ತೇನೆ.":"I will send the phone photos here."}`;
+    window.open("https://wa.me/919591182590?text="+msg,"_blank");
+    alert(lang==="kn"?`ರಿಪೇರಿ ಬುಕ್ ಆಗಿದೆ! ನಿಮ್ಮ Repair ID: ${code}`:`Repair booked successfully! Your Repair ID: ${code}`);
+    this.reset();
+  }catch(err){
+    console.error(err);
+    alert(lang==="kn"?"ರಿಪೇರಿ ಸೇವ್ ಆಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ WhatsApp ಮೂಲಕ ಸಂಪರ್ಕಿಸಿ.":"The repair request could not be saved. Please try again or contact Fixora on WhatsApp.");
+  }finally{btn.disabled=false;btn.textContent=originalText;}
 });
 if(lang){document.getElementById("languageScreen").classList.add("hidden");applyLanguage();initChat()}
 </script>
