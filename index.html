@@ -246,7 +246,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
   <div class="wrap">
     <div class="section-head"><h2 data-i18n="trackTitle">Track Repair</h2><p data-i18n="trackText">Enter your repair ID to check your repair status.</p></div>
     <div class="booking" style="display:flex;gap:10px;flex-wrap:wrap">
-      <input id="repairId" style="flex:1;min-width:220px" placeholder="Enter your repair ID">
+      <input id="repairId" style="flex:1;min-width:220px" placeholder="Enter your repair ID" onkeydown="if(event.key==='Enter')trackRepair()">
       <button class="btn primary" onclick="trackRepair()" data-i18n="checkStatus">Check status</button>
     </div>
     <div id="trackingResult" style="margin-top:18px"></div>
@@ -286,27 +286,31 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
 </div>
 
 <script>
-const SUPABASE_URL="https://vvkgaswwrwzdejakvytv.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY="sb_publishable_hFwgyt8T-pbTb5_zjKpFdw_kyd8kjSX";
-async function supabaseRpc(functionName, body){
+// FixoraPhone Cloudflare Worker API
+const API_BASE_URL="https://ancient-flower-5182.candycanrom.workers.dev";
+
+async function apiRequest(path, options={}){
   const controller=new AbortController();
   const timer=setTimeout(()=>controller.abort(),15000);
   try{
-    const response=await fetch(SUPABASE_URL+"/rest/v1/rpc/"+functionName,{
-      method:"POST",
-      headers:{"apikey":SUPABASE_PUBLISHABLE_KEY,"Authorization":"Bearer "+SUPABASE_PUBLISHABLE_KEY,"Content-Type":"application/json","Accept":"application/json"},
-      body:JSON.stringify(body),signal:controller.signal
+    const response=await fetch(API_BASE_URL+path,{
+      ...options,
+      headers:{"Accept":"application/json",...(options.body?{"Content-Type":"application/json"}:{}),...(options.headers||{})},
+      signal:controller.signal
     });
     const text=await response.text();
-    let data; try{data=text?JSON.parse(text):null}catch(_){data=text}
+    let data=null;
+    try{data=text?JSON.parse(text):null}catch(_){data=text}
     if(!response.ok){
-      const msg=typeof data==='object'&&data ? (data.message||data.error_description||data.hint||JSON.stringify(data)) : String(data||response.statusText);
-      const e=new Error(msg); e.code=String(response.status); e.details=typeof data==='object'&&data?data.details:""; e.hint=typeof data==='object'&&data?data.hint:""; throw e;
+      const message=typeof data==='object'&&data ? (data.error||data.message||data.details||JSON.stringify(data)) : String(data||response.statusText);
+      const error=new Error(message||`Request failed (${response.status})`);
+      error.status=response.status;
+      throw error;
     }
-    return {data,error:null};
-  }catch(e){
-    if(e.name==='AbortError'){const x=new Error('Supabase request timed out. Check your internet connection or Supabase project URL.');x.code='TIMEOUT';throw x;}
-    throw e;
+    return data;
+  }catch(error){
+    if(error.name==='AbortError')throw new Error('The request timed out. Please check your connection and try again.');
+    throw error;
   }finally{clearTimeout(timer)}
 }
 
@@ -443,10 +447,11 @@ async function trackRepair(){
   if(!code){setTrackingMessage(lang==="kn"?"ದಯವಿಟ್ಟು ನಿಮ್ಮ ರಿಪೇರಿ ID ನಮೂದಿಸಿ.":"Please enter your repair ID.","error");return}
   setTrackingMessage(lang==="kn"?"ರಿಪೇರಿ ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ…":"Checking repair status…");
   try{
-    const {data,error}=await supabaseRpc("track_repair",{p_code:code});
-    if(error)throw error;
-    const row=Array.isArray(data)?data[0]:data;
-    if(!row){setTrackingMessage(lang==="kn"?"ಈ Repair ID ಕಂಡುಬಂದಿಲ್ಲ. ID ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.":"Repair ID not found. Please check the ID and try again.","error");return}
+    const payload=await apiRequest("/api/repairs/track?code="+encodeURIComponent(code),{method:"GET"});
+    const row=payload?.repair || (Array.isArray(payload)?payload[0]:payload);
+    if(payload?.success===false || !row || (!row.repair_code && !row.phone_model && !row.status)){
+      setTrackingMessage(lang==="kn"?"ಈ Repair ID ಕಂಡುಬಂದಿಲ್ಲ. ID ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.":"Repair ID not found. Please check the ID and try again.","error");return
+    }
     const updated=row.updated_at?new Date(row.updated_at).toLocaleString():"—";
     const status=row.status||"Received";
     const box=document.getElementById("trackingResult");
@@ -484,13 +489,20 @@ document.getElementById("repairForm").addEventListener("submit",async function(e
   const originalText=btn.textContent;
   btn.disabled=true;btn.textContent=lang==="kn"?"ಸೇವ್ ಮಾಡಲಾಗುತ್ತಿದೆ…":"Saving repair request…";
   try{
-    const {data,error}=await supabaseRpc("create_repair",{
-      p_customer_name:name,p_customer_phone:phone,p_phone_model:model,p_repair_type:service,
-      p_service_option:visit,p_service_location:location,p_problem_description:problem
+    const result=await apiRequest("/api/repairs",{
+      method:"POST",
+      body:JSON.stringify({
+        customer_name:name,
+        customer_phone:phone,
+        phone_model:model,
+        repair_type:service,
+        service_option:visit,
+        service_location:location,
+        problem_description:problem
+      })
     });
-    if(error)throw error;
-    const result=Array.isArray(data)?data[0]:data;
-    if(!result||!result.repair_code)throw new Error("No repair code returned");
+    if(result?.success===false)throw new Error(result.error||result.message||"The backend could not save this request.");
+    if(!result?.repair_code)throw new Error("The backend saved no repair code in its response. Please contact Fixora before submitting again.");
     const code=result.repair_code;
     const msg=`${lang==="kn"?"ನಮಸ್ಕಾರ Fixora! ನನ್ನ ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ ಬುಕ್ ಆಗಿದೆ.":"Hello Fixora! My repair request has been booked."}%0A%0A${lang==="kn"?"Repair ID":"Repair ID"}: ${encodeURIComponent(code)}%0A${lang==="kn"?"ಹೆಸರು":"Name"}: ${encodeURIComponent(name)}%0A${lang==="kn"?"ಫೋನ್":"Phone"}: ${encodeURIComponent(phone)}%0A${lang==="kn"?"ಮಾದರಿ":"Model"}: ${encodeURIComponent(model)}%0A${lang==="kn"?"ರಿಪೇರಿ":"Repair"}: ${encodeURIComponent(service)}%0A${lang==="kn"?"ಸೇವೆ":"Service"}: ${encodeURIComponent(visit)}%0A${lang==="kn"?"ಸ್ಥಳ":"Location"}: ${encodeURIComponent(location)}%0A${lang==="kn"?"ಸಮಸ್ಯೆ":"Problem"}: ${encodeURIComponent(problem)}%0A%0A${lang==="kn"?"ಫೋಟೋಗಳನ್ನು ಇಲ್ಲಿ ಕಳುಹಿಸುತ್ತೇನೆ.":"I will send the phone photos here."}`;
     window.open("https://wa.me/919591182590?text="+msg,"_blank");
@@ -499,7 +511,7 @@ document.getElementById("repairForm").addEventListener("submit",async function(e
   }catch(err){
     console.error("Fixora booking error:", err);
     const detail = [err?.code, err?.message, err?.details, err?.hint].filter(Boolean).join("\n");
-    alert((lang==="kn"?"ರಿಪೇರಿ ಸೇವ್ ಆಗಲಿಲ್ಲ.\n\n":"The repair request could not be saved.\n\n") + (detail || "Unknown Supabase error. Check the browser console."));
+    alert((lang==="kn"?"ರಿಪೇರಿ ಸೇವ್ ಆಗಲಿಲ್ಲ.\n\n":"The repair request could not be saved.\n\n") + (detail || "Unknown backend error. Check the browser console."));
   }finally{btn.disabled=false;btn.textContent=originalText;}
 });
 if(lang){document.getElementById("languageScreen").classList.add("hidden");applyLanguage();initChat()}
