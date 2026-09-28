@@ -60,7 +60,15 @@ section{padding:78px 0}.section-head{margin-bottom:30px;max-width:760px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
 .card{background:linear-gradient(145deg,rgba(13,24,32,.9),rgba(8,15,21,.9));border:1px solid var(--line);border-radius:20px;padding:24px;min-height:170px;transition:.25s}
 .card:hover{transform:translateY(-4px);border-color:rgba(32,215,207,.28);box-shadow:0 18px 45px rgba(0,0,0,.22)}
-.icon{font-size:28px}.card h3{margin:13px 0 8px;font-size:19px}.card p{color:var(--muted);line-height:1.65;margin:0}
+.card h3{margin:13px 0 8px;font-size:19px}.card p{color:var(--muted);line-height:1.65;margin:0}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.service-card{padding:0;min-height:0;overflow:hidden;background:linear-gradient(145deg,rgba(13,24,32,.96),rgba(8,15,21,.96));border:1px solid var(--line);border-radius:20px;transition:.25s}
+.service-card:hover{transform:translateY(-4px);border-color:rgba(32,215,207,.34);box-shadow:0 18px 45px rgba(0,0,0,.28)}
+.service-photo{height:220px;background-image:url('fixora-repair-services.jpg');background-repeat:no-repeat;background-size:300% 200%;background-color:#071016;position:relative}
+.service-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,10,14,.05),rgba(4,10,14,.48))}
+.service-display{background-position:0 0}.service-battery{background-position:50% 0}.service-charging{background-position:100% 0}.service-software{background-position:0 100%}.service-motherboard{background-position:50% 100%}.service-water{background-position:100% 100%}
+.service-copy{padding:21px 22px 23px}
+.text-mark{font-size:12px;letter-spacing:1.5px;font-weight:900;color:var(--cyan);margin-bottom:16px}
 .brand-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.brand-pill{border:1px solid var(--line);background:rgba(13,24,32,.75);padding:10px 15px;border-radius:999px;color:#dce9ee;font-weight:700;font-size:14px}
 
 /* Booking */
@@ -97,11 +105,11 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
 @media(max-width:900px){
   .links{display:none;position:absolute;left:4%;right:4%;top:70px;flex-direction:column;align-items:stretch;padding:15px;background:#09131a;border:1px solid var(--line);border-radius:16px}
   .links a{padding:10px}.menu{display:block}.nav-actions{margin-left:auto}
-  .hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.hero{padding-top:50px}
+  .hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.service-grid{grid-template-columns:1fr 1fr}.hero{padding-top:50px}
 }
 @media(max-width:560px){
   .brand img{height:42px}.lang-switch{padding:8px 9px}.hero{padding-top:40px}
-  h1{letter-spacing:-2px}.hero p{font-size:16px}.grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}
+  h1{letter-spacing:-2px}.hero p{font-size:16px}.grid,.service-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}
   .field.full{grid-column:auto}.logo-stage{min-height:270px}.logo-stage img{width:92%}
   .status{font-size:12px}.contact-box,.footer-row{flex-direction:column;align-items:flex-start}
   .chat-window{right:15px;bottom:82px;height:470px}.chat-launch{right:15px;bottom:15px}
@@ -150,9 +158,9 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
       <h1><span data-i18n="heroTitle1">Phone broken?</span><br><span data-i18n="heroTitle2">Fixora handles it.</span></h1>
       <p data-i18n="heroText">Professional mobile repair with doorstep service when practical, workshop repair when needed, plus quality phone accessories.</p>
       <div class="btns">
-        <a class="btn primary" href="#booking" data-i18n="bookRepair">🔧 Book a Repair</a>
-        <button class="btn" onclick="openChat()" data-i18n="chatFixora">💬 Chat with Fixora</button>
-        <a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank">🟢 WhatsApp Fixora</a>
+        <a class="btn primary" href="#booking" data-i18n="bookRepair">Book a Repair</a>
+        <button class="btn" onclick="openChat()" data-i18n="chatFixora">Chat with Fixora</button>
+        <a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank">WhatsApp Fixora</a>
       </div>
     </div>
     <div class="hero-card">
@@ -171,13 +179,31 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
       <h2 data-i18n="repairTitle">Repair services</h2>
       <p data-i18n="repairText">Tell us what's wrong. Fixora can arrange the practical repair route for your device.</p>
     </div>
-    <div class="grid">
-      <div class="card"><div class="icon">🖥️</div><h3 data-i18n="display">Display & Glass</h3><p data-i18n="displayText">Cracked, broken or damaged screen repairs.</p></div>
-      <div class="card"><div class="icon">🔋</div><h3 data-i18n="battery">Battery</h3><p data-i18n="batteryText">Battery replacement and power problems.</p></div>
-      <div class="card"><div class="icon">⚡</div><h3 data-i18n="charging">Charging Port</h3><p data-i18n="chargingText">Charging, connector and cable-related faults.</p></div>
-      <div class="card"><div class="icon">💻</div><h3 data-i18n="software">Software</h3><p data-i18n="softwareText">Software issues, setup and troubleshooting.</p></div>
-      <div class="card"><div class="icon">🛠️</div><h3 data-i18n="motherboard">Motherboard</h3><p data-i18n="motherboardText">Board-level diagnosis and repair.</p></div>
-      <div class="card"><div class="icon">💧</div><h3 data-i18n="water">Water Damage</h3><p data-i18n="waterText">Inspection and recovery assessment.</p></div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-photo service-display" role="img" aria-label="Cracked smartphone display repair"></div>
+        <div class="service-copy"><div class="text-mark">DISPLAY REPAIR</div><h3 data-i18n="display">Display & Glass</h3><p data-i18n="displayText">Cracked, broken or damaged screen repairs.</p></div>
+      </div>
+      <div class="service-card">
+        <div class="service-photo service-battery" role="img" aria-label="Smartphone battery replacement"></div>
+        <div class="service-copy"><div class="text-mark">POWER & BATTERY</div><h3 data-i18n="battery">Battery</h3><p data-i18n="batteryText">Battery replacement and power problems.</p></div>
+      </div>
+      <div class="service-card">
+        <div class="service-photo service-charging" role="img" aria-label="Smartphone charging port repair"></div>
+        <div class="service-copy"><div class="text-mark">CHARGING PORT</div><h3 data-i18n="charging">Charging Port</h3><p data-i18n="chargingText">Charging, connector and cable-related faults.</p></div>
+      </div>
+      <div class="service-card">
+        <div class="service-photo service-software" role="img" aria-label="Smartphone software diagnostics"></div>
+        <div class="service-copy"><div class="text-mark">SOFTWARE SERVICE</div><h3 data-i18n="software">Software</h3><p data-i18n="softwareText">Software issues, setup and troubleshooting.</p></div>
+      </div>
+      <div class="service-card">
+        <div class="service-photo service-motherboard" role="img" aria-label="Smartphone motherboard microsoldering repair"></div>
+        <div class="service-copy"><div class="text-mark">BOARD REPAIR</div><h3 data-i18n="motherboard">Motherboard</h3><p data-i18n="motherboardText">Board-level diagnosis and repair.</p></div>
+      </div>
+      <div class="service-card">
+        <div class="service-photo service-water" role="img" aria-label="Smartphone water damage inspection"></div>
+        <div class="service-copy"><div class="text-mark">WATER DAMAGE</div><h3 data-i18n="water">Water Damage</h3><p data-i18n="waterText">Inspection and recovery assessment.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -235,9 +261,9 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
   <div class="wrap">
     <div class="section-head"><h2 data-i18n="accessoriesTitle">Accessories</h2><p data-i18n="accessoriesText">Quality phone accessories can also be requested through Fixora.</p></div>
     <div class="grid">
-      <div class="card"><div class="icon">🛡️</div><h3 data-i18n="cases">Cases & Covers</h3><p data-i18n="casesText">Protection for popular phone models.</p></div>
-      <div class="card"><div class="icon">⚡</div><h3 data-i18n="chargers">Chargers & Cables</h3><p data-i18n="chargersText">Charging essentials and replacements.</p></div>
-      <div class="card"><div class="icon">🎧</div><h3 data-i18n="audio">Audio & Power</h3><p data-i18n="audioText">Earphones, power banks and everyday accessories.</p></div>
+      <div class="card"><div class="text-mark">CASES</div><h3 data-i18n="cases">Cases & Covers</h3><p data-i18n="casesText">Protection for popular phone models.</p></div>
+      <div class="card"><div class="text-mark">POWER</div><h3 data-i18n="chargers">Chargers & Cables</h3><p data-i18n="chargersText">Charging essentials and replacements.</p></div>
+      <div class="card"><div class="text-mark">AUDIO</div><h3 data-i18n="audio">Audio & Power</h3><p data-i18n="audioText">Earphones, power banks and everyday accessories.</p></div>
     </div>
   </div>
 </section>
@@ -257,7 +283,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
   <div class="wrap">
     <div class="contact-box">
       <div><div class="section-head" style="margin:0"><h2 data-i18n="contactTitle">Contact Fixora</h2><p data-i18n="contactText">For immediate enquiries, message Fixora directly on WhatsApp.</p></div></div>
-      <a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank">🟢 <span data-i18n="messageWhatsApp">Message Fixora</span></a>
+      <a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank"><span data-i18n="messageWhatsApp">Message Fixora</span></a>
     </div>
   </div>
 </section>
@@ -272,7 +298,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
 </footer>
 
 <!-- Simple Fixora chat -->
-<button class="chat-launch" onclick="toggleChat()" id="chatLaunch">💬 <span data-i18n="chatButton">Chat with Fixora</span></button>
+<button class="chat-launch" onclick="toggleChat()" id="chatLaunch"><span data-i18n="chatButton">Chat with Fixora</span></button>
 <div class="chat-window" id="chatWindow">
   <div class="chat-head">
     <div><div class="chat-title">Fixora</div><div class="chat-sub" data-i18n="chatOnline">Online • How can we help?</div></div>
@@ -319,7 +345,7 @@ en:{
 navHome:"Home",navRepair:"Repair",navAccessories:"Accessories",navTrack:"Track Repair",navContact:"Contact",
 eyebrow:"BUILT TO FIX",heroTitle1:"Phone broken?",heroTitle2:"Fixora handles it.",
 heroText:"Professional mobile repair with doorstep service when practical, workshop repair when needed, plus quality phone accessories.",
-bookRepair:"🔧 Book a Repair",chatFixora:"💬 Chat with Fixora",support:"Repair support",serviceModes:"Home • On-site • Workshop",
+bookRepair:"Book a Repair",chatFixora:"Chat with Fixora",support:"Repair support",serviceModes:"Home • On-site • Workshop",
 repairTitle:"Repair services",repairText:"Tell us what's wrong. Fixora can arrange the practical repair route for your device.",
 display:"Display & Glass",displayText:"Cracked, broken or damaged screen repairs.",battery:"Battery",batteryText:"Battery replacement and power problems.",charging:"Charging Port",chargingText:"Charging, connector and cable-related faults.",
 software:"Software",softwareText:"Software issues, setup and troubleshooting.",motherboard:"Motherboard",motherboardText:"Board-level diagnosis and repair.",water:"Water Damage",waterText:"Inspection and recovery assessment.",
@@ -335,12 +361,12 @@ chargers:"Chargers & Cables",chargersText:"Charging essentials and replacements.
 trackTitle:"Track Repair",trackText:"Enter your repair ID to check your repair status.",checkStatus:"Check status",
 contactTitle:"Contact Fixora",contactText:"For immediate enquiries, message Fixora directly on WhatsApp.",messageWhatsApp:"Message Fixora",
 chatButton:"Chat with Fixora",chatOnline:"Online • How can we help?",chatPlaceholder:"Type a message...",
-hello:"Hello 👋 Welcome to Fixora! How can I help you today?",chatHint:"You can ask about repairs, accessories, your phone model, or booking a repair.",
+hello:"Hello. Welcome to Fixora! How can I help you today?",chatHint:"You can ask about repairs, accessories, your phone model, or booking a repair.",
 quickRepair:"Book a repair",quickPrice:"Ask about price",quickAccessory:"Accessories",quickWhatsApp:"WhatsApp Fixora",
-repairReply:"Sure 🔧 Tell me your phone model and what problem you're having. I'll guide you to the next step.",
+repairReply:"Tell me your phone model and what problem you're having. I'll guide you to the next step.",
 priceReply:"I can help with a repair estimate. Please tell me your phone model and the repair needed.",
-accessoryReply:"Sure 🛍️ We can help with cases, chargers, cables, earphones and power banks. Tell me what you need.",
-unknownReply:"Got it 👍 Tell me your phone model and what you need help with, and I'll guide you.",
+accessoryReply:"We can help with cases, chargers, cables, earphones and power banks. Tell me what you need.",
+unknownReply:"Got it Tell me your phone model and what you need help with, and I'll guide you.",
 tracking:"Enter your Fixora repair ID to check the latest status.",
 languageTitle:"Choose your language",languageSub:"Select a language to continue."
 },
@@ -348,7 +374,7 @@ kn:{
 navHome:"ಮುಖಪುಟ",navRepair:"ರಿಪೇರಿ",navAccessories:"ಆಕ್ಸೆಸರೀಸ್",navTrack:"ರಿಪೇರಿ ಟ್ರ್ಯಾಕ್",navContact:"ಸಂಪರ್ಕ",
 eyebrow:"BUILT TO FIX",heroTitle1:"ಫೋನ್ ಹಾಳಾಯಿತೇ?",heroTitle2:"Fixora ನೋಡಿಕೊಳ್ಳುತ್ತದೆ.",
 heroText:"ನಿಮ್ಮ ಮೊಬೈಲ್‌ಗೆ ವೃತ್ತಿಪರ ರಿಪೇರಿ ಸೇವೆ. ಸಾಧ್ಯವಾದಲ್ಲಿ ಮನೆ/ಆನ್-ಸೈಟ್ ಸೇವೆ, ಅಗತ್ಯವಿದ್ದರೆ ವರ್ಕ್‌ಶಾಪ್ ರಿಪೇರಿ ಮತ್ತು ಗುಣಮಟ್ಟದ ಆಕ್ಸೆಸರೀಸ್.",
-bookRepair:"🔧 ರಿಪೇರಿ ಬುಕ್ ಮಾಡಿ",chatFixora:"💬 Fixora ಜೊತೆ ಚಾಟ್",support:"ರಿಪೇರಿ ಸಹಾಯ",serviceModes:"ಮನೆ • ಆನ್-ಸೈಟ್ • ವರ್ಕ್‌ಶಾಪ್",
+bookRepair:"ರಿಪೇರಿ ಬುಕ್ ಮಾಡಿ",chatFixora:"Fixora ಜೊತೆ ಚಾಟ್",support:"ರಿಪೇರಿ ಸಹಾಯ",serviceModes:"ಮನೆ • ಆನ್-ಸೈಟ್ • ವರ್ಕ್‌ಶಾಪ್",
 repairTitle:"ರಿಪೇರಿ ಸೇವೆಗಳು",repairText:"ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ ಏನು ಸಮಸ್ಯೆ ಎಂದು ತಿಳಿಸಿ. Fixora ಸೂಕ್ತ ರಿಪೇರಿ ಮಾರ್ಗವನ್ನು ತಿಳಿಸುತ್ತದೆ.",
 display:"ಡಿಸ್ಪ್ಲೇ & ಗ್ಲಾಸ್",displayText:"ಒಡೆದ, ಹಾನಿಯಾದ ಅಥವಾ ಕ್ರ್ಯಾಕ್ ಆದ ಸ್ಕ್ರೀನ್ ರಿಪೇರಿ.",battery:"ಬ್ಯಾಟರಿ",batteryText:"ಬ್ಯಾಟರಿ ಬದಲಾವಣೆ ಮತ್ತು ಪವರ್ ಸಮಸ್ಯೆಗಳು.",charging:"ಚಾರ್ಜಿಂಗ್ ಪೋರ್ಟ್",chargingText:"ಚಾರ್ಜಿಂಗ್, ಕನೆಕ್ಟರ್ ಮತ್ತು ಕೇಬಲ್ ಸಮಸ್ಯೆಗಳು.",
 software:"ಸಾಫ್ಟ್‌ವೇರ್",softwareText:"ಸಾಫ್ಟ್‌ವೇರ್ ಸಮಸ್ಯೆಗಳು, ಸೆಟಪ್ ಮತ್ತು ಟ್ರಬಲ್‌ಶೂಟಿಂಗ್.",motherboard:"ಮದರ್‌ಬೋರ್ಡ್",motherboardText:"ಬೋರ್ಡ್ ಲೆವೆಲ್ ಡಯಾಗ್ನೋಸಿಸ್ ಮತ್ತು ರಿಪೇರಿ.",water:"ನೀರಿನ ಹಾನಿ",waterText:"ಪರಿಶೀಲನೆ ಮತ್ತು ರಿಕವರಿ ಅಸೆಸ್ಮೆಂಟ್.",
@@ -364,12 +390,12 @@ chargers:"ಚಾರ್ಜರ್ & ಕೇಬಲ್",chargersText:"ಚಾರ್ಜ
 trackTitle:"ರಿಪೇರಿ ಟ್ರ್ಯಾಕ್",trackText:"ನಿಮ್ಮ ರಿಪೇರಿ ID ನಮೂದಿಸಿ ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಿ.",checkStatus:"ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಿ",
 contactTitle:"Fixora ಸಂಪರ್ಕ",contactText:"ತಕ್ಷಣದ ವಿಚಾರಣೆಗಾಗಿ WhatsApp‌ನಲ್ಲಿ Fixoraಗೆ ಮೆಸೇಜ್ ಮಾಡಿ.",messageWhatsApp:"Fixoraಗೆ ಮೆಸೇಜ್ ಮಾಡಿ",
 chatButton:"Fixora ಜೊತೆ ಚಾಟ್",chatOnline:"ಆನ್‌ಲೈನ್ • ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?",chatPlaceholder:"ಮೆಸೇಜ್ ಟೈಪ್ ಮಾಡಿ...",
-hello:"ನಮಸ್ಕಾರ 👋 Fixoraಗೆ ಸ್ವಾಗತ! ನಿಮಗೆ ಇಂದು ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",chatHint:"ರಿಪೇರಿ, ಆಕ್ಸೆಸರೀಸ್, ಫೋನ್ ಮಾದರಿ ಅಥವಾ ರಿಪೇರಿ ಬುಕ್ಕಿಂಗ್ ಬಗ್ಗೆ ಕೇಳಬಹುದು.",
+hello:"ನಮಸ್ಕಾರ. Fixoraಗೆ ಸ್ವಾಗತ! ನಿಮಗೆ ಇಂದು ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",chatHint:"ರಿಪೇರಿ, ಆಕ್ಸೆಸರೀಸ್, ಫೋನ್ ಮಾದರಿ ಅಥವಾ ರಿಪೇರಿ ಬುಕ್ಕಿಂಗ್ ಬಗ್ಗೆ ಕೇಳಬಹುದು.",
 quickRepair:"ರಿಪೇರಿ ಬುಕ್",quickPrice:"ಬೆಲೆ ಕೇಳಿ",quickAccessory:"ಆಕ್ಸೆಸರೀಸ್",quickWhatsApp:"WhatsApp Fixora",
-repairReply:"ಖಂಡಿತ 🔧 ನಿಮ್ಮ ಫೋನ್ ಮಾದರಿ ಮತ್ತು ಸಮಸ್ಯೆಯನ್ನು ತಿಳಿಸಿ. ಮುಂದಿನ ಹಂತವನ್ನು ನಾನು ತಿಳಿಸುತ್ತೇನೆ.",
+repairReply:"ನಿಮ್ಮ ಫೋನ್ ಮಾದರಿ ಮತ್ತು ಸಮಸ್ಯೆಯನ್ನು ತಿಳಿಸಿ. ಮುಂದಿನ ಹಂತವನ್ನು ನಾನು ತಿಳಿಸುತ್ತೇನೆ.",
 priceReply:"ರಿಪೇರಿ ಅಂದಾಜಿಗೆ ಸಹಾಯ ಮಾಡುತ್ತೇನೆ. ನಿಮ್ಮ ಫೋನ್ ಮಾದರಿ ಮತ್ತು ಬೇಕಾದ ರಿಪೇರಿ ತಿಳಿಸಿ.",
-accessoryReply:"ಖಂಡಿತ 🛍️ ಕೇಸ್, ಚಾರ್ಜರ್, ಕೇಬಲ್, ಇಯರ್‌ಫೋನ್ ಮತ್ತು ಪವರ್ ಬ್ಯಾಂಕ್ ಬಗ್ಗೆ ಸಹಾಯ ಮಾಡಬಹುದು. ಏನು ಬೇಕು ಎಂದು ತಿಳಿಸಿ.",
-unknownReply:"ಸರಿ 👍 ನಿಮ್ಮ ಫೋನ್ ಮಾದರಿ ಮತ್ತು ನಿಮಗೆ ಬೇಕಾದ ಸಹಾಯವನ್ನು ತಿಳಿಸಿ. ನಾನು ಮಾರ್ಗದರ್ಶನ ಮಾಡುತ್ತೇನೆ.",
+accessoryReply:"ಕೇಸ್, ಚಾರ್ಜರ್, ಕೇಬಲ್, ಇಯರ್‌ಫೋನ್ ಮತ್ತು ಪವರ್ ಬ್ಯಾಂಕ್ ಬಗ್ಗೆ ಸಹಾಯ ಮಾಡಬಹುದು. ಏನು ಬೇಕು ಎಂದು ತಿಳಿಸಿ.",
+unknownReply:"ಸರಿ ನಿಮ್ಮ ಫೋನ್ ಮಾದರಿ ಮತ್ತು ನಿಮಗೆ ಬೇಕಾದ ಸಹಾಯವನ್ನು ತಿಳಿಸಿ. ನಾನು ಮಾರ್ಗದರ್ಶನ ಮಾಡುತ್ತೇನೆ.",
 tracking:"ನಿಮ್ಮ Fixora ರಿಪೇರಿ ID ನಮೂದಿಸಿ ಇತ್ತೀಚಿನ ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಿ.",
 languageTitle:"ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ",languageSub:"ಮುಂದುವರಿಯಲು ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ."
 }};
@@ -467,8 +493,8 @@ async function trackRepair(){
         <div><div class="note">${lang==="kn"?"ಅಂತಿಮ ಮೊತ್ತ":"Final amount"}</div><strong>${row.final_amount!=null?"₹"+esc(row.final_amount):"—"}</strong></div>
       </div>
       <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)">
-        <div class="note">${lang==="kn"?"ಗ್ರಾಹಕರಿಗೆ ಅಪ್‌ಡೇಟ್":"Customer update"}</div>
-        <div style="margin-top:5px;line-height:1.6;white-space:pre-wrap">${esc(row.customer_update||"No customer update yet.")}</div>
+        <div class="note">${lang==="kn"?"ರಿಪೇರಿ ಅಪ್‌ಡೇಟ್":"Repair update"}</div>
+        <div style="margin-top:5px;line-height:1.6;white-space:pre-wrap">${esc(row.notes||row.technician_note||"—")}</div>
       </div>
       <div class="note" style="margin-top:14px">${lang==="kn"?"ಕೊನೆಯ ಅಪ್‌ಡೇಟ್":"Last updated"}: ${esc(updated)}</div>
     </div>`;
