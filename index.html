@@ -467,8 +467,8 @@ async function trackRepair(){
         <div><div class="note">${lang==="kn"?"ಅಂತಿಮ ಮೊತ್ತ":"Final amount"}</div><strong>${row.final_amount!=null?"₹"+esc(row.final_amount):"—"}</strong></div>
       </div>
       <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)">
-        <div class="note">${lang==="kn"?"ರಿಪೇರಿ ಅಪ್‌ಡೇಟ್":"Repair update"}</div>
-        <div style="margin-top:5px;line-height:1.6;white-space:pre-wrap">${esc(row.notes||row.technician_note||"—")}</div>
+        <div class="note">${lang==="kn"?"ಗ್ರಾಹಕರಿಗೆ ಅಪ್‌ಡೇಟ್":"Customer update"}</div>
+        <div style="margin-top:5px;line-height:1.6;white-space:pre-wrap">${esc(row.customer_update||"No customer update yet.")}</div>
       </div>
       <div class="note" style="margin-top:14px">${lang==="kn"?"ಕೊನೆಯ ಅಪ್‌ಡೇಟ್":"Last updated"}: ${esc(updated)}</div>
     </div>`;
