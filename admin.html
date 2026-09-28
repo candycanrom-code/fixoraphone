@@ -1,15 +1,248 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FixoraPhone Admin</title><style>
-*{box-sizing:border-box}body{margin:0;background:#0c171a;color:#eaf5f3;font:15px system-ui}main{max-width:1100px;margin:auto;padding:22px}.panel,.card{background:#142427;border:1px solid #315052;border-radius:13px;padding:16px;margin:14px 0}.brand{font-size:24px;font-weight:800}.brand b{color:#a8e84b}label{display:block;font-size:12px;color:#b8c9c8;margin:8px 0 5px}input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #3b5b5d;background:#0b191c;color:#fff;font:inherit}textarea{min-height:65px}button{border:0;border-radius:8px;padding:10px 14px;background:#a8e84b;color:#14200d;font-weight:bold;cursor:pointer}button.alt{background:#294144;color:#fff}.line{display:flex;gap:9px;align-items:end;flex-wrap:wrap}.field{flex:1;min-width:220px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px}.card{margin:0;background:#101e21}.code{font-weight:800;color:#b2ee66}.muted,.msg{color:#a9bdbd;font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.wide{grid-column:1/-1}.details{font-size:13px;line-height:1.6;margin:12px 0;overflow-wrap:anywhere}.actions{display:flex;gap:8px;margin-top:10px}.actions button{flex:1}.error{color:#ff9e9e}.good{color:#b6ef79}[hidden]{display:none!important}@media(max-width:550px){main{padding:12px}.grid{grid-template-columns:1fr}.wide{grid-column:auto}}</style></head><body><main>
-<header><div class="brand">FIXORA<b>PHONE</b> / ADMIN</div><p class="muted">Private repair management</p></header>
-<section class="panel" id="auth"><h3>Admin access</h3><div class="line"><div class="field"><label>ADMIN_TOKEN (secret)</label><input id="token" type="password" autocomplete="current-password" placeholder="Enter private token"></div><button id="connect">Connect</button></div><p id="authmsg" class="msg">Token is used only in this page session; it is not saved.</p></section>
-<section class="panel" id="dash" hidden><div class="line"><div class="field"><label>Search code, customer, phone, model</label><input id="search" placeholder="Search repairs"></div><button id="find">Search</button><button class="alt" id="refresh">Refresh</button><button class="alt" id="logout">Clear token</button></div><p id="msg" class="msg"></p><div id="cards" class="cards"></div></section>
-</main><script>
-(()=>{const API="https://ancient-flower-5182.candycanrom.workers.dev";let token="";const $=id=>document.getElementById(id);const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));async function call(path,opt={}){let r=await fetch(API+path,{...opt,headers:{Authorization:"Bearer "+token,...(opt.headers||{})}});let d;try{d=await r.json()}catch{throw Error("Invalid server response")}if(!r.ok||d.success===false)throw Error(d.error||"Request failed");return d}
-async function load(){ $("msg").textContent="Loading…";let q=$("search").value.trim();let d=await call("/api/admin/repairs"+(q?"?q="+encodeURIComponent(q):""));render(d.repairs||[]);$("msg").textContent=(d.repairs||[]).length+" record(s) loaded."}
-function render(rows){let root=$("cards");if(!rows.length){root.innerHTML='<p class="muted">No repair records found.</p>';return}root.innerHTML=rows.map(r=>`<article class="card" data-code="${esc(r.repair_code)}"><div class="code">${esc(r.repair_code)}</div><div class="muted">Created ${esc(r.created_at||"—")} · #${esc(r.id)}</div><div class="details"><b>${esc(r.customer_name)}</b> · ${esc(r.customer_phone)}<br>${esc(r.phone_model)} · ${esc(r.repair_type)}<br>Service: ${esc(r.service_option||"—")} / ${esc(r.service_location||"—")}<br>Problem: ${esc(r.problem_description||"—")}</div><div class="grid"><div class="wide"><label>Status</label><select class="status">${["Received","Diagnosing","Waiting for Parts","In Progress","Ready for Pickup","Completed","Cancelled"].map(s=>`<option ${String(r.status||"Received")===s?"selected":""}>${s}</option>`).join("")}</select></div><div><label>Estimated ₹</label><input class="estimate" type="number" min="0" step=".01" value="${r.estimated_amount??""}"></div><div><label>Final ₹</label><input class="final" type="number" min="0" step=".01" value="${r.final_amount??""}"></div><div class="wide"><label>Technician notes (admin only)</label><textarea class="notes" maxlength="2000">${esc(r.notes||"")}</textarea></div></div><div class="actions"><button class="save">Save</button><button class="alt reload">Reload list</button></div><p class="msg result"></p></article>`).join("");root.querySelectorAll(".save").forEach(b=>b.onclick=save);root.querySelectorAll(".reload").forEach(b=>b.onclick=()=>load().catch(showError))}
-async function save(e){let c=e.currentTarget.closest(".card"),m=c.querySelector(".result"),b=e.currentTarget;b.disabled=true;m.textContent="Saving…";try{await call("/api/admin/repairs/"+encodeURIComponent(c.dataset.code),{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({status:c.querySelector(".status").value,notes:c.querySelector(".notes").value,estimated_amount:c.querySelector(".estimate").value===""?null:Number(c.querySelector(".estimate").value),final_amount:c.querySelector(".final").value===""?null:Number(c.querySelector(".final").value)})});m.textContent="Saved. Customer tracking now reads the saved status and amounts.";m.className="msg result good"}catch(err){m.textContent=err.message;m.className="msg result error"}finally{b.disabled=false}}
-function showError(e){$("msg").textContent=e.message;$("msg").className="msg error"}
-$("connect").onclick=async()=>{token=$("token").value.trim();if(!token){$("authmsg").textContent="Enter ADMIN_TOKEN.";return}try{await load();$("auth").hidden=true;$("dash").hidden=false}catch(e){token="";$("authmsg").textContent=e.message;$("authmsg").className="msg error"}};
-$("token").onkeydown=e=>{if(e.key==="Enter")$("connect").click()};$("find").onclick=()=>load().catch(showError);$("refresh").onclick=()=>load().catch(showError);$("search").onkeydown=e=>{if(e.key==="Enter")load().catch(showError)};$("logout").onclick=()=>{token="";$("token").value="";$("dash").hidden=true;$("auth").hidden=false;$("authmsg").textContent="Token cleared."};
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FixoraPhone Admin</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0c171a;color:#eaf5f3;font:15px system-ui}
+main{max-width:1100px;margin:auto;padding:22px}
+.panel,.card{background:#142427;border:1px solid #315052;border-radius:13px;padding:16px;margin:14px 0}
+.brand{font-size:24px;font-weight:800}
+.brand b{color:#a8e84b}
+label{display:block;font-size:12px;color:#b8c9c8;margin:8px 0 5px}
+input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #3b5b5d;background:#0b191c;color:#fff;font:inherit}
+textarea{min-height:65px}
+button{border:0;border-radius:8px;padding:10px 14px;background:#a8e84b;color:#14200d;font-weight:bold;cursor:pointer}
+button.alt{background:#294144;color:#fff}
+.line{display:flex;gap:9px;align-items:end;flex-wrap:wrap}
+.field{flex:1;min-width:220px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px}
+.card{margin:0;background:#101e21}
+.code{font-weight:800;color:#b2ee66}
+.muted,.msg{color:#a9bdbd;font-size:13px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wide{grid-column:1/-1}
+.details{font-size:13px;line-height:1.6;margin:12px 0;overflow-wrap:anywhere}
+.actions{display:flex;gap:8px;margin-top:10px}
+.actions button{flex:1}
+.error{color:#ff9e9e}
+.good{color:#b6ef79}
+[hidden]{display:none!important}
+@media(max-width:550px){
+main{padding:12px}
+.grid{grid-template-columns:1fr}
+.wide{grid-column:auto}
+}
+</style>
+</head>
+
+<body>
+<main>
+<header>
+<div class="brand">FIXORA<b>PHONE</b> / ADMIN</div>
+<p class="muted">Private repair management</p>
+</header>
+
+<section class="panel" id="auth">
+<h3>Admin access</h3>
+<div class="line">
+<div class="field">
+<label>ADMIN_TOKEN (secret)</label>
+<input id="token" type="password" autocomplete="current-password" placeholder="Enter private token">
+</div>
+<button id="connect">Connect</button>
+</div>
+<p id="authmsg" class="msg">Token is used only in this page session; it is not saved.</p>
+</section>
+
+<section class="panel" id="dash" hidden>
+<div class="line">
+<div class="field">
+<label>Search code, customer, phone, model</label>
+<input id="search" placeholder="Search repairs">
+</div>
+<button id="find">Search</button>
+<button class="alt" id="refresh">Refresh</button>
+<button class="alt" id="logout">Clear token</button>
+</div>
+<p id="msg" class="msg"></p>
+<div id="cards" class="cards"></div>
+</section>
+</main>
+
+<script>
+(()=>{
+const API="https://ancient-flower-5182.candycanrom.workers.dev";
+let token="";
+const $=id=>document.getElementById(id);
+
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+}[c]));
+
+async function call(path,opt={}){
+let r=await fetch(API+path,{
+...opt,
+headers:{
+Authorization:"Bearer "+token,
+...(opt.headers||{})
+}
+});
+let d;
+try{d=await r.json()}catch{throw Error("Invalid server response")}
+if(!r.ok||d.success===false)throw Error(d.error||"Request failed");
+return d;
+}
+
+async function load(){
+$("msg").textContent="Loading…";
+let q=$("search").value.trim();
+let d=await call("/api/admin/repairs"+(q?"?q="+encodeURIComponent(q):""));
+render(d.repairs||[]);
+$("msg").textContent=(d.repairs||[]).length+" record(s) loaded.";
+}
+
+function render(rows){
+let root=$("cards");
+
+if(!rows.length){
+root.innerHTML='<p class="muted">No repair records found.</p>';
+return;
+}
+
+root.innerHTML=rows.map(r=>`
+<article class="card" data-code="${esc(r.repair_code)}">
+<div class="code">${esc(r.repair_code)}</div>
+<div class="muted">Created ${esc(r.created_at||"—")} · #${esc(r.id)}</div>
+
+<div class="details">
+<b>${esc(r.customer_name)}</b> · ${esc(r.customer_phone)}<br>
+${esc(r.phone_model)} · ${esc(r.repair_type)}<br>
+Service: ${esc(r.service_option||"—")} / ${esc(r.service_location||"—")}<br>
+Problem: ${esc(r.problem_description||"—")}
+</div>
+
+<div class="grid">
+<div class="wide">
+<label>Status</label>
+<select class="status">
+${["Received","Diagnosing","Waiting for Parts","In Progress","Ready for Pickup","Completed","Cancelled"].map(s=>`
+<option ${String(r.status||"Received")===s?"selected":""}>${s}</option>
+`).join("")}
+</select>
+</div>
+
+<div>
+<label>Estimated ₹</label>
+<input class="estimate" type="number" min="0" step=".01" value="${r.estimated_amount??""}">
+</div>
+
+<div>
+<label>Final ₹</label>
+<input class="final" type="number" min="0" step=".01" value="${r.final_amount??""}">
+</div>
+
+<div class="wide">
+<label>Technician notes (admin only)</label>
+<textarea class="notes" maxlength="2000">${esc(r.notes||"")}</textarea>
+</div>
+
+<div class="wide">
+<label>Customer update (visible on repair tracking)</label>
+<textarea class="customer-update" maxlength="1000" placeholder="Example: Your phone is ready. We’ll call you for confirmation.">${esc(r.customer_update||"")}</textarea>
+</div>
+</div>
+
+<div class="actions">
+<button class="save">Save</button>
+<button class="alt reload">Reload list</button>
+</div>
+<p class="msg result"></p>
+</article>
+`).join("");
+
+root.querySelectorAll(".save").forEach(b=>b.onclick=save);
+root.querySelectorAll(".reload").forEach(b=>b.onclick=()=>load().catch(showError));
+}
+
+async function save(e){
+let c=e.currentTarget.closest(".card");
+let m=c.querySelector(".result");
+let b=e.currentTarget;
+
+b.disabled=true;
+m.textContent="Saving…";
+
+try{
+await call("/api/admin/repairs/"+encodeURIComponent(c.dataset.code),{
+method:"PATCH",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+status:c.querySelector(".status").value,
+notes:c.querySelector(".notes").value,
+customer_update:c.querySelector(".customer-update").value,
+estimated_amount:c.querySelector(".estimate").value===""?null:Number(c.querySelector(".estimate").value),
+final_amount:c.querySelector(".final").value===""?null:Number(c.querySelector(".final").value)
+})
+});
+
+m.textContent="Saved successfully.";
+m.className="msg result good";
+}catch(err){
+m.textContent=err.message;
+m.className="msg result error";
+}finally{
+b.disabled=false;
+}
+}
+
+function showError(e){
+$("msg").textContent=e.message;
+$("msg").className="msg error";
+}
+
+$("connect").onclick=async()=>{
+token=$("token").value.trim();
+if(!token){
+$("authmsg").textContent="Enter ADMIN_TOKEN.";
+return;
+}
+
+try{
+await load();
+$("auth").hidden=true;
+$("dash").hidden=false;
+}catch(e){
+token="";
+$("authmsg").textContent=e.message;
+$("authmsg").className="msg error";
+}
+};
+
+$("token").onkeydown=e=>{
+if(e.key==="Enter")$("connect").click();
+};
+
+$("find").onclick=()=>load().catch(showError);
+$("refresh").onclick=()=>load().catch(showError);
+$("search").onkeydown=e=>{
+if(e.key==="Enter")load().catch(showError);
+};
+
+$("logout").onclick=()=>{
+token="";
+$("token").value="";
+$("dash").hidden=true;
+$("auth").hidden=false;
+$("authmsg").textContent="Token cleared.";
+};
 })();
-</script></body></html>
+</script>
+</body>
+</html>
