@@ -387,58 +387,24 @@ function initChat(){
   const b=document.getElementById("chatBody");b.innerHTML="";
   const t=T[lang||"en"];addMsg(t.hello);addMsg(t.chatHint);addQuick();
 }
-// Chat conversation history is kept in this page session and sent to the Gemini Worker.
-let geminiChatHistory=[];
-let chatBusy=false;
-
-async function askGemini(message){
-  if(chatBusy)return;
-  chatBusy=true;
-  const input=document.getElementById("chatInput");
-  const sendButton=document.querySelector(".chat-form button");
-  if(sendButton)sendButton.disabled=true;
-  const waiting=lang==="kn"?"ಉತ್ತರ ಬರೆಯಲಾಗುತ್ತಿದೆ…":"Fixora is typing…";
-  const waitNode=document.createElement("div");
-  waitNode.className="msg bot";
-  waitNode.textContent=waiting;
-  waitNode.setAttribute("aria-live","polite");
-  document.getElementById("chatBody").appendChild(waitNode);
-  document.getElementById("chatBody").scrollTop=document.getElementById("chatBody").scrollHeight;
-  try{
-    const result=await apiRequest("/api/chat",{
-      method:"POST",
-      body:JSON.stringify({message,history:geminiChatHistory})
-    });
-    waitNode.remove();
-    if(!result || result.success!==true || !result.reply)throw new Error(result?.error||"Chat service unavailable");
-    addMsg(result.reply);
-    geminiChatHistory.push({role:"user",text:message},{role:"model",text:result.reply});
-    geminiChatHistory=geminiChatHistory.slice(-10);
-  }catch(error){
-    waitNode.remove();
-    console.error("Gemini chatbot:",error);
-    addMsg(lang==="kn"
-      ?"ಕ್ಷಮಿಸಿ, ಈಗ AI ಚಾಟ್ ಸಂಪರ್ಕವಾಗುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ Book Repair ಆಯ್ಕೆಮಾಡಿ."
-      :"Sorry, the AI chat is temporarily unavailable. Please try again or use Book Repair.");
-  }finally{
-    chatBusy=false;
-    if(sendButton)sendButton.disabled=false;
-    if(input)input.focus();
-    addQuick();
-  }
-}
 function quickChat(a){
   const t=T[lang||"en"];
   if(a==="wa"){window.open("https://wa.me/919591182590","_blank");return}
-  const message=t[a==="repair"?"quickRepair":a==="price"?"quickPrice":"quickAccessory"];
-  addMsg(message,"user");
-  askGemini(message);
+  addMsg(t[a==="repair"?"quickRepair":a==="price"?"quickPrice":"quickAccessory"],"user");
+  setTimeout(()=>{addMsg(t[a==="repair"?"repairReply":a==="price"?"priceReply":"accessoryReply"]);addQuick()},250);
 }
 function sendChat(){
-  const i=document.getElementById("chatInput"),v=i.value.trim();
-  if(!v||chatBusy)return;
+  const i=document.getElementById("chatInput"),v=i.value.trim();if(!v)return;
   addMsg(v,"user");i.value="";
-  askGemini(v);
+  const t=T[lang||"en"];const s=v.toLowerCase();
+  setTimeout(()=>{
+    if(s.includes("hello")||s.includes("hi")||s.includes("ನಮಸ್ಕಾರ")) addMsg(t.hello);
+    else if(s.includes("price")||s.includes("cost")||s.includes("ಬೆಲೆ")) addMsg(t.priceReply);
+    else if(s.includes("repair")||s.includes("ರಿಪೇರಿ")||s.includes("broken")||s.includes("ಹಾಳ")) addMsg(t.repairReply);
+    else if(s.includes("case")||s.includes("charger")||s.includes("accessor")||s.includes("ಆಕ್ಸೆಸರ")) addMsg(t.accessoryReply);
+    else addMsg(t.unknownReply);
+    addQuick();
+  },350)
 }
 function setTrackingMessage(message,type="info"){
   const box=document.getElementById("trackingResult");
