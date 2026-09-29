@@ -346,10 +346,39 @@ document.getElementById("repairForm").addEventListener("submit",async function(e
     if(result?.success===false)throw new Error(result.error||result.message||"The backend could not save this request.");
     if(!result?.repair_code)throw new Error("The backend saved no repair code in its response. Please contact Fixora before submitting again.");
     const code=result.repair_code;
-    const msg=`${lang==="kn"?"ನಮಸ್ಕಾರ Fixora! ನನ್ನ ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ ಬುಕ್ ಆಗಿದೆ.":"Hello Fixora! My repair request has been booked."}%0A%0A${lang==="kn"?"Repair ID":"Repair ID"}: ${encodeURIComponent(code)}%0A${lang==="kn"?"ಹೆಸರು":"Name"}: ${encodeURIComponent(name)}%0A${lang==="kn"?"ಫೋನ್":"Phone"}: ${encodeURIComponent(phone)}%0A${lang==="kn"?"ಮಾದರಿ":"Model"}: ${encodeURIComponent(model)}%0A${lang==="kn"?"ರಿಪೇರಿ":"Repair"}: ${encodeURIComponent(service)}%0A${lang==="kn"?"ಸೇವೆ":"Service"}: ${encodeURIComponent(visit)}%0A${lang==="kn"?"ಸ್ಥಳ":"Location"}: ${encodeURIComponent(location)}%0A${lang==="kn"?"ಸಮಸ್ಯೆ":"Problem"}: ${encodeURIComponent(problem)}%0A%0A${lang==="kn"?"ಫೋಟೋಗಳನ್ನು ಇಲ್ಲಿ ಕಳುಹಿಸುತ್ತೇನೆ.":"I will send the phone photos here."}`;
-    window.open("https://wa.me/919591182590?text="+msg,"_blank");
-    alert(lang==="kn"?`ರಿಪೇರಿ ಬುಕ್ ಆಗಿದೆ! ನಿಮ್ಮ Repair ID: ${code}`:`Repair booked successfully! Your Repair ID: ${code}`);
+    const message=lang==="kn"
+      ? `ನಮಸ್ಕಾರ Fixora! ನನ್ನ ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ ಬುಕ್ ಆಗಿದೆ.\n\nRepair ID: ${code}\nಹೆಸರು: ${name}\nಫೋನ್: ${phone}\nಮಾದರಿ: ${model}\nರಿಪೇರಿ: ${service}\nಸೇವೆ: ${visit}\nಸ್ಥಳ: ${location}\nಸಮಸ್ಯೆ: ${problem}\n\nಫೋಟೋಗಳನ್ನು ಇಲ್ಲಿ ಕಳುಹಿಸುತ್ತೇನೆ.`
+      : `Hello Fixora! My repair request has been booked.\n\nRepair ID: ${code}\nName: ${name}\nPhone: ${phone}\nModel: ${model}\nRepair: ${service}\nService: ${visit}\nLocation: ${location}\nProblem: ${problem}\n\nI will send the phone photos here.`;
+    const success=document.createElement("div");
+    success.className="card";
+    success.style.marginTop="18px";
+    success.style.borderColor="#1f7358";
+    const heading=document.createElement("h3");
+    heading.textContent=lang==="kn"?"ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ ಸ್ವೀಕರಿಸಲಾಗಿದೆ!":"Repair request received!";
+    const id=document.createElement("p");
+    id.textContent=(lang==="kn"?"ನಿಮ್ಮ Repair ID: ":"Your Repair ID: ")+code;
+    id.style.fontWeight="800";
+    const note=document.createElement("p");
+    note.className="note";
+    note.textContent=lang==="kn"?"ಈ ID ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳಿ. WhatsApp ತೆರೆಯಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿ.":"Keep this ID safe. Tap below to open WhatsApp and send your request details.";
+    const wa=document.createElement("a");
+    wa.className="btn whatsapp";
+    wa.href="https://wa.me/919591182590?text="+encodeURIComponent(message);
+    wa.target="_blank";
+    wa.rel="noopener noreferrer";
+    wa.textContent=lang==="kn"?"WhatsApp ನಲ್ಲಿ ಮುಂದುವರಿಸಿ":"Continue in WhatsApp";
+    const track=document.createElement("a");
+    track.className="btn secondary";
+    track.href="index.html#track";
+    track.style.marginLeft="8px";
+    track.textContent=lang==="kn"?"ರಿಪೇರಿ ಟ್ರ್ಯಾಕ್ ಮಾಡಿ":"Track repair";
+    success.append(heading,id,note,wa,track);
+    const prior=document.getElementById("bookingSuccess");
+    if(prior)prior.remove();
+    success.id="bookingSuccess";
+    document.querySelector("#booking .booking").appendChild(success);
     this.reset();
+    success.scrollIntoView({behavior:"smooth",block:"nearest"});
   }catch(err){
     console.error("Fixora booking error:", err);
     const detail = [err?.code, err?.message, err?.details, err?.hint].filter(Boolean).join("\n");
