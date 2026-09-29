@@ -70,9 +70,16 @@ footer{border-top:1px solid #1e3a4b;padding:28px 0;color:#9fb2bf;font-size:12px}
 .brand-logo-img{display:none!important}
 
 </style>
-</head>
-
-<body>
+<style>
+/* Dedicated booking page: focused form, no homepage sections. */
+#booking{padding:18px 0 70px;scroll-margin-top:85px}
+#booking .section-head{align-items:flex-start;margin-bottom:22px}
+#booking .section-title{font-size:clamp(32px,5vw,48px);line-height:1.1}
+#booking .booking{max-width:850px;margin:0 auto;padding:clamp(20px,4vw,34px)}
+#booking .form-grid{gap:18px}
+@media(max-width:620px){#booking{padding-top:8px}#booking .form-grid{grid-template-columns:1fr}#booking .field.full{grid-column:auto}.nav-actions .btn{display:inline-flex;padding:9px 12px;font-size:13px}}
+</style>
+</head><body>
 <div class="language-screen" id="languageScreen">
   <div class="language-box">
     <img class="language-logo" src="fixora-logo.png" alt="Fixora">
@@ -84,104 +91,19 @@ footer{border-top:1px solid #1e3a4b;padding:28px 0;color:#9fb2bf;font-size:12px}
     </div>
   </div>
 </div>
-
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#home" aria-label="Fixora home"><img src="fixora-logo.png" alt="Fixora — Built to Fix"></a>
-    <nav class="links" id="navLinks">
-      <a href="#home" data-i18n="navHome">Home</a>
-      <a href="#repair" class="active" data-i18n="navRepair">Services</a>
-      <a href="#track" data-i18n="navTrack">Track Repair</a>
-      <a href="#accessories" data-i18n="navAccessories">Accessories</a>
-      <a href="#contact" data-i18n="navContact">Contact</a>
-    </nav>
+    <a class="brand" href="index.html#repair" aria-label="Back to Fixora services"><img src="fixora-logo.png" alt="Fixora — Built to Fix"></a>
     <div class="nav-actions">
       <button class="lang-switch" onclick="toggleLanguage()" id="langSwitch">ಕನ್ನಡ</button>
-      <a class="btn" href="repair-booking.html" data-i18n="bookRepair">Book a Repair</a>
-      <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+      <a class="btn secondary" href="index.html#repair">← <span data-i18n="navRepair">Services</span></a>
     </div>
   </div>
 </header>
-
 <main id="home">
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <div class="eyebrow"><span class="dot"></span><span data-i18n="eyebrow">PROFESSIONAL MOBILE REPAIR</span></div>
-      <h1><span data-i18n="heroTitle1">Your phone.</span><br><span data-i18n="heroTitle2">Back in action.</span></h1>
-      <p class="lead" data-i18n="heroText">Reliable mobile repair, transparent updates, and quality accessories — all in one place.</p>
-      <div class="actions">
-        <a class="btn" href="repair-booking.html" data-i18n="bookRepair">Book a Repair <span>→</span></a>
-        <a class="btn secondary" href="#track" data-i18n="navTrack">Track My Repair</a>
-        <button class="btn secondary" onclick="openChat()" data-i18n="chatFixora">Chat with Fixora</button>
-        <a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-      <div class="stats">
-        <div class="stat"><strong>500+</strong><small>Devices Repaired</small></div>
-        <div class="stat"><strong>4.9/5</strong><small>Customer Rating</small></div>
-        <div class="stat"><strong>100%</strong><small>Genuine Parts</small></div>
-      </div>
-    </div>
-    <div class="hero-art" aria-label="Broken phone restored to working condition">
-      <div class="hero-label left">BROKEN<br>TODAY</div>
-      <div class="hero-label right">GOOD<br>TOMORROW</div>
-      <div class="phone"><div class="notch"></div><div class="screen"></div><div class="crack"></div></div>
-      <div class="arrow">→</div>
-      <div class="phone good"><div class="notch"></div><div class="screen"></div></div>
-    </div>
-  </div>
+<section class="hero" style="padding:34px 0 8px;min-height:0">
+ <div class="wrap"><div class="eyebrow"><span class="dot"></span> FIXORA REPAIR BOOKING</div></div>
 </section>
-
-<div class="wrap trust" id="about">
-  <div class="trust-item"><div class="trust-icon">Q</div><div><b>Quality Parts</b><small>You Can Trust</small></div></div>
-  <div class="trust-item"><div class="trust-icon">L</div><div><b>Live Repair</b><small>Tracking</small></div></div>
-  <div class="trust-item"><div class="trust-icon">T</div><div><b>Expert Technicians</b><small>Careful workmanship</small></div></div>
-  <div class="trust-item"><div class="trust-icon">₹</div><div><b>Clear Pricing</b><small>Estimated & final</small></div></div>
-</div>
-
-<section class="services wrap" id="repair">
-  <div class="section-head">
-    <div><h2 class="section-title">Our Repair <span>Services</span></h2><p class="section-sub" data-i18n="repairText">Tell us what's wrong. Fixora can arrange the practical repair route for your device.</p></div>
-    <a class="btn secondary" href="#booking">View All Services →</a>
-  </div>
-  <div class="service-grid">
-    <a class="service service-link" href="repair-booking.html?service=Display%20%2F%20Glass" aria-label="Book Display & Glass repair"><div class="service-art"><svg viewBox="0 0 340 155" role="img" aria-label="Broken and repaired phone screens"><rect x="93" y="12" width="72" height="128" rx="12" fill="#162c3c" stroke="#6cebd9" stroke-width="2"/><rect x="100" y="20" width="58" height="112" rx="7" fill="#092f47"/><path d="M130 20L116 58l20 12-26 27 14 35M100 74l28-18 30 28M159 40l-23 30 20 18" stroke="#dfffff" stroke-width="1.6" fill="none"/><path d="M184 77h35m-10-10 10 10-10 10" stroke="#41ff9d" stroke-width="4" fill="none"/><rect x="229" y="12" width="72" height="128" rx="12" fill="#172f40" stroke="#6cebd9" stroke-width="2"/><rect x="236" y="20" width="58" height="112" rx="7" fill="url(#g1)"/><defs><linearGradient id="g1" x2="1" y2="1"><stop stop-color="#073d5b"/><stop offset="1" stop-color="#12e0bb"/></linearGradient></defs><path d="M246 96Q270 49 292 35" stroke="#8dfff0" stroke-width="3" fill="none"/></svg></div><div class="service-body"><div class="text-mark">DISPLAY REPAIR</div><h3 data-i18n="display">Display & Glass</h3><p data-i18n="displayText">Cracked, broken or damaged screen repairs.</p><span class="go">→</span></div></a>
-    <a class="service service-link" href="repair-booking.html?service=Battery" aria-label="Book Battery repair"><div class="service-art"><svg viewBox="0 0 340 155"><rect x="119" y="22" width="102" height="112" rx="13" fill="#152f40" stroke="#5debd5" stroke-width="2"/><rect x="130" y="34" width="80" height="88" rx="7" fill="#092b3b"/><rect x="143" y="48" width="54" height="58" rx="5" fill="#0b9b7d" stroke="#4affb0"/><path d="M174 55l-15 25h12l-5 17 19-27h-13z" fill="#d9fff0"/></svg></div><div class="service-body"><div class="text-mark">POWER & BATTERY</div><h3 data-i18n="battery">Battery</h3><p data-i18n="batteryText">Battery replacement and power problems.</p><span class="go">→</span></div></a>
-    <a class="service service-link" href="repair-booking.html?service=Charging%20Port" aria-label="Book Charging Port repair"><div class="service-art"><svg viewBox="0 0 340 155"><path d="M48 55h170q20 0 20 20v26q0 18-20 18H48z" fill="#172d3e" stroke="#5debd5" stroke-width="2"/><rect x="58" y="65" width="150" height="44" rx="8" fill="#071927"/><rect x="198" y="76" width="24" height="22" rx="4" fill="#b7d0dc"/><path d="M222 87h55" stroke="#d3e7ef" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M278 100l-9-13m9 13 14-2" stroke="#0fe0bd" stroke-width="3"/></svg></div><div class="service-body"><div class="text-mark">CHARGING PORT</div><h3 data-i18n="charging">Charging Port</h3><p data-i18n="chargingText">Charging, connector and cable-related faults.</p><span class="go">→</span></div></a>
-    <a class="service service-link" href="repair-booking.html?service=Software" aria-label="Book Software repair"><div class="service-art"><svg viewBox="0 0 340 155"><rect x="123" y="10" width="94" height="135" rx="14" fill="#193247" stroke="#57e8d5" stroke-width="2"/><rect x="132" y="22" width="76" height="111" rx="8" fill="#08243b"/><g fill="#10d9bf"><rect x="142" y="38" width="24" height="24" rx="5"/><rect x="174" y="38" width="24" height="24" rx="5"/><rect x="142" y="70" width="24" height="24" rx="5"/><rect x="174" y="70" width="24" height="24" rx="5"/></g><g fill="#eaffff" font-size="13" text-anchor="middle"><text x="154" y="55">OS</text><text x="186" y="55">OK</text><text x="154" y="87">FRP</text><text x="186" y="87">SET</text></g></svg></div><div class="service-body"><div class="text-mark">SOFTWARE SERVICE</div><h3 data-i18n="software">Software</h3><p data-i18n="softwareText">Software issues, setup and troubleshooting.</p><span class="go">→</span></div></a>
-    <a class="service service-link" href="repair-booking.html?service=Motherboard" aria-label="Book Motherboard repair"><div class="service-art"><svg viewBox="0 0 340 155"><rect x="76" y="20" width="188" height="116" rx="12" fill="#0c493f" stroke="#48e9c9" stroke-width="2"/><path d="M91 36h45v23h35V35h77M91 111h50V87h38v27h70M113 20v16m42-16v18m56-18v19m-91 97v-18m55 18v-18m51 18v-20" stroke="#a4ffdc" stroke-width="3" fill="none"/><rect x="143" y="55" width="54" height="43" rx="5" fill="#102a39" stroke="#b3e5d9" stroke-width="2"/><path d="M150 62h40v29h-40z" fill="#071a26"/><path d="M154 67h32m-32 7h32m-32 7h32" stroke="#14d7b5" stroke-width="2"/></svg></div><div class="service-body"><div class="text-mark">BOARD REPAIR</div><h3 data-i18n="motherboard">Motherboard</h3><p data-i18n="motherboardText">Board-level diagnosis and repair.</p><span class="go">→</span></div></a>
-    <a class="service service-link" href="repair-booking.html?service=Water%20Damage" aria-label="Book Water Damage repair"><div class="service-art"><svg viewBox="0 0 340 155"><rect x="130" y="9" width="80" height="137" rx="13" fill="#183447" stroke="#55e7d2" stroke-width="2"/><rect x="138" y="19" width="64" height="117" rx="7" fill="#092a42"/><path d="M170 34c-15 20-20 28-20 39a20 20 0 0040 0c0-11-5-19-20-39z" fill="#11d7c0" opacity=".9"/><path d="M170 55c-7 10-9 14-9 20a9 9 0 0018 0c0-6-2-10-9-20z" fill="#d7fff9"/><path d="M95 115q20-17 40 0t40 0t40 0t40 0" stroke="#1ce3d1" stroke-width="3" fill="none"/></svg></div><div class="service-body"><div class="text-mark">WATER DAMAGE</div><h3 data-i18n="water">Water Damage</h3><p data-i18n="waterText">Inspection and recovery assessment.</p><span class="go">→</span></div></a>
-  </div>
-</section>
-
-<section id="models">
-  <div class="wrap">
-    <div class="section-head"><h2 class="section-title" data-i18n="modelsTitle">Phones we work with</h2><p class="section-sub" data-i18n="modelsText">Popular brands supported. If you don't see your model, ask Fixora.</p></div>
-<div class="brand-strip">
-      <span class="brand-pill" aria-label="Apple"><span class="brand-mark apple-mark" aria-hidden="true"><svg viewBox="0 0 384 512" role="img" focusable="false"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></span><span>Apple</span></span>
-      <span class="brand-pill" aria-label="Samsung"><span class="brand-mark samsung-mark" aria-hidden="true">SAMSUNG</span><span>Samsung</span></span>
-      <span class="brand-pill" aria-label="OnePlus"><span class="brand-mark oneplus-mark" aria-hidden="true">1+</span><span>OnePlus</span></span>
-      <span class="brand-pill" aria-label="Xiaomi / Redmi"><span class="brand-mark xiaomi-mark" aria-hidden="true">mi</span><span>Xiaomi / Redmi</span></span>
-      <span class="brand-pill" aria-label="POCO"><span class="brand-mark poco-mark" aria-hidden="true">POCO</span><span>POCO</span></span>
-      <span class="brand-pill" aria-label="OPPO"><span class="brand-mark oppo-mark" aria-hidden="true">oppo</span><span>OPPO</span></span>
-      <span class="brand-pill" aria-label="vivo"><span class="brand-mark vivo-mark" aria-hidden="true">vivo</span><span>vivo</span></span>
-      <span class="brand-pill" aria-label="realme"><span class="brand-mark realme-mark" aria-hidden="true">realme</span><span>realme</span></span>
-      <span class="brand-pill" aria-label="Motorola"><span class="brand-mark motorola-mark" aria-hidden="true"><svg viewBox="0 0 64 64" role="img" focusable="false"><circle cx="32" cy="32" r="30" fill="#f4f8fb"/><path fill="#0b1724" d="M12 45L22 12Q23 9 24.7 13L32 34L39.3 13Q41 9 42 12L52 45H44.5L39 28Q38.4 26 37.5 29L32 45L26.5 29Q25.6 26 25 28L19.5 45Z"/></svg></span><span>Motorola</span></span>
-      <span class="brand-pill" aria-label="Nothing"><span class="brand-mark nothing-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Nothing</span></span>
-      <span class="brand-pill" aria-label="Google Pixel"><span class="brand-mark pixel-mark" aria-hidden="true">G</span><span>Google Pixel</span></span>
-      <span class="brand-pill" aria-label="Huawei"><span class="brand-mark huawei-mark" aria-hidden="true">HUAWEI</span><span>Huawei</span></span>
-      <span class="brand-pill" aria-label="HONOR"><span class="brand-mark honor-mark" aria-hidden="true">HONOR</span><span>HONOR</span></span>
-      <span class="brand-pill" aria-label="TECNO"><span class="brand-mark tecno-mark" aria-hidden="true">TECNO</span><span>TECNO</span></span>
-      <span class="brand-pill" aria-label="Infinix"><span class="brand-mark infinix-mark" aria-hidden="true">X</span><span>Infinix</span></span>
-      <span class="brand-pill" aria-label="ASUS"><span class="brand-mark asus-mark" aria-hidden="true">ASUS</span><span>ASUS</span></span>
-      <span class="brand-pill" aria-label="Lenovo"><span class="brand-mark lenovo-mark" aria-hidden="true">Lenovo</span><span>Lenovo</span></span>
-      <span class="brand-pill" aria-label="iQOO"><span class="brand-mark iqoo-mark" aria-hidden="true">iQOO</span><span>iQOO</span></span>
-      <span class="brand-pill" aria-label="Sony"><span class="brand-mark sony-mark" aria-hidden="true">SONY</span><span>Sony</span></span>
-      <span class="brand-pill" aria-label="Nokia"><span class="brand-mark nokia-mark" aria-hidden="true">NOKIA</span><span>Nokia</span></span>
-    </div>
-  </div>
-</section>
-
 <section id="booking">
   <div class="wrap">
     <div class="section-head"><h2 class="section-title" data-i18n="bookingTitle">Book a Repair</h2><p class="section-sub" data-i18n="bookingText">Send us the details. We'll review the request and contact you about the practical repair option.</p></div>
@@ -203,60 +125,7 @@ footer{border-top:1px solid #1e3a4b;padding:28px 0;color:#9fb2bf;font-size:12px}
     </div>
   </div>
 </section>
-
-<section id="accessories">
-  <div class="wrap">
-    <div class="section-head"><h2 class="section-title" data-i18n="accessoriesTitle">Accessories</h2><p class="section-sub" data-i18n="accessoriesText">Quality phone accessories can also be requested through Fixora.</p></div>
-    <div class="grid">
-      <div class="card"><div class="text-mark">CASES</div><h3 data-i18n="cases">Cases & Covers</h3><p data-i18n="casesText">Protection for popular phone models.</p></div>
-      <div class="card"><div class="text-mark">POWER</div><h3 data-i18n="chargers">Chargers & Cables</h3><p data-i18n="chargersText">Charging essentials and replacements.</p></div>
-      <div class="card"><div class="text-mark">AUDIO</div><h3 data-i18n="audio">Audio & Power</h3><p data-i18n="audioText">Earphones, power banks and everyday accessories.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="track" id="track">
-  <div class="wrap">
-    <div class="track-box">
-      <div>
-        <h2>Already left your phone with <span>us?</span></h2>
-        <p data-i18n="trackText">Enter your repair ID to check your repair status.</p>
-        <div class="track-form"><input id="repairId" placeholder="Enter your repair ID" onkeydown="if(event.key==='Enter')trackRepair()" aria-label="Repair ID"><button class="btn" onclick="trackRepair()" data-i18n="checkStatus">Check status</button></div>
-        <div id="trackingResult" class="track-result"></div>
-        <div class="track-visual" style="justify-content:flex-start;margin-top:22px"><div class="mini-phone"></div><div class="live"><b>LIVE REPAIR STATUS</b><div>Received</div><div>Diagnosis</div><div>Repair in progress</div><div>Testing</div><div>Ready for pickup</div></div></div>
-      </div>
-      <div class="track-visual"><div class="mini-phone"></div><div class="live"><b>YOUR REPAIR</b><div>Enter your Fixora ID</div><div>See latest status</div><div>Read customer updates</div><div>Check amounts</div></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="contact-box">
-      <div>
-        <h2 class="section-title" data-i18n="contactTitle">Contact Fixora</h2>
-        <p class="contact-sub" data-i18n="contactText">For immediate enquiries, message Fixora directly on WhatsApp.</p>
-      </div>
-      <div class="contact-actions">
-        <a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank" rel="noopener" data-i18n="messageWhatsApp">WhatsApp Fixora</a>
-        <button class="btn" onclick="openChat()" data-i18n="chatFixora">Chat with Fixora</button>
-      </div>
-    </div>
-  </div>
-</section>
 </main>
-
-<footer>
-  <div class="wrap footer-inner"><div><div class="footer-brand">FIXORA</div><div>BUILT TO FIX</div></div><div>Mobile repair • Accessories • Repair tracking</div><div>© 2026 FixoraPhone</div></div>
-</footer>
-
-<button class="chat-launch" onclick="toggleChat()" id="chatLaunch"><span data-i18n="chatButton">Chat with Fixora</span></button>
-<div class="chat-window" id="chatWindow">
-  <div class="chat-head"><div><div class="chat-title">Fixora</div><div class="chat-sub" data-i18n="chatOnline">Online • How can we help?</div></div><button class="chat-close" onclick="toggleChat()" aria-label="Close chat">×</button></div>
-  <div class="chat-body" id="chatBody"></div>
-  <div class="chat-form"><input id="chatInput" type="text" data-i18n-placeholder="chatPlaceholder" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()" aria-label="Send">Send</button></div>
-</div>
-
 <script>
 
 // FixoraPhone Cloudflare Worker API
@@ -374,7 +243,7 @@ function addQuick(){
   });b.appendChild(q)
 }
 function initChat(){
-  const b=document.getElementById("chatBody");b.innerHTML="";
+  const b=document.getElementById("chatBody");if(!b)return;b.innerHTML="";
   const t=T[lang||"en"];addMsg(t.hello);addMsg(t.chatHint);addQuick();
 }
 function quickChat(a){
@@ -489,6 +358,34 @@ document.getElementById("repairForm").addEventListener("submit",async function(e
 });
 if(lang){document.getElementById("languageScreen").classList.add("hidden");applyLanguage();initChat()}
 
+</script>
+<script>
+(function(){
+  const params=new URLSearchParams(window.location.search);
+  const requested=params.get('service');
+  const select=document.getElementById('service');
+  if(!select)return;
+  if(requested){
+    const decoded=requested.trim().toLowerCase().replace(/&amp;/g,'&');
+    const aliases={
+      'display / glass':['display / glass','display & glass'],
+      'display & glass':['display / glass','display & glass'],
+      'battery':['battery'],
+      'charging port':['charging port'],
+      'software':['software'],
+      'motherboard':['motherboard'],
+      'water damage':['water damage']
+    };
+    const candidates=aliases[decoded]||[decoded];
+    const match=Array.from(select.options).find(o=>candidates.includes(o.text.trim().toLowerCase()));
+    if(match){select.value=match.value;match.selected=true;}
+  }
+  const title=document.querySelector('#booking .section-title');
+  if(requested && title){
+    const selected=select.options[select.selectedIndex];
+    if(selected && selected.value) title.textContent=(document.documentElement.lang==='kn'?'ರಿಪೇರಿ ಬುಕ್ ಮಾಡಿ: ':'Book a Repair: ')+selected.text;
+  }
+})();
 </script>
 </body>
 </html>
