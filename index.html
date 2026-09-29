@@ -300,8 +300,8 @@ async function apiRequest(path, options={}){
 const T={
 en:{
 navHome:"Home",navRepair:"Services",navAccessories:"Accessories",navTrack:"Track Repair",navContact:"Contact",
-eyebrow:"PROFESSIONAL MOBILE REPAIR",heroTitle1:"Your phone.",heroTitle2:"Back in action.",
-heroText:"Reliable mobile repair, transparent updates, and quality accessories — all in one place.",
+eyebrow:"PROFESSIONAL MOBILE REPAIR",heroTitle1:"Phone broken?",heroTitle2:"Let Fixora fix it.",
+heroText:"Fixora helps get your phone working again with reliable repairs, clear updates, and quality accessories.",
 bookRepair:"Book a Repair",chatFixora:"Chat with Fixora",support:"Repair support",serviceModes:"Home • On-site • Workshop",
 repairTitle:"Repair services",repairText:"Tell us what's wrong. Fixora can arrange the practical repair route for your device.",
 display:"Display & Glass",displayText:"Cracked, broken or damaged screen repairs.",battery:"Battery",batteryText:"Battery replacement and power problems.",charging:"Charging Port",chargingText:"Charging, connector and cable-related faults.",
@@ -329,8 +329,8 @@ languageTitle:"Choose your language",languageSub:"Select a language to continue.
 },
 kn:{
 navHome:"ಮುಖಪುಟ",navRepair:"ರಿಪೇರಿ",navAccessories:"ಆಕ್ಸೆಸರೀಸ್",navTrack:"ರಿಪೇರಿ ಟ್ರ್ಯಾಕ್",navContact:"ಸಂಪರ್ಕ",
-eyebrow:"PROFESSIONAL MOBILE REPAIR",heroTitle1:"ಫೋನ್ ಹಾಳಾಯಿತೇ?",heroTitle2:"Fixora ನೋಡಿಕೊಳ್ಳುತ್ತದೆ.",
-heroText:"ನಿಮ್ಮ ಮೊಬೈಲ್‌ಗೆ ವೃತ್ತಿಪರ ರಿಪೇರಿ ಸೇವೆ. ಸಾಧ್ಯವಾದಲ್ಲಿ ಮನೆ/ಆನ್-ಸೈಟ್ ಸೇವೆ, ಅಗತ್ಯವಿದ್ದರೆ ವರ್ಕ್‌ಶಾಪ್ ರಿಪೇರಿ ಮತ್ತು ಗುಣಮಟ್ಟದ ಆಕ್ಸೆಸರೀಸ್.",
+eyebrow:"PROFESSIONAL MOBILE REPAIR",heroTitle1:"ಫೋನ್ ಹಾಳಾಯಿತೇ?",heroTitle2:"Fixora ಸರಿಪಡಿಸಲಿ!",
+heroText:"ವಿಶ್ವಾಸಾರ್ಹ ರಿಪೇರಿ, ಸ್ಪಷ್ಟ ಮಾಹಿತಿ ಮತ್ತು ಗುಣಮಟ್ಟದ ಆಕ್ಸೆಸರೀಸ್ ಮೂಲಕ ನಿಮ್ಮ ಫೋನ್ ಮತ್ತೆ ಕೆಲಸಕ್ಕೆ ಸಿದ್ಧವಾಗಲು Fixora ಸಹಾಯ ಮಾಡುತ್ತದೆ.",
 bookRepair:"ರಿಪೇರಿ ಬುಕ್ ಮಾಡಿ",chatFixora:"Fixora ಜೊತೆ ಚಾಟ್",support:"ರಿಪೇರಿ ಸಹಾಯ",serviceModes:"ಮನೆ • ಆನ್-ಸೈಟ್ • ವರ್ಕ್‌ಶಾಪ್",
 repairTitle:"ರಿಪೇರಿ ಸೇವೆಗಳು",repairText:"ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ ಏನು ಸಮಸ್ಯೆ ಎಂದು ತಿಳಿಸಿ. Fixora ಸೂಕ್ತ ರಿಪೇರಿ ಮಾರ್ಗವನ್ನು ತಿಳಿಸುತ್ತದೆ.",
 display:"ಡಿಸ್ಪ್ಲೇ & ಗ್ಲಾಸ್",displayText:"ಒಡೆದ, ಹಾನಿಯಾದ ಅಥವಾ ಕ್ರ್ಯಾಕ್ ಆದ ಸ್ಕ್ರೀನ್ ರಿಪೇರಿ.",battery:"ಬ್ಯಾಟರಿ",batteryText:"ಬ್ಯಾಟರಿ ಬದಲಾವಣೆ ಮತ್ತು ಪವರ್ ಸಮಸ್ಯೆಗಳು.",charging:"ಚಾರ್ಜಿಂಗ್ ಪೋರ್ಟ್",chargingText:"ಚಾರ್ಜಿಂಗ್, ಕನೆಕ್ಟರ್ ಮತ್ತು ಕೇಬಲ್ ಸಮಸ್ಯೆಗಳು.",
@@ -500,8 +500,7 @@ document.getElementById("repairForm").addEventListener("submit",async function(e
       `${lang==="kn"?"ಸಮಸ್ಯೆ":"Problem"}: ${problem}`,
       "",
       lang==="kn"?"ಫೋಟೋಗಳನ್ನು WhatsApp‌ನಲ್ಲಿ ಪ್ರತ್ಯೇಕವಾಗಿ ಕಳುಹಿಸುತ್ತೇನೆ.":"I can send the phone photos separately on WhatsApp."
-    ].join("
-");
+    ].join("\n");
 
     let success=document.getElementById("bookingSuccess");
     if(!success){
