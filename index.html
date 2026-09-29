@@ -42,6 +42,8 @@ section{scroll-margin-top:90px}.section-head{display:flex;justify-content:space-
 .booking-success .repair-code{display:inline-block;padding:8px 12px;border:1px solid #2b6470;border-radius:9px;background:#071017;font-weight:800;letter-spacing:.5px}
 .booking-success .success-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 .booking-success .success-actions a{display:inline-flex;align-items:center;justify-content:center;text-align:center}
+@media(max-width:480px){.booking-success .success-actions{flex-direction:column}.booking-success .success-actions .btn{width:100%}}
+
 .booking{background:linear-gradient(145deg,rgba(13,25,33,.95),rgba(7,14,19,.95));border:1px solid rgba(145,190,205,.15);border-radius:26px;padding:28px;box-shadow:var(--shadow)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}label{font-weight:750;font-size:14px;color:#dce8ed}input,select,textarea{width:100%;background:#071017;color:white;border:1px solid #263843;border-radius:13px;padding:14px;outline:none}input:focus,select:focus,textarea:focus{border-color:rgba(32,215,207,.7);box-shadow:0 0 0 3px rgba(32,215,207,.08)}textarea{min-height:120px;resize:vertical}input[type=file]{padding:12px}.note{font-size:13px;color:var(--muted);line-height:1.5}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.card{background:linear-gradient(145deg,rgba(13,24,32,.9),rgba(8,15,21,.9));border:1px solid rgba(145,190,205,.15);border-radius:20px;padding:24px;min-height:170px;transition:.25s}.card:hover{transform:translateY(-4px);border-color:rgba(32,215,207,.28);box-shadow:0 18px 45px rgba(0,0,0,.22)}.card h3{margin:13px 0 8px;font-size:19px}.card p{color:var(--muted);line-height:1.65;margin:0}.text-mark{font-size:12px;letter-spacing:1.5px;font-weight:900;color:var(--teal);margin-bottom:10px}
 .track{padding:28px 0 70px}.track-box{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;border:1px solid #176c75;border-radius:22px;padding:32px;background:radial-gradient(ellipse at 85% 30%,#0c4a58,#0a2335 60%,#091a29);overflow:hidden}.track-box h2{font-size:31px;line-height:1.15;margin:0 0 10px}.track-box h2 span{color:var(--teal)}.track-box p{color:#b8c9d5;margin:0 0 18px}.track-form{display:flex;gap:9px;max-width:500px}.track-form input{min-width:0;flex:1;padding:13px 14px;border:1px solid #456477;border-radius:9px;background:#eaf2f6;color:#10202b;outline:none}.track-form input:focus{border-color:var(--teal);box-shadow:0 0 0 3px #10d6bb22}.track-result{display:block;margin-top:14px;font-size:13px}.track-visual{min-height:210px;display:flex;align-items:center;justify-content:center;gap:20px}.mini-phone{width:108px;height:185px;border:6px solid #284151;border-radius:20px;background:linear-gradient(145deg,#06455a,#10d6bb);box-shadow:0 15px 30px #0007;position:relative}.mini-phone:after{content:"FIXORA";position:absolute;top:48%;left:0;width:100%;text-align:center;color:#eaffff;font-weight:800;font-size:14px}.live{border:1px solid #286273;border-radius:14px;background:#0b1d2c;padding:14px 18px;font-size:12px;box-shadow:0 12px 28px #0005}.live b{color:var(--teal)}.live div{padding:6px 0;border-bottom:1px solid #203a4c}.live div:last-child{border:0}
@@ -498,37 +500,49 @@ document.getElementById("repairForm").addEventListener("submit",async function(e
       `${lang==="kn"?"ಸಮಸ್ಯೆ":"Problem"}: ${problem}`,
       "",
       lang==="kn"?"ಫೋಟೋಗಳನ್ನು WhatsApp‌ನಲ್ಲಿ ಪ್ರತ್ಯೇಕವಾಗಿ ಕಳುಹಿಸುತ್ತೇನೆ.":"I can send the phone photos separately on WhatsApp."
-    ].join("\\n");
-    const success=document.getElementById("bookingSuccess") || document.createElement("div");
-    success.id="bookingSuccess";
-    success.className="booking-success show";
-    success.setAttribute("role","status");
-    success.setAttribute("aria-live","polite");
-    success.innerHTML="";
+    ].join("
+");
+
+    let success=document.getElementById("bookingSuccess");
+    if(!success){
+      success=document.createElement("div");
+      success.id="bookingSuccess";
+      success.className="booking-success";
+      success.setAttribute("role","status");
+      success.setAttribute("aria-live","polite");
+      this.insertAdjacentElement("afterend",success);
+    }
+    success.replaceChildren();
+
     const heading=document.createElement("h3");
     heading.textContent=lang==="kn"?"ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ ಬುಕ್ ಆಯಿತು!":"Repair request booked successfully!";
-    const copy=document.createElement("p");
-    copy.textContent=lang==="kn"?"ನಿಮ್ಮ Repair ID:":"Your Repair ID:";
+    const label=document.createElement("p");
+    label.textContent=lang==="kn"?"ನಿಮ್ಮ Repair ID:":"Your Repair ID:";
     const id=document.createElement("div");
     id.className="repair-code";
     id.textContent=code;
     const instruction=document.createElement("p");
-    instruction.textContent=lang==="kn"?"ಈ ID ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳಿ. WhatsApp ಮೂಲಕ ವಿವರಗಳನ್ನು ಕಳುಹಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿ.":"Save this ID for tracking. Tap below if you’d like to send the booking details to Fixora on WhatsApp.";
+    instruction.textContent=lang==="kn"
+      ?"ಈ ID ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳಿ. WhatsApp ಮೂಲಕ ವಿವರಗಳನ್ನು ಕಳುಹಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿ."
+      :"Save this ID for tracking. Tap below if you’d like to send the booking details to Fixora on WhatsApp.";
+
     const actions=document.createElement("div");
     actions.className="success-actions";
-    const wa=document.createElement("a");
-    wa.className="btn whatsapp";
-    wa.href="https://wa.me/919591182590?text="+encodeURIComponent(message);
-    wa.target="_blank";
-    wa.rel="noopener noreferrer";
-    wa.textContent=lang==="kn"?"WhatsApp‌ನಲ್ಲಿ ಮುಂದುವರಿಸಿ":"Continue to WhatsApp";
-    const track=document.createElement("a");
-    track.className="btn secondary";
-    track.href="#track";
-    track.textContent=lang==="kn"?"ರಿಪೇರಿ ಟ್ರ್ಯಾಕ್ ಮಾಡಿ":"Track Repair";
-    actions.append(wa,track);
-    success.append(heading,copy,id,instruction,actions);
-    this.insertAdjacentElement("afterend",success);
+    const whatsapp=document.createElement("a");
+    whatsapp.className="btn whatsapp";
+    whatsapp.href="https://wa.me/919591182590?text="+encodeURIComponent(message);
+    whatsapp.target="_blank";
+    whatsapp.rel="noopener noreferrer";
+    whatsapp.textContent=lang==="kn"?"WhatsApp‌ನಲ್ಲಿ ಮುಂದುವರಿಸಿ":"Continue to WhatsApp";
+
+    const tracking=document.createElement("a");
+    tracking.className="btn secondary";
+    tracking.href="#track";
+    tracking.textContent=lang==="kn"?"ರಿಪೇರಿ ಟ್ರ್ಯಾಕ್ ಮಾಡಿ":"Track Repair";
+
+    actions.append(whatsapp,tracking);
+    success.append(heading,label,id,instruction,actions);
+    success.classList.add("show");
     this.reset();
     success.scrollIntoView({behavior:"smooth",block:"nearest"});
   }catch(err){
