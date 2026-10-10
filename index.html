@@ -1,12 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="FixoraPhone — mobile repair, doorstep service and quality phone accessories. Built to Fix.">
-<meta name="theme-color" content="#06121f">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="FixoraPhone — mobile repair, doorstep service and quality phone accessories. Built to Fix." name="description"/>
+<meta content="#06121f" name="theme-color"/>
 <title>FixoraPhone — Built to Fix</title>
-
 <style>
 :root{--bg:#06121f;--panel:#0b1d2c;--panel2:#102638;--line:#234153;--text:#f4f8fb;--muted:#a9bac7;--teal:#10e0c0;--green:#53f58a;--shadow:0 24px 70px rgba(0,0,0,.35)}
 *{box-sizing:border-box;scroll-behavior:smooth}
@@ -79,194 +79,316 @@ footer{border-top:1px solid #1e3a4b;padding:28px 0;color:#9fb2bf;font-size:12px}
 .nokia-mark{font-size:9px;letter-spacing:-.3px}
 .brand-logo-img{display:none!important}
 
+
+/* FixoraPhone accessory catalogue */
+.accessories-section{padding:30px 0 70px}
+.accessory-notice{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:13px 16px;margin:0 0 30px;border:1px solid #1b665f;border-radius:14px;background:linear-gradient(100deg,#0b2a30,#0b1d2c);color:#d8f9ef;font-size:13px}
+.accessory-notice>span:first-child{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#123f37;color:#67f5bd;font-weight:900}
+.accessory-notice strong{color:#73f5b9}.warranty-divider{color:#567b87;margin:0 4px}
+.accessory-category{margin:34px 0 42px}
+.accessory-category-head{display:flex;align-items:center;gap:13px;margin-bottom:17px}
+.category-icon{display:grid;place-items:center;width:48px;height:48px;border:1px solid #285466;border-radius:15px;background:#0d2937;font-size:24px}
+.accessory-category-head h3{font-size:23px;letter-spacing:-.4px;margin:0}
+.accessory-category-head p{color:var(--muted);font-size:13px;margin:3px 0 0}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.product-card{min-width:0;overflow:hidden;border:1px solid #244557;border-radius:17px;background:linear-gradient(145deg,#102638,#091a29);transition:transform .2s,border-color .2s,box-shadow .2s}
+.product-card:hover{transform:translateY(-3px);border-color:#10e0c0;box-shadow:0 14px 30px #0004}
+.product-art{height:145px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;overflow:hidden;background:radial-gradient(ellipse at 50% 20%,#145366,#0a2131 72%);border-bottom:1px solid #244557}
+.product-art:before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;border:1px solid #43d9d033;right:-45px;top:-54px}
+.product-art:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;border:1px solid #43d9d022;left:-38px;bottom:-50px}
+.product-art>span{position:relative;z-index:1;display:grid;place-items:center;min-height:60px;font-size:48px;color:#d8fff8;text-shadow:0 6px 18px #0006}
+.product-art small{position:relative;z-index:1;padding:5px 9px;border:1px solid #2b6976;border-radius:999px;background:#061a28d9;color:#c9f8f1;font-size:10px;font-weight:800;letter-spacing:.2px;text-align:center}
+.art-charger>span,.art-iphone>span{width:56px;height:57px;border:2px solid #d8e8ed;border-radius:13px;background:linear-gradient(145deg,#f4f8fa,#9bb4c1);color:#0c2837;font-size:34px;text-shadow:none}
+.art-iphone>span{font-family:Arial,sans-serif;font-size:36px}
+.pd-symbol{position:absolute;z-index:2;top:24px;right:calc(50% - 47px);padding:3px 5px;border-radius:5px;background:#10e0c0;color:#04141c;font-size:9px;font-weight:950}
+.original-art{background:radial-gradient(ellipse at 50% 20%,#34414c,#09141e 75%)}
+.original-art>span{background:linear-gradient(145deg,#fff,#cbd5df);border-color:#fff}
+.art-powerbank>span{display:grid;place-items:center;width:51px;height:76px;border:3px solid #c7d9e2;border-radius:11px;background:linear-gradient(120deg,#314956,#0c1a26);font-size:32px;color:#5af5d4}
+.art-audio>span{font-size:51px}
+.art-earbuds>span{display:grid;place-items:center;width:100px;height:54px;border-radius:15px;background:linear-gradient(145deg,#e8f3f5,#8da6b1);color:#102534;font-size:29px;text-shadow:none}
+.art-cable>span{font-size:55px}
+.art-glass>span{font-size:64px;color:#bdf8f2;text-shadow:0 0 18px #18dbc755}
+.privacy-art{background:radial-gradient(ellipse at 50% 20%,#343b50,#0a1b2b 72%)}
+.matte-art{background:radial-gradient(ellipse at 50% 20%,#3b4d58,#0a1b2b 72%)}
+.art-speaker>span{font-size:47px}
+.premium-art{background:radial-gradient(ellipse at 50% 20%,#22534f,#0a1c2a 72%)}
+.multi-art>span{font-size:60px}
+.big-speaker>span{font-size:54px}
+.product-info{padding:14px 14px 15px}
+.product-info h4{margin:0 0 6px;font-size:14px;line-height:1.35;min-height:38px}
+.product-meta{font-size:11px;color:#a9bac7;line-height:1.45;min-height:31px}
+.product-bottom{display:flex;align-items:flex-start;justify-content:space-between;gap:7px;flex-wrap:wrap;margin-top:13px;padding-top:11px;border-top:1px solid #203d4e}
+.product-bottom strong{font-size:19px;line-height:1.25;color:#67f5b0;letter-spacing:-.3px}
+.warranty-tag{display:inline-block;border:1px solid #226a59;background:#0c2b28;color:#8ff0bd;border-radius:999px;padding:4px 7px;font-size:9px;font-weight:800;line-height:1.25}
+.warranty-year{border-color:#46704c;background:#172b20;color:#b3f5a8}
+.accessory-footnote{border-top:1px solid #203d4e;padding-top:16px;color:#91aab8;font-size:11px;line-height:1.6}
+@media(max-width:1000px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:680px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-art{height:125px}.product-info{padding:11px}.product-info h4{font-size:13px;min-height:36px}.product-bottom strong{font-size:17px}.accessory-category-head h3{font-size:20px}.accessory-notice{font-size:12px}}
+@media(max-width:370px){.product-grid{grid-template-columns:1fr}.product-art{height:140px}}
+
+
+/* Clear product illustrations: recognizable shapes instead of abstract symbols */
+.product-art .product-illustration{position:relative;z-index:1;width:min(180px,80%);height:88px;display:block;filter:drop-shadow(0 7px 10px rgba(0,0,0,.24));flex:0 0 auto}
+.product-art{gap:2px}
+.product-art small{margin-top:0}
+@media(max-width:620px){.product-art{height:132px}.product-art .product-illustration{height:78px;width:min(160px,82%)}}
+
+/* Clear product-level WhatsApp ordering */
+.product-order{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:13px;padding:11px 12px;border:1px solid #10e0c0;border-radius:11px;background:linear-gradient(100deg,#10d6bb,#53f58a);color:#04141c!important;font-size:13px;font-weight:850;text-align:center;text-decoration:none;transition:transform .18s ease,filter .18s ease;box-shadow:0 7px 18px #10d6bb18}
+.product-order:hover{transform:translateY(-1px);filter:brightness(1.07)}
+.product-order:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
 </style>
 </head>
-
 <body>
 <div class="language-screen" id="languageScreen">
-  <div class="language-box">
-    <img class="language-logo" src="fixora-logo.png" alt="Fixora">
-    <h1 id="languageTitle">Choose your language</h1>
-    <p id="languageSub">Select a language to continue.</p>
-    <div class="lang-buttons">
-      <button class="lang-btn" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
-      <button class="lang-btn" onclick="setLanguage('en')">English</button>
-    </div>
-  </div>
+<div class="language-box">
+<img alt="Fixora" class="language-logo" src="fixora-logo.png"/>
+<h1 id="languageTitle">Choose your language</h1>
+<p id="languageSub">Select a language to continue.</p>
+<div class="lang-buttons">
+<button class="lang-btn" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+<button class="lang-btn" onclick="setLanguage('en')">English</button>
 </div>
-
+</div>
+</div>
 <header>
-  <div class="wrap nav">
-    <a class="brand" href="#home" aria-label="Fixora home"><img src="fixora-logo.png" alt="Fixora — Built to Fix"></a>
-    <nav class="links" id="navLinks">
-      <a href="#home" data-i18n="navHome">Home</a>
-      <a href="#repair" class="active" data-i18n="navRepair">Services</a>
-      <a href="#track" data-i18n="navTrack">Track Repair</a>
-      <a href="#accessories" data-i18n="navAccessories">Accessories</a>
-      <a href="#contact" data-i18n="navContact">Contact</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="lang-switch" onclick="toggleLanguage()" id="langSwitch">ಕನ್ನಡ</button>
-      <a class="btn" href="repair-booking.html" data-i18n="bookRepair">Book a Repair</a>
-      <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
-    </div>
-  </div>
+<div class="wrap nav">
+<a aria-label="Fixora home" class="brand" href="#home"><img alt="Fixora — Built to Fix" src="fixora-logo.png"/></a>
+<nav class="links" id="navLinks">
+<a data-i18n="navHome" href="#home">Home</a>
+<a class="active" data-i18n="navRepair" href="#repair">Services</a>
+<a data-i18n="navTrack" href="#track">Track Repair</a>
+<a data-i18n="navAccessories" href="#accessories">Accessories</a>
+<a data-i18n="navContact" href="#contact">Contact</a>
+</nav>
+<div class="nav-actions">
+<button class="lang-switch" id="langSwitch" onclick="toggleLanguage()">ಕನ್ನಡ</button>
+<a class="btn" data-i18n="bookRepair" href="repair-booking.html">Book a Repair</a>
+<button aria-label="Open menu" class="menu" onclick="toggleMenu()">☰</button>
+</div>
+</div>
 </header>
-
 <main id="home">
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <div class="eyebrow"><span class="dot"></span><span data-i18n="eyebrow">PROFESSIONAL MOBILE REPAIR</span></div>
-      <h1><span data-i18n="heroTitle1">Your phone.</span><br><span data-i18n="heroTitle2">Back in action.</span></h1>
-      <p class="lead" data-i18n="heroText">Reliable mobile repair, transparent updates, and quality accessories — all in one place.</p>
-      <div class="actions">
-        <a class="btn" href="repair-booking.html" data-i18n="bookRepair">Book a Repair <span>→</span></a>
-        <a class="btn secondary" href="#track" data-i18n="navTrack">Track My Repair</a>
-        <button class="btn secondary" onclick="openChat()" data-i18n="chatFixora">Chat with Fixora</button>
-        <a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-      <div class="stats">
-        <div class="stat"><strong>500+</strong><small>Devices Repaired</small></div>
-        <div class="stat"><strong>4.9/5</strong><small>Customer Rating</small></div>
-        <div class="stat"><strong>100%</strong><small>Genuine Parts</small></div>
-      </div>
-    </div>
-    <div class="hero-art" aria-label="Broken phone restored to working condition">
-      <div class="hero-label left">BROKEN<br>TODAY</div>
-      <div class="hero-label right">GOOD<br>TOMORROW</div>
-      <div class="phone"><div class="notch"></div><div class="screen"></div><div class="crack"></div></div>
-      <div class="arrow">→</div>
-      <div class="phone good"><div class="notch"></div><div class="screen"></div></div>
-    </div>
-  </div>
-</section>
-
-<div class="wrap trust" id="about">
-  <div class="trust-item"><div class="trust-icon">Q</div><div><b>Quality Parts</b><small>You Can Trust</small></div></div>
-  <div class="trust-item"><div class="trust-icon">L</div><div><b>Live Repair</b><small>Tracking</small></div></div>
-  <div class="trust-item"><div class="trust-icon">T</div><div><b>Expert Technicians</b><small>Careful workmanship</small></div></div>
-  <div class="trust-item"><div class="trust-icon">₹</div><div><b>Clear Pricing</b><small>Estimated & final</small></div></div>
+<div class="wrap hero-grid">
+<div class="hero-copy">
+<div class="eyebrow"><span class="dot"></span><span data-i18n="eyebrow">PROFESSIONAL MOBILE REPAIR</span></div>
+<h1><span data-i18n="heroTitle1">Your phone.</span><br/><span data-i18n="heroTitle2">Back in action.</span></h1>
+<p class="lead" data-i18n="heroText">Reliable mobile repair, transparent updates, and quality accessories — all in one place.</p>
+<div class="actions">
+<a class="btn" data-i18n="bookRepair" href="repair-booking.html">Book a Repair <span>→</span></a>
+<a class="btn secondary" data-i18n="navTrack" href="#track">Track My Repair</a>
+<button class="btn secondary" data-i18n="chatFixora" onclick="openChat()">Chat with Fixora</button>
+<a class="btn whatsapp" href="https://wa.me/919591182590" rel="noopener" target="_blank">WhatsApp</a>
 </div>
-
+<div class="stats">
+<div class="stat"><strong>500+</strong><small>Devices Repaired</small></div>
+<div class="stat"><strong>4.9/5</strong><small>Customer Rating</small></div>
+<div class="stat"><strong>100%</strong><small>Genuine Parts</small></div>
+</div>
+</div>
+<div aria-label="Broken phone restored to working condition" class="hero-art">
+<div class="hero-label left">BROKEN<br/>TODAY</div>
+<div class="hero-label right">GOOD<br/>TOMORROW</div>
+<div class="phone"><div class="notch"></div><div class="screen"></div><div class="crack"></div></div>
+<div class="arrow">→</div>
+<div class="phone good"><div class="notch"></div><div class="screen"></div></div>
+</div>
+</div>
+</section>
+<div class="wrap trust" id="about">
+<div class="trust-item"><div class="trust-icon">Q</div><div><b>Quality Parts</b><small>You Can Trust</small></div></div>
+<div class="trust-item"><div class="trust-icon">L</div><div><b>Live Repair</b><small>Tracking</small></div></div>
+<div class="trust-item"><div class="trust-icon">T</div><div><b>Expert Technicians</b><small>Careful workmanship</small></div></div>
+<div class="trust-item"><div class="trust-icon">₹</div><div><b>Clear Pricing</b><small>Estimated &amp; final</small></div></div>
+</div>
 <section class="services wrap" id="repair">
-  <div class="section-head">
-    <div><h2 class="section-title">Our Repair <span>Services</span></h2><p class="section-sub" data-i18n="repairText">Tell us what's wrong. Fixora can arrange the practical repair route for your device.</p></div>
-    <a class="btn secondary" href="#booking">View All Services →</a>
-  </div>
-  <div class="service-grid">
-    <a class="service service-link" href="repair-booking.html?service=Display%20%2F%20Glass" aria-label="Book Display & Glass repair"><div class="service-art"><svg viewBox="0 0 340 155" role="img" aria-label="Broken and repaired phone screens"><rect x="93" y="12" width="72" height="128" rx="12" fill="#162c3c" stroke="#6cebd9" stroke-width="2"/><rect x="100" y="20" width="58" height="112" rx="7" fill="#092f47"/><path d="M130 20L116 58l20 12-26 27 14 35M100 74l28-18 30 28M159 40l-23 30 20 18" stroke="#dfffff" stroke-width="1.6" fill="none"/><path d="M184 77h35m-10-10 10 10-10 10" stroke="#41ff9d" stroke-width="4" fill="none"/><rect x="229" y="12" width="72" height="128" rx="12" fill="#172f40" stroke="#6cebd9" stroke-width="2"/><rect x="236" y="20" width="58" height="112" rx="7" fill="url(#g1)"/><defs><linearGradient id="g1" x2="1" y2="1"><stop stop-color="#073d5b"/><stop offset="1" stop-color="#12e0bb"/></linearGradient></defs><path d="M246 96Q270 49 292 35" stroke="#8dfff0" stroke-width="3" fill="none"/></svg></div><div class="service-body"><div class="text-mark">DISPLAY REPAIR</div><h3 data-i18n="display">Display & Glass</h3><p data-i18n="displayText">Cracked, broken or damaged screen repairs.</p><span class="go">→</span></div></a>
-    <a class="service service-link" href="repair-booking.html?service=Battery" aria-label="Book Battery repair"><div class="service-art"><svg viewBox="0 0 340 155"><rect x="119" y="22" width="102" height="112" rx="13" fill="#152f40" stroke="#5debd5" stroke-width="2"/><rect x="130" y="34" width="80" height="88" rx="7" fill="#092b3b"/><rect x="143" y="48" width="54" height="58" rx="5" fill="#0b9b7d" stroke="#4affb0"/><path d="M174 55l-15 25h12l-5 17 19-27h-13z" fill="#d9fff0"/></svg></div><div class="service-body"><div class="text-mark">POWER & BATTERY</div><h3 data-i18n="battery">Battery</h3><p data-i18n="batteryText">Battery replacement and power problems.</p><span class="go">→</span></div></a>
-    <a class="service service-link" href="repair-booking.html?service=Charging%20Port" aria-label="Book Charging Port repair"><div class="service-art"><svg viewBox="0 0 340 155"><path d="M48 55h170q20 0 20 20v26q0 18-20 18H48z" fill="#172d3e" stroke="#5debd5" stroke-width="2"/><rect x="58" y="65" width="150" height="44" rx="8" fill="#071927"/><rect x="198" y="76" width="24" height="22" rx="4" fill="#b7d0dc"/><path d="M222 87h55" stroke="#d3e7ef" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M278 100l-9-13m9 13 14-2" stroke="#0fe0bd" stroke-width="3"/></svg></div><div class="service-body"><div class="text-mark">CHARGING PORT</div><h3 data-i18n="charging">Charging Port</h3><p data-i18n="chargingText">Charging, connector and cable-related faults.</p><span class="go">→</span></div></a>
-    <a class="service service-link" href="repair-booking.html?service=Software" aria-label="Book Software repair"><div class="service-art"><svg viewBox="0 0 340 155"><rect x="123" y="10" width="94" height="135" rx="14" fill="#193247" stroke="#57e8d5" stroke-width="2"/><rect x="132" y="22" width="76" height="111" rx="8" fill="#08243b"/><g fill="#10d9bf"><rect x="142" y="38" width="24" height="24" rx="5"/><rect x="174" y="38" width="24" height="24" rx="5"/><rect x="142" y="70" width="24" height="24" rx="5"/><rect x="174" y="70" width="24" height="24" rx="5"/></g><g fill="#eaffff" font-size="13" text-anchor="middle"><text x="154" y="55">OS</text><text x="186" y="55">OK</text><text x="154" y="87">FRP</text><text x="186" y="87">SET</text></g></svg></div><div class="service-body"><div class="text-mark">SOFTWARE SERVICE</div><h3 data-i18n="software">Software</h3><p data-i18n="softwareText">Software issues, setup and troubleshooting.</p><span class="go">→</span></div></a>
-    <a class="service service-link" href="repair-booking.html?service=Motherboard" aria-label="Book Motherboard repair"><div class="service-art"><svg viewBox="0 0 340 155"><rect x="76" y="20" width="188" height="116" rx="12" fill="#0c493f" stroke="#48e9c9" stroke-width="2"/><path d="M91 36h45v23h35V35h77M91 111h50V87h38v27h70M113 20v16m42-16v18m56-18v19m-91 97v-18m55 18v-18m51 18v-20" stroke="#a4ffdc" stroke-width="3" fill="none"/><rect x="143" y="55" width="54" height="43" rx="5" fill="#102a39" stroke="#b3e5d9" stroke-width="2"/><path d="M150 62h40v29h-40z" fill="#071a26"/><path d="M154 67h32m-32 7h32m-32 7h32" stroke="#14d7b5" stroke-width="2"/></svg></div><div class="service-body"><div class="text-mark">BOARD REPAIR</div><h3 data-i18n="motherboard">Motherboard</h3><p data-i18n="motherboardText">Board-level diagnosis and repair.</p><span class="go">→</span></div></a>
-    <a class="service service-link" href="repair-booking.html?service=Water%20Damage" aria-label="Book Water Damage repair"><div class="service-art"><svg viewBox="0 0 340 155"><rect x="130" y="9" width="80" height="137" rx="13" fill="#183447" stroke="#55e7d2" stroke-width="2"/><rect x="138" y="19" width="64" height="117" rx="7" fill="#092a42"/><path d="M170 34c-15 20-20 28-20 39a20 20 0 0040 0c0-11-5-19-20-39z" fill="#11d7c0" opacity=".9"/><path d="M170 55c-7 10-9 14-9 20a9 9 0 0018 0c0-6-2-10-9-20z" fill="#d7fff9"/><path d="M95 115q20-17 40 0t40 0t40 0t40 0" stroke="#1ce3d1" stroke-width="3" fill="none"/></svg></div><div class="service-body"><div class="text-mark">WATER DAMAGE</div><h3 data-i18n="water">Water Damage</h3><p data-i18n="waterText">Inspection and recovery assessment.</p><span class="go">→</span></div></a>
-  </div>
+<div class="section-head">
+<div><h2 class="section-title">Our Repair <span>Services</span></h2><p class="section-sub" data-i18n="repairText">Tell us what's wrong. Fixora can arrange the practical repair route for your device.</p></div>
+<a class="btn secondary" href="#booking">View All Services →</a>
+</div>
+<div class="service-grid">
+<a aria-label="Book Display &amp; Glass repair" class="service service-link" href="repair-booking.html?service=Display%20%2F%20Glass"><div class="service-art"><svg aria-label="Broken and repaired phone screens" role="img" viewbox="0 0 340 155"><rect fill="#162c3c" height="128" rx="12" stroke="#6cebd9" stroke-width="2" width="72" x="93" y="12"></rect><rect fill="#092f47" height="112" rx="7" width="58" x="100" y="20"></rect><path d="M130 20L116 58l20 12-26 27 14 35M100 74l28-18 30 28M159 40l-23 30 20 18" fill="none" stroke="#dfffff" stroke-width="1.6"></path><path d="M184 77h35m-10-10 10 10-10 10" fill="none" stroke="#41ff9d" stroke-width="4"></path><rect fill="#172f40" height="128" rx="12" stroke="#6cebd9" stroke-width="2" width="72" x="229" y="12"></rect><rect fill="url(#g1)" height="112" rx="7" width="58" x="236" y="20"></rect><defs><lineargradient id="g1" x2="1" y2="1"><stop stop-color="#073d5b"></stop><stop offset="1" stop-color="#12e0bb"></stop></lineargradient></defs><path d="M246 96Q270 49 292 35" fill="none" stroke="#8dfff0" stroke-width="3"></path></svg></div><div class="service-body"><div class="text-mark">DISPLAY REPAIR</div><h3 data-i18n="display">Display &amp; Glass</h3><p data-i18n="displayText">Cracked, broken or damaged screen repairs.</p><span class="go">→</span></div></a>
+<a aria-label="Book Battery repair" class="service service-link" href="repair-booking.html?service=Battery"><div class="service-art"><svg viewbox="0 0 340 155"><rect fill="#152f40" height="112" rx="13" stroke="#5debd5" stroke-width="2" width="102" x="119" y="22"></rect><rect fill="#092b3b" height="88" rx="7" width="80" x="130" y="34"></rect><rect fill="#0b9b7d" height="58" rx="5" stroke="#4affb0" width="54" x="143" y="48"></rect><path d="M174 55l-15 25h12l-5 17 19-27h-13z" fill="#d9fff0"></path></svg></div><div class="service-body"><div class="text-mark">POWER &amp; BATTERY</div><h3 data-i18n="battery">Battery</h3><p data-i18n="batteryText">Battery replacement and power problems.</p><span class="go">→</span></div></a>
+<a aria-label="Book Charging Port repair" class="service service-link" href="repair-booking.html?service=Charging%20Port"><div class="service-art"><svg viewbox="0 0 340 155"><path d="M48 55h170q20 0 20 20v26q0 18-20 18H48z" fill="#172d3e" stroke="#5debd5" stroke-width="2"></path><rect fill="#071927" height="44" rx="8" width="150" x="58" y="65"></rect><rect fill="#b7d0dc" height="22" rx="4" width="24" x="198" y="76"></rect><path d="M222 87h55" fill="none" stroke="#d3e7ef" stroke-linecap="round" stroke-width="11"></path><path d="M278 100l-9-13m9 13 14-2" stroke="#0fe0bd" stroke-width="3"></path></svg></div><div class="service-body"><div class="text-mark">CHARGING PORT</div><h3 data-i18n="charging">Charging Port</h3><p data-i18n="chargingText">Charging, connector and cable-related faults.</p><span class="go">→</span></div></a>
+<a aria-label="Book Software repair" class="service service-link" href="repair-booking.html?service=Software"><div class="service-art"><svg viewbox="0 0 340 155"><rect fill="#193247" height="135" rx="14" stroke="#57e8d5" stroke-width="2" width="94" x="123" y="10"></rect><rect fill="#08243b" height="111" rx="8" width="76" x="132" y="22"></rect><g fill="#10d9bf"><rect height="24" rx="5" width="24" x="142" y="38"></rect><rect height="24" rx="5" width="24" x="174" y="38"></rect><rect height="24" rx="5" width="24" x="142" y="70"></rect><rect height="24" rx="5" width="24" x="174" y="70"></rect></g><g fill="#eaffff" font-size="13" text-anchor="middle"><text x="154" y="55">OS</text><text x="186" y="55">OK</text><text x="154" y="87">FRP</text><text x="186" y="87">SET</text></g></svg></div><div class="service-body"><div class="text-mark">SOFTWARE SERVICE</div><h3 data-i18n="software">Software</h3><p data-i18n="softwareText">Software issues, setup and troubleshooting.</p><span class="go">→</span></div></a>
+<a aria-label="Book Motherboard repair" class="service service-link" href="repair-booking.html?service=Motherboard"><div class="service-art"><svg viewbox="0 0 340 155"><rect fill="#0c493f" height="116" rx="12" stroke="#48e9c9" stroke-width="2" width="188" x="76" y="20"></rect><path d="M91 36h45v23h35V35h77M91 111h50V87h38v27h70M113 20v16m42-16v18m56-18v19m-91 97v-18m55 18v-18m51 18v-20" fill="none" stroke="#a4ffdc" stroke-width="3"></path><rect fill="#102a39" height="43" rx="5" stroke="#b3e5d9" stroke-width="2" width="54" x="143" y="55"></rect><path d="M150 62h40v29h-40z" fill="#071a26"></path><path d="M154 67h32m-32 7h32m-32 7h32" stroke="#14d7b5" stroke-width="2"></path></svg></div><div class="service-body"><div class="text-mark">BOARD REPAIR</div><h3 data-i18n="motherboard">Motherboard</h3><p data-i18n="motherboardText">Board-level diagnosis and repair.</p><span class="go">→</span></div></a>
+<a aria-label="Book Water Damage repair" class="service service-link" href="repair-booking.html?service=Water%20Damage"><div class="service-art"><svg viewbox="0 0 340 155"><rect fill="#183447" height="137" rx="13" stroke="#55e7d2" stroke-width="2" width="80" x="130" y="9"></rect><rect fill="#092a42" height="117" rx="7" width="64" x="138" y="19"></rect><path d="M170 34c-15 20-20 28-20 39a20 20 0 0040 0c0-11-5-19-20-39z" fill="#11d7c0" opacity=".9"></path><path d="M170 55c-7 10-9 14-9 20a9 9 0 0018 0c0-6-2-10-9-20z" fill="#d7fff9"></path><path d="M95 115q20-17 40 0t40 0t40 0t40 0" fill="none" stroke="#1ce3d1" stroke-width="3"></path></svg></div><div class="service-body"><div class="text-mark">WATER DAMAGE</div><h3 data-i18n="water">Water Damage</h3><p data-i18n="waterText">Inspection and recovery assessment.</p><span class="go">→</span></div></a>
+</div>
 </section>
-
 <section id="models">
-  <div class="wrap">
-    <div class="section-head"><h2 class="section-title" data-i18n="modelsTitle">Phones we work with</h2><p class="section-sub" data-i18n="modelsText">Popular brands supported. If you don't see your model, ask Fixora.</p></div>
+<div class="wrap">
+<div class="section-head"><h2 class="section-title" data-i18n="modelsTitle">Phones we work with</h2><p class="section-sub" data-i18n="modelsText">Popular brands supported. If you don't see your model, ask Fixora.</p></div>
 <div class="brand-strip">
-      <span class="brand-pill" aria-label="Apple"><span class="brand-mark apple-mark" aria-hidden="true"><svg viewBox="0 0 384 512" role="img" focusable="false"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></span><span>Apple</span></span>
-      <span class="brand-pill" aria-label="Samsung"><span class="brand-mark samsung-mark" aria-hidden="true">SAMSUNG</span><span>Samsung</span></span>
-      <span class="brand-pill" aria-label="OnePlus"><span class="brand-mark oneplus-mark" aria-hidden="true">1+</span><span>OnePlus</span></span>
-      <span class="brand-pill" aria-label="Xiaomi / Redmi"><span class="brand-mark xiaomi-mark" aria-hidden="true">mi</span><span>Xiaomi / Redmi</span></span>
-      <span class="brand-pill" aria-label="POCO"><span class="brand-mark poco-mark" aria-hidden="true">POCO</span><span>POCO</span></span>
-      <span class="brand-pill" aria-label="OPPO"><span class="brand-mark oppo-mark" aria-hidden="true">oppo</span><span>OPPO</span></span>
-      <span class="brand-pill" aria-label="vivo"><span class="brand-mark vivo-mark" aria-hidden="true">vivo</span><span>vivo</span></span>
-      <span class="brand-pill" aria-label="realme"><span class="brand-mark realme-mark" aria-hidden="true">realme</span><span>realme</span></span>
-      <span class="brand-pill" aria-label="Motorola"><span class="brand-mark motorola-mark" aria-hidden="true"><svg viewBox="0 0 64 64" role="img" focusable="false"><circle cx="32" cy="32" r="30" fill="#f4f8fb"/><path fill="#0b1724" d="M12 45L22 12Q23 9 24.7 13L32 34L39.3 13Q41 9 42 12L52 45H44.5L39 28Q38.4 26 37.5 29L32 45L26.5 29Q25.6 26 25 28L19.5 45Z"/></svg></span><span>Motorola</span></span>
-      <span class="brand-pill" aria-label="Nothing"><span class="brand-mark nothing-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Nothing</span></span>
-      <span class="brand-pill" aria-label="Google Pixel"><span class="brand-mark pixel-mark" aria-hidden="true">G</span><span>Google Pixel</span></span>
-      <span class="brand-pill" aria-label="Huawei"><span class="brand-mark huawei-mark" aria-hidden="true">HUAWEI</span><span>Huawei</span></span>
-      <span class="brand-pill" aria-label="HONOR"><span class="brand-mark honor-mark" aria-hidden="true">HONOR</span><span>HONOR</span></span>
-      <span class="brand-pill" aria-label="TECNO"><span class="brand-mark tecno-mark" aria-hidden="true">TECNO</span><span>TECNO</span></span>
-      <span class="brand-pill" aria-label="Infinix"><span class="brand-mark infinix-mark" aria-hidden="true">X</span><span>Infinix</span></span>
-      <span class="brand-pill" aria-label="ASUS"><span class="brand-mark asus-mark" aria-hidden="true">ASUS</span><span>ASUS</span></span>
-      <span class="brand-pill" aria-label="Lenovo"><span class="brand-mark lenovo-mark" aria-hidden="true">Lenovo</span><span>Lenovo</span></span>
-      <span class="brand-pill" aria-label="iQOO"><span class="brand-mark iqoo-mark" aria-hidden="true">iQOO</span><span>iQOO</span></span>
-      <span class="brand-pill" aria-label="Sony"><span class="brand-mark sony-mark" aria-hidden="true">SONY</span><span>Sony</span></span>
-      <span class="brand-pill" aria-label="Nokia"><span class="brand-mark nokia-mark" aria-hidden="true">NOKIA</span><span>Nokia</span></span>
-    </div>
-  </div>
+<span aria-label="Apple" class="brand-pill"><span aria-hidden="true" class="brand-mark apple-mark"><svg focusable="false" role="img" viewbox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" fill="currentColor"></path></svg></span><span>Apple</span></span>
+<span aria-label="Samsung" class="brand-pill"><span aria-hidden="true" class="brand-mark samsung-mark">SAMSUNG</span><span>Samsung</span></span>
+<span aria-label="OnePlus" class="brand-pill"><span aria-hidden="true" class="brand-mark oneplus-mark">1+</span><span>OnePlus</span></span>
+<span aria-label="Xiaomi / Redmi" class="brand-pill"><span aria-hidden="true" class="brand-mark xiaomi-mark">mi</span><span>Xiaomi / Redmi</span></span>
+<span aria-label="POCO" class="brand-pill"><span aria-hidden="true" class="brand-mark poco-mark">POCO</span><span>POCO</span></span>
+<span aria-label="OPPO" class="brand-pill"><span aria-hidden="true" class="brand-mark oppo-mark">oppo</span><span>OPPO</span></span>
+<span aria-label="vivo" class="brand-pill"><span aria-hidden="true" class="brand-mark vivo-mark">vivo</span><span>vivo</span></span>
+<span aria-label="realme" class="brand-pill"><span aria-hidden="true" class="brand-mark realme-mark">realme</span><span>realme</span></span>
+<span aria-label="Motorola" class="brand-pill"><span aria-hidden="true" class="brand-mark motorola-mark"><svg focusable="false" role="img" viewbox="0 0 64 64"><circle cx="32" cy="32" fill="#f4f8fb" r="30"></circle><path d="M12 45L22 12Q23 9 24.7 13L32 34L39.3 13Q41 9 42 12L52 45H44.5L39 28Q38.4 26 37.5 29L32 45L26.5 29Q25.6 26 25 28L19.5 45Z" fill="#0b1724"></path></svg></span><span>Motorola</span></span>
+<span aria-label="Nothing" class="brand-pill"><span aria-hidden="true" class="brand-mark nothing-mark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Nothing</span></span>
+<span aria-label="Google Pixel" class="brand-pill"><span aria-hidden="true" class="brand-mark pixel-mark">G</span><span>Google Pixel</span></span>
+<span aria-label="Huawei" class="brand-pill"><span aria-hidden="true" class="brand-mark huawei-mark">HUAWEI</span><span>Huawei</span></span>
+<span aria-label="HONOR" class="brand-pill"><span aria-hidden="true" class="brand-mark honor-mark">HONOR</span><span>HONOR</span></span>
+<span aria-label="TECNO" class="brand-pill"><span aria-hidden="true" class="brand-mark tecno-mark">TECNO</span><span>TECNO</span></span>
+<span aria-label="Infinix" class="brand-pill"><span aria-hidden="true" class="brand-mark infinix-mark">X</span><span>Infinix</span></span>
+<span aria-label="ASUS" class="brand-pill"><span aria-hidden="true" class="brand-mark asus-mark">ASUS</span><span>ASUS</span></span>
+<span aria-label="Lenovo" class="brand-pill"><span aria-hidden="true" class="brand-mark lenovo-mark">Lenovo</span><span>Lenovo</span></span>
+<span aria-label="iQOO" class="brand-pill"><span aria-hidden="true" class="brand-mark iqoo-mark">iQOO</span><span>iQOO</span></span>
+<span aria-label="Sony" class="brand-pill"><span aria-hidden="true" class="brand-mark sony-mark">SONY</span><span>Sony</span></span>
+<span aria-label="Nokia" class="brand-pill"><span aria-hidden="true" class="brand-mark nokia-mark">NOKIA</span><span>Nokia</span></span>
+</div>
+</div>
 </section>
-
 <section id="booking">
-  <div class="wrap">
-    <div class="section-head"><h2 class="section-title" data-i18n="bookingTitle">Book a Repair</h2><p class="section-sub" data-i18n="bookingText">Send us the details. We'll review the request and contact you about the practical repair option.</p></div>
-    <div class="booking">
-      <form id="repairForm">
-        <div class="form-grid">
-          <div class="field"><label for="name" data-i18n="nameLabel">Your name</label><input id="name" required placeholder="Enter your name"></div>
-          <div class="field"><label for="phone" data-i18n="phoneLabel">Phone number</label><input id="phone" required type="tel" placeholder="10-digit mobile number"></div>
-          <div class="field"><label for="model" data-i18n="modelLabel">Phone model</label><input id="model" required placeholder="e.g. Samsung S24 Ultra"></div>
-          <div class="field"><label for="service" data-i18n="serviceLabel">Repair needed</label><select id="service" required><option value="" data-i18n="chooseRepair">Choose repair</option><option data-i18n="optDisplay">Display / Glass</option><option data-i18n="optBattery">Battery</option><option data-i18n="optCharging">Charging Port</option><option data-i18n="optSoftware">Software</option><option data-i18n="optMotherboard">Motherboard</option><option data-i18n="optWater">Water Damage</option><option data-i18n="optOther">Other</option></select></div>
-          <div class="field"><label for="visit" data-i18n="visitLabel">Service option</label><select id="visit"><option data-i18n="homeService">On-site / Home</option><option data-i18n="workshop">Workshop</option><option data-i18n="notSure">Not sure — advise me</option></select></div>
-          <div class="field"><label for="location" data-i18n="locationLabel">Service location</label><input id="location" placeholder="Area / locality"></div>
-          <div class="field full"><label for="photo" data-i18n="photoLabel">Phone photo</label><input id="photo" type="file" accept="image/*" multiple><div class="note" data-i18n="photoNote">You can select photos of the damage. Attach them in WhatsApp too.</div></div>
-          <div class="field full"><label for="problem" data-i18n="problemLabel">What happened?</label><textarea id="problem" required placeholder="Describe the problem, damage, or symptoms..."></textarea></div>
-          <div class="field full"><button class="btn" type="submit" data-i18n="sendRequest">Send Repair Request →</button></div>
-        </div>
-      </form>
-      <p class="note" data-i18n="formNote">Your repair request is saved securely in Fixora's repair database. You'll receive a repair ID to track the status.</p>
-    </div>
-  </div>
+<div class="wrap">
+<div class="section-head"><h2 class="section-title" data-i18n="bookingTitle">Book a Repair</h2><p class="section-sub" data-i18n="bookingText">Send us the details. We'll review the request and contact you about the practical repair option.</p></div>
+<div class="booking">
+<form id="repairForm">
+<div class="form-grid">
+<div class="field"><label data-i18n="nameLabel" for="name">Your name</label><input id="name" placeholder="Enter your name" required=""/></div>
+<div class="field"><label data-i18n="phoneLabel" for="phone">Phone number</label><input id="phone" placeholder="10-digit mobile number" required="" type="tel"/></div>
+<div class="field"><label data-i18n="modelLabel" for="model">Phone model</label><input id="model" placeholder="e.g. Samsung S24 Ultra" required=""/></div>
+<div class="field"><label data-i18n="serviceLabel" for="service">Repair needed</label><select id="service" required=""><option data-i18n="chooseRepair" value="">Choose repair</option><option data-i18n="optDisplay">Display / Glass</option><option data-i18n="optBattery">Battery</option><option data-i18n="optCharging">Charging Port</option><option data-i18n="optSoftware">Software</option><option data-i18n="optMotherboard">Motherboard</option><option data-i18n="optWater">Water Damage</option><option data-i18n="optOther">Other</option></select></div>
+<div class="field"><label data-i18n="visitLabel" for="visit">Service option</label><select id="visit"><option data-i18n="homeService">On-site / Home</option><option data-i18n="workshop">Workshop</option><option data-i18n="notSure">Not sure — advise me</option></select></div>
+<div class="field"><label data-i18n="locationLabel" for="location">Service location</label><input id="location" placeholder="Area / locality"/></div>
+<div class="field full"><label data-i18n="photoLabel" for="photo">Phone photo</label><input accept="image/*" id="photo" multiple="" type="file"/><div class="note" data-i18n="photoNote">You can select photos of the damage. Attach them in WhatsApp too.</div></div>
+<div class="field full"><label data-i18n="problemLabel" for="problem">What happened?</label><textarea id="problem" placeholder="Describe the problem, damage, or symptoms..." required=""></textarea></div>
+<div class="field full"><button class="btn" data-i18n="sendRequest" type="submit">Send Repair Request →</button></div>
+</div>
+</form>
+<p class="note" data-i18n="formNote">Your repair request is saved securely in Fixora's repair database. You'll receive a repair ID to track the status.</p>
+</div>
+</div>
 </section>
-
-<section id="accessories">
-  <div class="wrap">
-    <div class="section-head"><h2 class="section-title" data-i18n="accessoriesTitle">Accessories</h2><p class="section-sub" data-i18n="accessoriesText">Quality phone accessories can also be requested through Fixora.</p></div>
-    <div class="grid">
-      <div class="card"><div class="text-mark">CASES</div><h3 data-i18n="cases">Cases & Covers</h3><p data-i18n="casesText">Protection for popular phone models.</p></div>
-      <div class="card"><div class="text-mark">POWER</div><h3 data-i18n="chargers">Chargers & Cables</h3><p data-i18n="chargersText">Charging essentials and replacements.</p></div>
-      <div class="card"><div class="text-mark">AUDIO</div><h3 data-i18n="audio">Audio & Power</h3><p data-i18n="audioText">Earphones, power banks and everyday accessories.</p></div>
-    </div>
-  </div>
+<section class="accessories-section" id="accessories">
+<div class="wrap">
+<div class="section-head">
+<div><h2 class="section-title" data-i18n="accessoriesTitle">Accessories</h2><p class="section-sub" data-i18n="accessoriesText">Quality phone accessories can also be requested through Fixora.</p></div>
+<a class="btn secondary" href="https://wa.me/919591182590?text=Hi%20Fixora%2C%20I%20want%20to%20order%20an%20accessory" rel="noopener" target="_blank">Enquire / Order →</a>
+</div>
+<div class="accessory-notice"><span>✓</span> Chargers &amp; cables: <strong>6-month warranty</strong><span class="warranty-divider">•</span> Original Apple iPhone charger: <strong>1-year warranty</strong></div>
+<div class="accessory-category">
+<div class="accessory-category-head"><span class="category-icon">🔌</span><div><h3 data-i18n="chargerCategory">Chargers &amp; Adapters</h3><p data-i18n="chargerCategoryText">Charging solutions for compatible devices</p></div></div>
+<div class="product-grid">
+<article class="product-card"><div class="product-art art-charger"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><defs><lineargradient id="case" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffffff"></stop><stop offset="1" stop-color="#a7c0ca"></stop></lineargradient></defs><rect fill="url(#case)" height="54" rx="12" stroke="#eaffff" stroke-width="2" width="56" x="52" y="14"></rect><rect fill="#829da8" height="6" rx="3" width="36" x="62" y="22"></rect><path d="M66 68v10m28-10v10" stroke="#dcecf0" stroke-linecap="round" stroke-width="5"></path><rect fill="#0e9b9b" height="18" rx="4" width="22" x="69" y="37"></rect><path d="M82 39l-7 9h6l-2 5 7-9h-6z" fill="#eaffff"></path></svg><small>2.1A · V8</small></div><div class="product-info"><h4>2.1A V8 Charger</h4><div class="product-meta">Micro-USB / V8</div><div class="product-bottom"><strong>₹200</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-charger"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><defs><lineargradient id="case" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffffff"></stop><stop offset="1" stop-color="#a7c0ca"></stop></lineargradient></defs><rect fill="url(#case)" height="54" rx="12" stroke="#eaffff" stroke-width="2" width="56" x="52" y="14"></rect><rect fill="#829da8" height="6" rx="3" width="36" x="62" y="22"></rect><path d="M66 68v10m28-10v10" stroke="#dcecf0" stroke-linecap="round" stroke-width="5"></path><rect fill="#0e9b9b" height="18" rx="4" width="22" x="69" y="37"></rect><path d="M82 39l-7 9h6l-2 5 7-9h-6z" fill="#eaffff"></path></svg><small>2.1A · Type-C</small></div><div class="product-info"><h4>2.1A Type-C Charger</h4><div class="product-meta">USB Type-C</div><div class="product-bottom"><strong>₹250</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-charger"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><defs><lineargradient id="case" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffffff"></stop><stop offset="1" stop-color="#a7c0ca"></stop></lineargradient></defs><rect fill="url(#case)" height="54" rx="12" stroke="#eaffff" stroke-width="2" width="56" x="52" y="14"></rect><rect fill="#829da8" height="6" rx="3" width="36" x="62" y="22"></rect><path d="M66 68v10m28-10v10" stroke="#dcecf0" stroke-linecap="round" stroke-width="5"></path><rect fill="#0e9b9b" height="18" rx="4" width="22" x="69" y="37"></rect><path d="M82 39l-7 9h6l-2 5 7-9h-6z" fill="#eaffff"></path></svg><small>3.1A</small></div><div class="product-info"><h4>3.1A Charger</h4><div class="product-meta">V8 or Type-C</div><div class="product-bottom"><strong>₹300</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-charger"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><defs><lineargradient id="case" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffffff"></stop><stop offset="1" stop-color="#a7c0ca"></stop></lineargradient></defs><rect fill="url(#case)" height="54" rx="12" stroke="#eaffff" stroke-width="2" width="56" x="52" y="14"></rect><rect fill="#829da8" height="6" rx="3" width="36" x="62" y="22"></rect><path d="M66 68v10m28-10v10" stroke="#dcecf0" stroke-linecap="round" stroke-width="5"></path><rect fill="#0e9b9b" height="18" rx="4" width="22" x="69" y="37"></rect><path d="M82 39l-7 9h6l-2 5 7-9h-6z" fill="#eaffff"></path></svg><small>25W · USB</small></div><div class="product-info"><h4>25W USB Charger</h4><div class="product-meta">USB output</div><div class="product-bottom"><strong>₹350</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-iphone"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#f7fafc" height="56" rx="12" stroke="#d7e7ee" stroke-width="2" width="58" x="51" y="12"></rect><rect fill="#102d3d" height="38" rx="7" width="36" x="62" y="20"></rect><path d="M79 25l-8 15h8l-3 12 13-18h-8l3-9z" fill="#10e0c0"></path><path d="M66 68v10m28-10v10" stroke="#e7f3f7" stroke-linecap="round" stroke-width="5"></path></svg><div class="pd-symbol">PD</div><small>25W · USB-C PD</small></div><div class="product-info"><h4>25W Type-C PD Charger</h4><div class="product-meta">Compatible iPhone models and other supported devices</div><div class="product-bottom"><strong>₹550</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-charger"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><defs><lineargradient id="case" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffffff"></stop><stop offset="1" stop-color="#a7c0ca"></stop></lineargradient></defs><rect fill="url(#case)" height="54" rx="12" stroke="#eaffff" stroke-width="2" width="56" x="52" y="14"></rect><rect fill="#829da8" height="6" rx="3" width="36" x="62" y="22"></rect><path d="M66 68v10m28-10v10" stroke="#dcecf0" stroke-linecap="round" stroke-width="5"></path><rect fill="#0e9b9b" height="18" rx="4" width="22" x="69" y="37"></rect><path d="M82 39l-7 9h6l-2 5 7-9h-6z" fill="#eaffff"></path></svg><small>65W · USB + PD</small></div><div class="product-info"><h4>65W USB + PD Charger</h4><div class="product-meta">USB and Power Delivery</div><div class="product-bottom"><strong>₹750</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-charger"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><defs><lineargradient id="case" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffffff"></stop><stop offset="1" stop-color="#a7c0ca"></stop></lineargradient></defs><rect fill="url(#case)" height="54" rx="12" stroke="#eaffff" stroke-width="2" width="56" x="52" y="14"></rect><rect fill="#829da8" height="6" rx="3" width="36" x="62" y="22"></rect><path d="M66 68v10m28-10v10" stroke="#dcecf0" stroke-linecap="round" stroke-width="5"></path><rect fill="#0e9b9b" height="18" rx="4" width="22" x="69" y="37"></rect><path d="M82 39l-7 9h6l-2 5 7-9h-6z" fill="#eaffff"></path></svg><small>120W</small></div><div class="product-info"><h4>120W Fast Charger</h4><div class="product-meta">For supported devices</div><div class="product-bottom"><strong>₹1,100</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-iphone"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#f7fafc" height="56" rx="12" stroke="#d7e7ee" stroke-width="2" width="58" x="51" y="12"></rect><rect fill="#102d3d" height="38" rx="7" width="36" x="62" y="20"></rect><path d="M79 25l-8 15h8l-3 12 13-18h-8l3-9z" fill="#10e0c0"></path><path d="M66 68v10m28-10v10" stroke="#e7f3f7" stroke-linecap="round" stroke-width="5"></path></svg><div class="pd-symbol">PD</div><small>25W · iPhone PD</small></div><div class="product-info"><h4>25W iPhone-Compatible PD Charger</h4><div class="product-meta">USB-C Power Delivery</div><div class="product-bottom"><strong>₹550</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-charger premium-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><defs><lineargradient id="case" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffffff"></stop><stop offset="1" stop-color="#a7c0ca"></stop></lineargradient></defs><rect fill="url(#case)" height="54" rx="12" stroke="#eaffff" stroke-width="2" width="56" x="52" y="14"></rect><rect fill="#829da8" height="6" rx="3" width="36" x="62" y="22"></rect><path d="M66 68v10m28-10v10" stroke="#dcecf0" stroke-linecap="round" stroke-width="5"></path><rect fill="#0e9b9b" height="18" rx="4" width="22" x="69" y="37"></rect><path d="M82 39l-7 9h6l-2 5 7-9h-6z" fill="#eaffff"></path></svg><small>Premium Series</small></div><div class="product-info"><h4>Premium Charger Series</h4><div class="product-meta">Premium quality</div><div class="product-bottom"><strong>₹650</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-iphone original-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#f7fafc" height="56" rx="12" stroke="#d7e7ee" stroke-width="2" width="58" x="51" y="12"></rect><rect fill="#102d3d" height="38" rx="7" width="36" x="62" y="20"></rect><path d="M79 25l-8 15h8l-3 12 13-18h-8l3-9z" fill="#10e0c0"></path><path d="M66 68v10m28-10v10" stroke="#e7f3f7" stroke-linecap="round" stroke-width="5"></path></svg><small>Original Apple</small></div><div class="product-info"><h4>Original Apple iPhone Charger</h4><div class="product-meta">Original product — subject to stock availability</div><div class="product-bottom"><strong>₹1,800</strong><span class="warranty-tag warranty-year">1-year warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+</div>
+</div>
+<div class="accessory-category">
+<div class="accessory-category-head"><span class="category-icon">🔋</span><div><h3>Power Banks</h3><p>Portable power for your day</p></div></div>
+<div class="product-grid">
+<article class="product-card"><div class="product-art art-powerbank"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#263f50" height="79" rx="10" stroke="#e3f4f6" stroke-width="2.5" width="46" x="57" y="5"></rect><rect fill="#0c1c2b" height="58" rx="6" stroke="#4b7181" width="32" x="64" y="13"></rect><circle cx="80" cy="76" fill="#10e0c0" r="2.5"></circle><rect fill="#a7c7d2" height="3" rx="1.5" width="16" x="72" y="18"></rect><path d="M82 30l-9 15h7l-3 12 12-18h-7z" fill="#10e0c0"></path></svg><small>10,000 mAh</small></div><div class="product-info"><h4>10,000 mAh Power Bank</h4><div class="product-meta">Portable charging</div><div class="product-bottom"><strong>₹1,200</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-powerbank"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#263f50" height="79" rx="10" stroke="#e3f4f6" stroke-width="2.5" width="46" x="57" y="5"></rect><rect fill="#0c1c2b" height="58" rx="6" stroke="#4b7181" width="32" x="64" y="13"></rect><circle cx="80" cy="76" fill="#10e0c0" r="2.5"></circle><rect fill="#a7c7d2" height="3" rx="1.5" width="16" x="72" y="18"></rect><path d="M82 30l-9 15h7l-3 12 12-18h-7z" fill="#10e0c0"></path></svg><small>20,000 mAh</small></div><div class="product-info"><h4>20,000 mAh Power Bank</h4><div class="product-meta">Higher-capacity portable power</div><div class="product-bottom"><strong>₹1,800</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+</div>
+</div>
+<div class="accessory-category">
+<div class="accessory-category-head"><span class="category-icon">🎧</span><div><h3>Earphones, Neckbands &amp; Wireless Earbuds</h3><p>Audio options for every budget</p></div></div>
+<div class="product-grid">
+<article class="product-card"><div class="product-art art-audio"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M42 48v-8a38 38 0 0 1 76 0v8" fill="none" stroke="#dcecf0" stroke-linecap="round" stroke-width="9"></path><rect fill="#e9f4f7" height="31" rx="8" stroke="#9bb8c4" stroke-width="2" width="25" x="34" y="42"></rect><rect fill="#e9f4f7" height="31" rx="8" stroke="#9bb8c4" stroke-width="2" width="25" x="101" y="42"></rect><path d="M43 51v13m67-13v13" stroke="#10a9a0" stroke-linecap="round" stroke-width="4"></path></svg><small>Wired</small></div><div class="product-info"><h4>Budget Wired Earphones</h4><div class="product-meta">Everyday listening</div><div class="product-bottom"><strong>₹100</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-audio"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M42 48v-8a38 38 0 0 1 76 0v8" fill="none" stroke="#dcecf0" stroke-linecap="round" stroke-width="9"></path><rect fill="#e9f4f7" height="31" rx="8" stroke="#9bb8c4" stroke-width="2" width="25" x="34" y="42"></rect><rect fill="#e9f4f7" height="31" rx="8" stroke="#9bb8c4" stroke-width="2" width="25" x="101" y="42"></rect><path d="M43 51v13m67-13v13" stroke="#10a9a0" stroke-linecap="round" stroke-width="4"></path></svg><small>Wired · Good Quality</small></div><div class="product-info"><h4>Good-Quality Wired Earphones</h4><div class="product-meta">Choose from available series</div><div class="product-bottom"><strong>₹150 / ₹200 / ₹250</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-audio"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M42 48v-8a38 38 0 0 1 76 0v8" fill="none" stroke="#dcecf0" stroke-linecap="round" stroke-width="9"></path><rect fill="#e9f4f7" height="31" rx="8" stroke="#9bb8c4" stroke-width="2" width="25" x="34" y="42"></rect><rect fill="#e9f4f7" height="31" rx="8" stroke="#9bb8c4" stroke-width="2" width="25" x="101" y="42"></rect><path d="M43 51v13m67-13v13" stroke="#10a9a0" stroke-linecap="round" stroke-width="4"></path></svg><small>Bluetooth · 20h</small></div><div class="product-info"><h4>Budget Bluetooth Neckband</h4><div class="product-meta">Advertised battery life: up to 20 hours</div><div class="product-bottom"><strong>₹550</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-audio"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M42 48v-8a38 38 0 0 1 76 0v8" fill="none" stroke="#dcecf0" stroke-linecap="round" stroke-width="9"></path><rect fill="#e9f4f7" height="31" rx="8" stroke="#9bb8c4" stroke-width="2" width="25" x="34" y="42"></rect><rect fill="#e9f4f7" height="31" rx="8" stroke="#9bb8c4" stroke-width="2" width="25" x="101" y="42"></rect><path d="M43 51v13m67-13v13" stroke="#10a9a0" stroke-linecap="round" stroke-width="4"></path></svg><small>Bluetooth · 35h</small></div><div class="product-info"><h4>Good-Quality Bluetooth Neckband</h4><div class="product-meta">Advertised battery life: up to 35 hours</div><div class="product-bottom"><strong>₹750</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-audio"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M42 48v-8a38 38 0 0 1 76 0v8" fill="none" stroke="#dcecf0" stroke-linecap="round" stroke-width="9"></path><rect fill="#e9f4f7" height="31" rx="8" stroke="#9bb8c4" stroke-width="2" width="25" x="34" y="42"></rect><rect fill="#e9f4f7" height="31" rx="8" stroke="#9bb8c4" stroke-width="2" width="25" x="101" y="42"></rect><path d="M43 51v13m67-13v13" stroke="#10a9a0" stroke-linecap="round" stroke-width="4"></path></svg><small>Premium</small></div><div class="product-info"><h4>Premium Bluetooth Neckband</h4><div class="product-meta">Premium series</div><div class="product-bottom"><strong>₹1,500</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-earbuds"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#eaf4f6" height="31" rx="13" stroke="#9eb6c1" stroke-width="2" width="76" x="42" y="48"></rect><path d="M57 48V27a10 10 0 0 1 20 0v17q0 6-6 6h-4V29a4 4 0 0 0-8 0v19z" fill="#f8fcfd" stroke="#b5c8d0" stroke-width="2"></path><path d="M85 48V27a10 10 0 0 1 20 0v17q0 6-6 6h-4V29a4 4 0 0 0-8 0v19z" fill="#f8fcfd" stroke="#b5c8d0" stroke-width="2"></path><path d="M52 61h56" stroke="#b6cbd3" stroke-width="2"></path><circle cx="80" cy="69" fill="#10a9a0" r="2"></circle></svg><small>Wireless Earbuds</small></div><div class="product-info"><h4>Budget Wireless Earbuds</h4><div class="product-meta">Charging case included, subject to model</div><div class="product-bottom"><strong>₹650</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-earbuds"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#eaf4f6" height="31" rx="13" stroke="#9eb6c1" stroke-width="2" width="76" x="42" y="48"></rect><path d="M57 48V27a10 10 0 0 1 20 0v17q0 6-6 6h-4V29a4 4 0 0 0-8 0v19z" fill="#f8fcfd" stroke="#b5c8d0" stroke-width="2"></path><path d="M85 48V27a10 10 0 0 1 20 0v17q0 6-6 6h-4V29a4 4 0 0 0-8 0v19z" fill="#f8fcfd" stroke="#b5c8d0" stroke-width="2"></path><path d="M52 61h56" stroke="#b6cbd3" stroke-width="2"></path><circle cx="80" cy="69" fill="#10a9a0" r="2"></circle></svg><small>Good Quality</small></div><div class="product-info"><h4>Good-Quality Wireless Earbuds</h4><div class="product-meta">Wireless listening</div><div class="product-bottom"><strong>₹950</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-earbuds premium-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#eaf4f6" height="31" rx="13" stroke="#9eb6c1" stroke-width="2" width="76" x="42" y="48"></rect><path d="M57 48V27a10 10 0 0 1 20 0v17q0 6-6 6h-4V29a4 4 0 0 0-8 0v19z" fill="#f8fcfd" stroke="#b5c8d0" stroke-width="2"></path><path d="M85 48V27a10 10 0 0 1 20 0v17q0 6-6 6h-4V29a4 4 0 0 0-8 0v19z" fill="#f8fcfd" stroke="#b5c8d0" stroke-width="2"></path><path d="M52 61h56" stroke="#b6cbd3" stroke-width="2"></path><circle cx="80" cy="69" fill="#10a9a0" r="2"></circle></svg><small>Premium</small></div><div class="product-info"><h4>Premium Wireless Earbuds</h4><div class="product-meta">Premium series</div><div class="product-bottom"><strong>₹1,500</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+</div>
+</div>
+<div class="accessory-category">
+<div class="accessory-category-head"><span class="category-icon">🔗</span><div><h3>Charging &amp; Data Cables</h3><p>V8, Type-C, Lightning and multi-connector options</p></div></div>
+<div class="product-grid">
+<article class="product-card"><div class="product-art art-cable"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>USB → V8</small></div><div class="product-info"><h4>USB to V8 Normal Cable</h4><div class="product-meta">Charging cable</div><div class="product-bottom"><strong>₹100</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>USB → V8 Data</small></div><div class="product-info"><h4>USB to V8 Data Cable</h4><div class="product-meta">Charging and data transfer</div><div class="product-bottom"><strong>₹150</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>USB → Type-C</small></div><div class="product-info"><h4>USB to Type-C Normal Cable</h4><div class="product-meta">Charging cable</div><div class="product-bottom"><strong>₹100</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>USB → Type-C Data</small></div><div class="product-info"><h4>USB to Type-C Data Cable</h4><div class="product-meta">Charging and data transfer</div><div class="product-bottom"><strong>₹150</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>USB → Lightning</small></div><div class="product-info"><h4>USB to Lightning Normal Cable</h4><div class="product-meta">Charging cable</div><div class="product-bottom"><strong>₹100</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>USB → Lightning Data</small></div><div class="product-info"><h4>USB to Lightning Data Cable</h4><div class="product-meta">Charging and data transfer</div><div class="product-bottom"><strong>₹150</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable premium-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>Premium USB</small></div><div class="product-info"><h4>Premium USB Cable</h4><div class="product-meta">V8, Type-C or Lightning</div><div class="product-bottom"><strong>₹250</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>65W · USB</small></div><div class="product-info"><h4>65W USB Cable</h4><div class="product-meta">V8, Type-C or Lightning</div><div class="product-bottom"><strong>₹350</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable multi-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>3 Connectors</small></div><div class="product-info"><h4>USB to 3-Connector Cable</h4><div class="product-meta">Multi-connector cable</div><div class="product-bottom"><strong>₹450</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable premium-art multi-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>Premium · 3 Connectors</small></div><div class="product-info"><h4>Premium USB to 3-Connector Cable</h4><div class="product-meta">Premium multi-connector cable</div><div class="product-bottom"><strong>₹650</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>Type-C ↔ Type-C</small></div><div class="product-info"><h4>Type-C to Type-C Cable</h4><div class="product-meta">Standard</div><div class="product-bottom"><strong>₹250</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable premium-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>Type-C ↔ Type-C</small></div><div class="product-info"><h4>Premium Type-C to Type-C Cable</h4><div class="product-meta">Premium quality</div><div class="product-bottom"><strong>₹550</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>Type-C → Lightning</small></div><div class="product-info"><h4>Type-C to Lightning Cable</h4><div class="product-meta">Standard</div><div class="product-bottom"><strong>₹250</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable premium-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>Type-C → Lightning</small></div><div class="product-info"><h4>Premium Type-C to Lightning Cable</h4><div class="product-meta">Premium quality</div><div class="product-bottom"><strong>₹550</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable multi-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>Type-C · 3 Connectors</small></div><div class="product-info"><h4>Type-C to 3-Connector Multipurpose Cable</h4><div class="product-meta">Useful for car chargers and multipurpose charging</div><div class="product-bottom"><strong>₹450</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-cable premium-art multi-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#dbeaf0" stroke-linecap="round" stroke-width="7"></path><path d="M34 20v17c0 26 20 32 43 32h11c16 0 25-8 25-21V31" fill="none" stroke="#6e8997" stroke-linecap="round" stroke-width="2"></path><rect fill="#e8f3f6" height="17" rx="4" stroke="#a4bbc5" stroke-width="2" width="18" x="25" y="8"></rect><rect fill="#d7e7ed" height="23" rx="4" stroke="#8ca9b6" stroke-width="2" width="18" x="96" y="13"></rect><rect fill="#102c3b" height="5" rx="1" width="8" x="101" y="18"></rect></svg><small>Premium · 3 Connectors</small></div><div class="product-info"><h4>Premium Type-C to 3-Connector Cable</h4><div class="product-meta">Premium multipurpose option</div><div class="product-bottom"><strong>₹650</strong><span class="warranty-tag">6-month warranty</span></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+</div>
+</div>
+<div class="accessory-category">
+<div class="accessory-category-head"><span class="category-icon">🛡️</span><div><h3>Screen Protection Glass</h3><p>Options for different protection needs</p></div></div>
+<div class="product-grid">
+<article class="product-card"><div class="product-art art-glass"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#c9f6f4" fill-opacity=".2" height="82" rx="8" stroke="#e5ffff" stroke-width="2.5" width="46" x="57" y="4"></rect><rect fill="#b9f4f5" fill-opacity=".1" height="69" rx="5" stroke="#8de8e6" stroke-width="1.5" width="36" x="62" y="10"></rect><path d="M66 20l28 42M94 20L66 62" stroke="#d8ffff" stroke-opacity=".65" stroke-width="1.5"></path><rect fill="#d9ffff" height="3" rx="1.5" width="16" x="72" y="7"></rect></svg><small>D+ Glass</small></div><div class="product-info"><h4>D+ Screen Glass</h4><div class="product-meta">For supported phone models</div><div class="product-bottom"><strong>₹150</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-glass"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#c9f6f4" fill-opacity=".2" height="82" rx="8" stroke="#e5ffff" stroke-width="2.5" width="46" x="57" y="4"></rect><rect fill="#b9f4f5" fill-opacity=".1" height="69" rx="5" stroke="#8de8e6" stroke-width="1.5" width="36" x="62" y="10"></rect><path d="M66 20l28 42M94 20L66 62" stroke="#d8ffff" stroke-opacity=".65" stroke-width="1.5"></path><rect fill="#d9ffff" height="3" rx="1.5" width="16" x="72" y="7"></rect></svg><small>300C Hard Glass</small></div><div class="product-info"><h4>300C Hard Safety Glass</h4><div class="product-meta">Hard glass protection</div><div class="product-bottom"><strong>₹550</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-glass privacy-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#c9f6f4" fill-opacity=".2" height="82" rx="8" stroke="#e5ffff" stroke-width="2.5" width="46" x="57" y="4"></rect><rect fill="#b9f4f5" fill-opacity=".1" height="69" rx="5" stroke="#8de8e6" stroke-width="1.5" width="36" x="62" y="10"></rect><path d="M66 20l28 42M94 20L66 62" stroke="#d8ffff" stroke-opacity=".65" stroke-width="1.5"></path><rect fill="#d9ffff" height="3" rx="1.5" width="16" x="72" y="7"></rect></svg><small>Privacy</small></div><div class="product-info"><h4>Privacy Glass</h4><div class="product-meta">Privacy-style screen protection</div><div class="product-bottom"><strong>₹350</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-glass matte-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#c9f6f4" fill-opacity=".2" height="82" rx="8" stroke="#e5ffff" stroke-width="2.5" width="46" x="57" y="4"></rect><rect fill="#b9f4f5" fill-opacity=".1" height="69" rx="5" stroke="#8de8e6" stroke-width="1.5" width="36" x="62" y="10"></rect><path d="M66 20l28 42M94 20L66 62" stroke="#d8ffff" stroke-opacity=".65" stroke-width="1.5"></path><rect fill="#d9ffff" height="3" rx="1.5" width="16" x="72" y="7"></rect></svg><small>Matte</small></div><div class="product-info"><h4>Matte Screen Glass</h4><div class="product-meta">Matte finish</div><div class="product-bottom"><strong>₹300</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+</div>
+</div>
+<div class="accessory-category">
+<div class="accessory-category-head"><span class="category-icon">🔊</span><div><h3>Speakers</h3><p>Portable, vehicle and party speaker options</p></div></div>
+<div class="product-grid">
+<article class="product-card"><div class="product-art art-speaker"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#263f50" height="56" rx="15" stroke="#d8eaf0" stroke-width="2.5" width="76" x="42" y="18"></rect><circle cx="65" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="65" cy="46" fill="#537a89" r="7"></circle><circle cx="99" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="99" cy="46" fill="#537a89" r="7"></circle><circle cx="80" cy="65" fill="#10e0c0" r="2"></circle></svg><small>Mini Speaker</small></div><div class="product-info"><h4>Mini Bluetooth Speaker</h4><div class="product-meta">Option 1</div><div class="product-bottom"><strong>₹250</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-speaker"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#263f50" height="56" rx="15" stroke="#d8eaf0" stroke-width="2.5" width="76" x="42" y="18"></rect><circle cx="65" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="65" cy="46" fill="#537a89" r="7"></circle><circle cx="99" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="99" cy="46" fill="#537a89" r="7"></circle><circle cx="80" cy="65" fill="#10e0c0" r="2"></circle></svg><small>Mini Speaker</small></div><div class="product-info"><h4>Mini Bluetooth Speaker</h4><div class="product-meta">Option 2</div><div class="product-bottom"><strong>₹350</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-speaker"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#263f50" height="56" rx="15" stroke="#d8eaf0" stroke-width="2.5" width="76" x="42" y="18"></rect><circle cx="65" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="65" cy="46" fill="#537a89" r="7"></circle><circle cx="99" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="99" cy="46" fill="#537a89" r="7"></circle><circle cx="80" cy="65" fill="#10e0c0" r="2"></circle></svg><small>Car / Bike</small></div><div class="product-info"><h4>Car &amp; Bike Speaker</h4><div class="product-meta">Vehicle audio option</div><div class="product-bottom"><strong>₹850</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-speaker premium-art"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#263f50" height="56" rx="15" stroke="#d8eaf0" stroke-width="2.5" width="76" x="42" y="18"></rect><circle cx="65" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="65" cy="46" fill="#537a89" r="7"></circle><circle cx="99" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="99" cy="46" fill="#537a89" r="7"></circle><circle cx="80" cy="65" fill="#10e0c0" r="2"></circle></svg><small>Premium</small></div><div class="product-info"><h4>Premium Speaker</h4><div class="product-meta">Premium quality</div><div class="product-bottom"><strong>₹1,100</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-speaker big-speaker"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#263f50" height="56" rx="15" stroke="#d8eaf0" stroke-width="2.5" width="76" x="42" y="18"></rect><circle cx="65" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="65" cy="46" fill="#537a89" r="7"></circle><circle cx="99" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="99" cy="46" fill="#537a89" r="7"></circle><circle cx="80" cy="65" fill="#10e0c0" r="2"></circle></svg><small>With Microphone</small></div><div class="product-info"><h4>Big Speaker with Microphone</h4><div class="product-meta">Speaker with mic</div><div class="product-bottom"><strong>₹1,700</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product-card"><div class="product-art art-speaker"><svg aria-hidden="true" class="product-illustration" viewbox="0 0 160 90"><rect fill="#263f50" height="56" rx="15" stroke="#d8eaf0" stroke-width="2.5" width="76" x="42" y="18"></rect><circle cx="65" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="65" cy="46" fill="#537a89" r="7"></circle><circle cx="99" cy="46" fill="#0a1b29" r="16" stroke="#10e0c0" stroke-width="2"></circle><circle cx="99" cy="46" fill="#537a89" r="7"></circle><circle cx="80" cy="65" fill="#10e0c0" r="2"></circle></svg><small>Speaker Series</small></div><div class="product-info"><h4>Bluetooth Speaker Series</h4><div class="product-meta">Available options</div><div class="product-bottom"><strong>₹350 / ₹450 / ₹650 / ₹750</strong></div><a class="product-order" href="https://wa.me/919591182590" target="_blank" rel="noopener" onclick="return orderAccessory(this)" data-i18n="orderWhatsApp">Order on WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+</div>
+</div>
+<p class="accessory-footnote">Product illustrations are representative. Actual brand, model, connector, charging speed and availability may vary. Please confirm compatibility and stock with Fixora before ordering.</p>
+</div>
 </section>
-
 <section class="track" id="track">
-  <div class="wrap">
-    <div class="track-box">
-      <div>
-        <h2>Already left your phone with <span>us?</span></h2>
-        <p data-i18n="trackText">Enter your repair ID to check your repair status.</p>
-        <div class="track-form"><input id="repairId" placeholder="Enter your repair ID" onkeydown="if(event.key==='Enter')trackRepair()" aria-label="Repair ID"><button class="btn" onclick="trackRepair()" data-i18n="checkStatus">Check status</button></div>
-        <div id="trackingResult" class="track-result"></div>
-        <div class="track-visual" style="justify-content:flex-start;margin-top:22px"><div class="mini-phone"></div><div class="live"><b>LIVE REPAIR STATUS</b><div>Received</div><div>Diagnosis</div><div>Repair in progress</div><div>Testing</div><div>Ready for pickup</div></div></div>
-      </div>
-      <div class="track-visual"><div class="mini-phone"></div><div class="live"><b>YOUR REPAIR</b><div>Enter your Fixora ID</div><div>See latest status</div><div>Read customer updates</div><div>Check amounts</div></div></div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="track-box">
+<div>
+<h2>Already left your phone with <span>us?</span></h2>
+<p data-i18n="trackText">Enter your repair ID to check your repair status.</p>
+<div class="track-form"><input aria-label="Repair ID" id="repairId" onkeydown="if(event.key==='Enter')trackRepair()" placeholder="Enter your repair ID"/><button class="btn" data-i18n="checkStatus" onclick="trackRepair()">Check status</button></div>
+<div class="track-result" id="trackingResult"></div>
+<div class="track-visual" style="justify-content:flex-start;margin-top:22px"><div class="mini-phone"></div><div class="live"><b>LIVE REPAIR STATUS</b><div>Received</div><div>Diagnosis</div><div>Repair in progress</div><div>Testing</div><div>Ready for pickup</div></div></div>
+</div>
+<div class="track-visual"><div class="mini-phone"></div><div class="live"><b>YOUR REPAIR</b><div>Enter your Fixora ID</div><div>See latest status</div><div>Read customer updates</div><div>Check amounts</div></div></div>
+</div>
+</div>
 </section>
-
 <section id="contact">
-  <div class="wrap">
-    <div class="contact-box">
-      <div>
-        <h2 class="section-title" data-i18n="contactTitle">Contact Fixora</h2>
-        <p class="contact-sub" data-i18n="contactText">For immediate enquiries, message Fixora directly on WhatsApp.</p>
-      </div>
-      <div class="contact-actions">
-        <a class="btn whatsapp" href="https://wa.me/919591182590" target="_blank" rel="noopener" data-i18n="messageWhatsApp">WhatsApp Fixora</a>
-        <button class="btn" onclick="openChat()" data-i18n="chatFixora">Chat with Fixora</button>
-      </div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="contact-box">
+<div>
+<h2 class="section-title" data-i18n="contactTitle">Contact Fixora</h2>
+<p class="contact-sub" data-i18n="contactText">For immediate enquiries, message Fixora directly on WhatsApp.</p>
+</div>
+<div class="contact-actions">
+<a class="btn whatsapp" data-i18n="messageWhatsApp" href="https://wa.me/919591182590" rel="noopener" target="_blank">WhatsApp Fixora</a>
+<button class="btn" data-i18n="chatFixora" onclick="openChat()">Chat with Fixora</button>
+</div>
+</div>
+</div>
 </section>
 </main>
-
 <footer>
-  <div class="wrap footer-inner"><div><div class="footer-brand">FIXORA</div><div>BUILT TO FIX</div></div><div>Mobile repair • Accessories • Repair tracking</div><div>© 2026 FixoraPhone</div></div>
+<div class="wrap footer-inner"><div><div class="footer-brand">FIXORA</div><div>BUILT TO FIX</div></div><div>Mobile repair • Accessories • Repair tracking</div><div>© 2026 FixoraPhone</div></div>
 </footer>
-
-<button class="chat-launch" onclick="toggleChat()" id="chatLaunch"><span data-i18n="chatButton">Chat with Fixora</span></button>
+<button class="chat-launch" id="chatLaunch" onclick="toggleChat()"><span data-i18n="chatButton">Chat with Fixora</span></button>
 <div class="chat-window" id="chatWindow">
-  <div class="chat-head"><div><div class="chat-title">Fixora</div><div class="chat-sub" data-i18n="chatOnline">Online • How can we help?</div></div><button class="chat-close" onclick="toggleChat()" aria-label="Close chat">×</button></div>
-  <div class="chat-body" id="chatBody"></div>
-  <div class="chat-form"><input id="chatInput" type="text" data-i18n-placeholder="chatPlaceholder" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()" aria-label="Send">Send</button></div>
+<div class="chat-head"><div><div class="chat-title">Fixora</div><div class="chat-sub" data-i18n="chatOnline">Online • How can we help?</div></div><button aria-label="Close chat" class="chat-close" onclick="toggleChat()">×</button></div>
+<div class="chat-body" id="chatBody"></div>
+<div class="chat-form"><input data-i18n-placeholder="chatPlaceholder" id="chatInput" onkeydown="if(event.key==='Enter')sendChat()" placeholder="Type a message..." type="text"/><button aria-label="Send" onclick="sendChat()">Send</button></div>
 </div>
-
 <script>
 
 // FixoraPhone Cloudflare Worker API
@@ -314,7 +436,7 @@ visitLabel:"Service option",homeService:"On-site / Home",workshop:"Workshop",not
 photoNote:"You can select photos of the damage. Attach them in WhatsApp too.",problemLabel:"What happened?",sendRequest:"Send Repair Request →",
 formNote:"Your repair request is saved securely in Fixora's repair database. You'll receive a repair ID to track the status.",
 accessoriesTitle:"Accessories",accessoriesText:"Quality phone accessories can also be requested through Fixora.",cases:"Cases & Covers",casesText:"Protection for popular phone models.",
-chargers:"Chargers & Cables",chargersText:"Charging essentials and replacements.",audio:"Audio & Power",audioText:"Earphones, power banks and everyday accessories.",
+chargers:"Chargers & Cables",chargersText:"Charging essentials and replacements.",chargerCategory:"Chargers & Adapters",chargerCategoryText:"Charging solutions for compatible devices",orderWhatsApp:"Order on WhatsApp",audio:"Audio & Power",audioText:"Earphones, power banks and everyday accessories.",
 trackTitle:"Track Repair",trackText:"Enter your repair ID to check your repair status.",checkStatus:"Check status",
 contactTitle:"Contact Fixora",contactText:"For immediate enquiries, message Fixora directly on WhatsApp.",messageWhatsApp:"Message Fixora",
 chatButton:"Chat with Fixora",chatOnline:"Online • How can we help?",chatPlaceholder:"Type a message...",
@@ -343,7 +465,7 @@ visitLabel:"ಸೇವೆಯ ಆಯ್ಕೆ",homeService:"ಮನೆ / ಆನ್-
 photoNote:"ಹಾನಿಯ ಫೋಟೋಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಬಹುದು. WhatsApp‌ನಲ್ಲೂ ಫೋಟೋ ಕಳುಹಿಸಿ.",problemLabel:"ಏನಾಯಿತು?",sendRequest:"ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ ಕಳುಹಿಸಿ →",
 formNote:"ನಿಮ್ಮ ರಿಪೇರಿ ರಿಕ್ವೆಸ್ಟ್ Fixora ರಿಪೇರಿ ಡೇಟಾಬೇಸ್‌ನಲ್ಲಿ ಸುರಕ್ಷಿತವಾಗಿ ಸೇವ್ ಆಗುತ್ತದೆ. ಸ್ಟೇಟಸ್ ಟ್ರ್ಯಾಕ್ ಮಾಡಲು ರಿಪೇರಿ ID ಸಿಗುತ್ತದೆ.",
 accessoriesTitle:"ಆಕ್ಸೆಸರೀಸ್",accessoriesText:"ಗುಣಮಟ್ಟದ ಫೋನ್ ಆಕ್ಸೆಸರೀಸ್‌ಗಳನ್ನು ಕೂಡ Fixora ಮೂಲಕ ಕೇಳಬಹುದು.",cases:"ಕೇಸ್ & ಕವರ್",casesText:"ಜನಪ್ರಿಯ ಫೋನ್ ಮಾದರಿಗಳಿಗೆ ರಕ್ಷಣೆ.",
-chargers:"ಚಾರ್ಜರ್ & ಕೇಬಲ್",chargersText:"ಚಾರ್ಜಿಂಗ್ ಅಗತ್ಯ ವಸ್ತುಗಳು ಮತ್ತು ಬದಲಿ ಕೇಬಲ್‌ಗಳು.",audio:"ಆಡಿಯೋ & ಪವರ್",audioText:"ಇಯರ್‌ಫೋನ್, ಪವರ್ ಬ್ಯಾಂಕ್ ಮತ್ತು ದಿನನಿತ್ಯದ ಆಕ್ಸೆಸರೀಸ್.",
+chargers:"ಚಾರ್ಜರ್ & ಕೇಬಲ್",chargersText:"ಚಾರ್ಜಿಂಗ್ ಅಗತ್ಯ ವಸ್ತುಗಳು ಮತ್ತು ಬದಲಿ ಕೇಬಲ್‌ಗಳು.",chargerCategory:"ಚಾರ್ಜರ್‌ಗಳು ಮತ್ತು ಅಡಾಪ್ಟರ್‌ಗಳು",chargerCategoryText:"ಹೊಂದಾಣಿಕೆಯ ಸಾಧನಗಳಿಗೆ ಚಾರ್ಜಿಂಗ್ ಪರಿಹಾರಗಳು",orderWhatsApp:"ವಾಟ್ಸಾಪ್‌ನಲ್ಲಿ ಆರ್ಡರ್ ಮಾಡಿ",audio:"ಆಡಿಯೋ & ಪವರ್",audioText:"ಇಯರ್‌ಫೋನ್, ಪವರ್ ಬ್ಯಾಂಕ್ ಮತ್ತು ದಿನನಿತ್ಯದ ಆಕ್ಸೆಸರೀಸ್.",
 trackTitle:"ರಿಪೇರಿ ಟ್ರ್ಯಾಕ್",trackText:"ನಿಮ್ಮ ರಿಪೇರಿ ID ನಮೂದಿಸಿ ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಿ.",checkStatus:"ಸ್ಟೇಟಸ್ ಪರಿಶೀಲಿಸಿ",
 contactTitle:"Fixora ಸಂಪರ್ಕ",contactText:"ತಕ್ಷಣದ ವಿಚಾರಣೆಗಾಗಿ WhatsApp‌ನಲ್ಲಿ Fixoraಗೆ ಮೆಸೇಜ್ ಮಾಡಿ.",messageWhatsApp:"Fixoraಗೆ ಮೆಸೇಜ್ ಮಾಡಿ",
 chatButton:"Fixora ಜೊತೆ ಚಾಟ್",chatOnline:"ಆನ್‌ಲೈನ್ • ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?",chatPlaceholder:"ಮೆಸೇಜ್ ಟೈಪ್ ಮಾಡಿ...",
@@ -372,6 +494,37 @@ function applyLanguage(){
   document.getElementById("langSwitch").textContent=lang==="en"?"ಕನ್ನಡ":"English";
   document.getElementById("languageTitle").textContent=t.languageTitle;
   document.getElementById("languageSub").textContent=t.languageSub;
+  // Translate every accessories category heading and subtitle on language switch.
+  const accessoryHeads = document.querySelectorAll(".accessory-category-head");
+  const categoryCopy = lang === "kn" ? [
+    ["ಚಾರ್ಜರ್‌ಗಳು ಮತ್ತು ಅಡಾಪ್ಟರ್‌ಗಳು", "ಹೊಂದಾಣಿಕೆಯ ಸಾಧನಗಳಿಗೆ ಚಾರ್ಜಿಂಗ್ ಪರಿಹಾರಗಳು"],
+    ["ಪವರ್ ಬ್ಯಾಂಕ್‌ಗಳು", "ನಿಮ್ಮ ದಿನವಿಡೀ ಬಳಸಲು ಪೋರ್ಟಬಲ್ ಪವರ್"],
+    ["ಇಯರ್‌ಫೋನ್‌ಗಳು, ನೆಕ್‌ಬ್ಯಾಂಡ್‌ಗಳು ಮತ್ತು ವೈರ್‌ಲೆಸ್ ಇಯರ್‌ಬಡ್‌ಗಳು", "ಪ್ರತಿ ಬಜೆಟ್‌ಗೆ ಹೊಂದುವ ಆಡಿಯೋ ಆಯ್ಕೆಗಳು"],
+    ["ಚಾರ್ಜಿಂಗ್ ಮತ್ತು ಡೇಟಾ ಕೇಬಲ್‌ಗಳು", "V8, Type-C, Lightning ಮತ್ತು ಬಹು-ಕನೆಕ್ಟರ್ ಆಯ್ಕೆಗಳು"],
+    ["ಸ್ಕ್ರೀನ್ ಪ್ರೊಟೆಕ್ಷನ್ ಗ್ಲಾಸ್", "ವಿವಿಧ ರೀತಿಯ ಸ್ಕ್ರೀನ್ ರಕ್ಷಣೆಯ ಆಯ್ಕೆಗಳು"],
+    ["ಸ್ಪೀಕರ್‌ಗಳು", "ಪೋರ್ಟಬಲ್, ಕಾರು/ಬೈಕ್ ಮತ್ತು ಪಾರ್ಟಿ ಸ್ಪೀಕರ್ ಆಯ್ಕೆಗಳು"]
+  ] : [
+    ["Chargers & Adapters", "Charging solutions for compatible devices"],
+    ["Power Banks", "Portable power for your day"],
+    ["Earphones, Neckbands & Wireless Earbuds", "Audio options for every budget"],
+    ["Charging & Data Cables", "V8, Type-C, Lightning and multi-connector options"],
+    ["Screen Protection Glass", "Options for different protection needs"],
+    ["Speakers", "Portable, vehicle and party speaker options"]
+  ];
+  accessoryHeads.forEach((head, i) => {
+    if (!categoryCopy[i]) return;
+    const title = head.querySelector("h3");
+    const subtitle = head.querySelector("p");
+    if (title) title.textContent = categoryCopy[i][0];
+    if (subtitle) subtitle.textContent = categoryCopy[i][1];
+  });
+  const notice = document.querySelector(".accessory-notice");
+  if (notice) notice.innerHTML = lang === "kn"
+    ? '<span>✓</span> ಚಾರ್ಜರ್‌ಗಳು ಮತ್ತು ಕೇಬಲ್‌ಗಳು: <strong>6 ತಿಂಗಳ ವಾರಂಟಿ</strong><span class="warranty-divider">•</span> ಮೂಲ Apple iPhone ಚಾರ್ಜರ್: <strong>1 ವರ್ಷದ ವಾರಂಟಿ</strong>'
+    : '<span>✓</span> Chargers &amp; cables: <strong>6-month warranty</strong><span class="warranty-divider">•</span> Original Apple iPhone charger: <strong>1-year warranty</strong>';
+  document.querySelectorAll(".warranty-tag").forEach(tag => {
+    tag.textContent = lang === "kn" ? (tag.textContent.includes("1-year") || tag.textContent.includes("1 ವರ್ಷದ") ? "1 ವರ್ಷದ ವಾರಂಟಿ" : "6 ತಿಂಗಳ ವಾರಂಟಿ") : (tag.textContent.includes("1 ವರ್ಷದ") ? "1-year warranty" : "6-month warranty");
+  });
 }
 function toggleMenu(){const n=document.getElementById("navLinks");n.style.display=n.style.display==="flex"?"none":"flex"}
 function openChat(){document.getElementById("chatWindow").classList.add("open");document.getElementById("chatInput").focus()}
@@ -551,6 +704,17 @@ document.getElementById("repairForm").addEventListener("submit",async function(e
   }finally{btn.disabled=false;btn.textContent=originalText;}
 });
 if(lang){document.getElementById("languageScreen").classList.add("hidden");applyLanguage();initChat()}
+
+
+function orderAccessory(button){
+  const card=button.closest('.product-card');
+  const name=card?.querySelector('.product-info h4')?.textContent?.trim()||'phone accessory';
+  const price=card?.querySelector('.product-bottom strong')?.textContent?.trim()||'';
+  const warranty=card?.querySelector('.warranty-tag')?.textContent?.trim()||'';
+  const message=`Hi Fixora! I want to order: ${name}. Price: ${price}.${warranty ? ' Warranty: '+warranty+'.' : ''} Please confirm availability and delivery/pickup details.`;
+  button.href='https://wa.me/919591182590?text='+encodeURIComponent(message);
+  return true;
+}
 
 </script>
 </body>
