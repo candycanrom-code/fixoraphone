@@ -555,7 +555,10 @@ function openChat(){document.getElementById("chatWindow").classList.add("open");
 function toggleChat(){document.getElementById("chatWindow").classList.toggle("open")}
 function addMsg(text,type="bot"){const b=document.getElementById("chatBody");const d=document.createElement("div");d.className="msg "+type;d.textContent=text;b.appendChild(d);b.scrollTop=b.scrollHeight}
 function addQuick(){
-  const b=document.getElementById("chatBody"),t=T[lang||"en"],q=document.createElement("div");q.className="quick";
+  const b=document.getElementById("chatBody");
+  // Keep only one quick-action row; move it to the bottom after each reply.
+  b.querySelectorAll(":scope > .quick").forEach(el=>el.remove());
+  const t=T[lang||"en"],q=document.createElement("div");q.className="quick";
   [["quickRepair","repair"],["quickPrice","price"],["quickAccessory","accessory"],["quickWhatsApp","wa"]].forEach(([k,a])=>{
     const x=document.createElement("button");x.textContent=t[k];x.onclick=()=>quickChat(a);q.appendChild(x);
   });b.appendChild(q)
