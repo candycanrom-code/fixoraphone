@@ -610,6 +610,21 @@ async function sendChat(messageOverride=null, displayText=null){
       throw new Error(payload?.error || (lang==="kn" ? "ಈಗ ಚಾಟ್ ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ." : "The chat service did not return a reply. Please try again."));
     }
     typingNode.textContent=reply;
+    if(payload?.offerWhatsApp===true){
+      const actions=document.createElement("div");
+      actions.className="success-actions";
+      const whatsapp=document.createElement("a");
+      whatsapp.className="btn whatsapp";
+      const waMessage=lang==="kn"
+        ? `ನಮಸ್ಕಾರ Fixora, ನನ್ನ ಫೋನ್ ರಿಪೇರಿ ಬೆಲೆ ತಿಳಿಸಿ. ನನ್ನ ಪ್ರಶ್ನೆ: ${message}`
+        : `Hi Fixora, please confirm the repair price for this question: ${message}`;
+      whatsapp.href="https://wa.me/919591182590?text="+encodeURIComponent(waMessage);
+      whatsapp.target="_blank";
+      whatsapp.rel="noopener noreferrer";
+      whatsapp.textContent=lang==="kn"?"ತಂತ್ರಜ್ಞರಿಂದ ಬೆಲೆ ಕೇಳಿ (WhatsApp)":"Ask technician for price (WhatsApp)";
+      actions.appendChild(whatsapp);
+      typingNode.insertAdjacentElement("afterend",actions);
+    }
     fixoraChatHistory.push({role:"user",text:message},{role:"model",text:reply});
     if(fixoraChatHistory.length>16)fixoraChatHistory.splice(0,fixoraChatHistory.length-16);
   }catch(error){
