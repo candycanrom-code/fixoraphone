@@ -564,24 +564,67 @@ function initChat(){
   const b=document.getElementById("chatBody");b.innerHTML="";
   const t=T[lang||"en"];addMsg(t.hello);addMsg(t.chatHint);addQuick();
 }
+// Chat history is kept in this browser session and sent to the Worker for conversational context.
+const fixoraChatHistory=[];
+let fixoraChatBusy=false;
+
 function quickChat(a){
   const t=T[lang||"en"];
-  if(a==="wa"){window.open("https://wa.me/919591182590","_blank");return}
-  addMsg(t[a==="repair"?"quickRepair":a==="price"?"quickPrice":"quickAccessory"],"user");
-  setTimeout(()=>{addMsg(t[a==="repair"?"repairReply":a==="price"?"priceReply":"accessoryReply"]);addQuick()},250);
+  if(a==="wa"){window.open("https://wa.me/919591182590","_blank","noopener");return}
+  const prompts={
+    repair: lang==="kn" ? "ನನ್ನ ಫೋನ್ ರಿಪೇರಿ ಮಾಡಿಸಬೇಕು. ಹೇಗೆ ಬುಕ್ ಮಾಡಲಿ?" : "I'd like to book a phone repair. How do I do that?",
+    price: lang==="kn" ? "ರಿಪೇರಿ ಬೆಲೆ ಬಗ್ಗೆ ಮಾಹಿತಿ ಬೇಕು." : "Can you help me understand repair pricing?",
+    accessory: lang==="kn" ? "ಫೋನ್ ಆಕ್ಸೆಸರೀಸ್ ಬಗ್ಗೆ ಮಾಹಿತಿ ನೀಡಿ." : "Tell me about phone accessories."
+  };
+  sendChat(prompts[a] || prompts.repair, t[a==="repair"?"quickRepair":a==="price"?"quickPrice":"quickAccessory"]);
 }
-function sendChat(){
-  const i=document.getElementById("chatInput"),v=i.value.trim();if(!v)return;
-  addMsg(v,"user");i.value="";
-  const t=T[lang||"en"];const s=v.toLowerCase();
-  setTimeout(()=>{
-    if(s.includes("hello")||s.includes("hi")||s.includes("ನಮಸ್ಕಾರ")) addMsg(t.hello);
-    else if(s.includes("price")||s.includes("cost")||s.includes("ಬೆಲೆ")) addMsg(t.priceReply);
-    else if(s.includes("repair")||s.includes("ರಿಪೇರಿ")||s.includes("broken")||s.includes("ಹಾಳ")) addMsg(t.repairReply);
-    else if(s.includes("case")||s.includes("charger")||s.includes("accessor")||s.includes("ಆಕ್ಸೆಸರ")) addMsg(t.accessoryReply);
-    else addMsg(t.unknownReply);
+
+async function sendChat(messageOverride=null, displayText=null){
+  if(fixoraChatBusy)return;
+  const input=document.getElementById("chatInput");
+  const sendButton=document.querySelector(".chat-form button");
+  const message=String(messageOverride ?? input.value).trim();
+  if(!message)return;
+
+  addMsg(displayText || message,"user");
+  input.value="";
+  const typing=lang==="kn" ? "Fixora ಉತ್ತರಿಸುತ್ತಿದೆ…" : "Fixora is thinking…";
+  addMsg(typing,"bot");
+  const body=document.getElementById("chatBody");
+  const typingNode=body.lastElementChild;
+  fixoraChatBusy=true;
+  input.disabled=true;
+  if(sendButton)sendButton.disabled=true;
+
+  try{
+    const history=fixoraChatHistory.slice(-8);
+    const payload=await apiRequest("/api/chat",{
+      method:"POST",
+      body:JSON.stringify({
+        message: lang==="kn" ? `Reply in Kannada. User message: ${message}` : message,
+        history
+      })
+    });
+    const reply=String(payload?.reply || payload?.message || "").trim();
+    if(payload?.success===false || !reply){
+      throw new Error(payload?.error || (lang==="kn" ? "ಈಗ ಚಾಟ್ ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ." : "The chat service did not return a reply. Please try again."));
+    }
+    typingNode.textContent=reply;
+    fixoraChatHistory.push({role:"user",text:message},{role:"model",text:reply});
+    if(fixoraChatHistory.length>16)fixoraChatHistory.splice(0,fixoraChatHistory.length-16);
+  }catch(error){
+    console.error("Fixora chat error:",error);
+    typingNode.textContent=lang==="kn"
+      ? "ಕ್ಷಮಿಸಿ, ಈಗ AI ಚಾಟ್‌ಗೆ ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಸ್ವಲ್ಪ ಸಮಯದ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ Book a Repair ಬಳಸಿ."
+      : "Sorry, I couldn't connect to Fixora AI just now. Please try again shortly, or use Book a Repair.";
+  }finally{
+    fixoraChatBusy=false;
+    input.disabled=false;
+    if(sendButton)sendButton.disabled=false;
+    input.focus();
+    body.scrollTop=body.scrollHeight;
     addQuick();
-  },350)
+  }
 }
 function setTrackingMessage(message,type="info"){
   const box=document.getElementById("trackingResult");
