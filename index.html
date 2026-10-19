@@ -555,10 +555,7 @@ function openChat(){document.getElementById("chatWindow").classList.add("open");
 function toggleChat(){document.getElementById("chatWindow").classList.toggle("open")}
 function addMsg(text,type="bot"){const b=document.getElementById("chatBody");const d=document.createElement("div");d.className="msg "+type;d.textContent=text;b.appendChild(d);b.scrollTop=b.scrollHeight}
 function addQuick(){
-  const b=document.getElementById("chatBody");
-  // Keep only one quick-action row; move it to the bottom after each reply.
-  b.querySelectorAll(":scope > .quick").forEach(el=>el.remove());
-  const t=T[lang||"en"],q=document.createElement("div");q.className="quick";
+  const b=document.getElementById("chatBody"),t=T[lang||"en"],q=document.createElement("div");q.className="quick";
   [["quickRepair","repair"],["quickPrice","price"],["quickAccessory","accessory"],["quickWhatsApp","wa"]].forEach(([k,a])=>{
     const x=document.createElement("button");x.textContent=t[k];x.onclick=()=>quickChat(a);q.appendChild(x);
   });b.appendChild(q)
@@ -613,21 +610,6 @@ async function sendChat(messageOverride=null, displayText=null){
       throw new Error(payload?.error || (lang==="kn" ? "ಈಗ ಚಾಟ್ ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ." : "The chat service did not return a reply. Please try again."));
     }
     typingNode.textContent=reply;
-    if(payload?.offerWhatsApp===true){
-      const actions=document.createElement("div");
-      actions.className="success-actions";
-      const whatsapp=document.createElement("a");
-      whatsapp.className="btn whatsapp";
-      const waMessage=lang==="kn"
-        ? `ನಮಸ್ಕಾರ Fixora, ನನ್ನ ಫೋನ್ ರಿಪೇರಿ ಬೆಲೆ ತಿಳಿಸಿ. ನನ್ನ ಪ್ರಶ್ನೆ: ${message}`
-        : `Hi Fixora, please confirm the repair price for this question: ${message}`;
-      whatsapp.href="https://wa.me/919591182590?text="+encodeURIComponent(waMessage);
-      whatsapp.target="_blank";
-      whatsapp.rel="noopener noreferrer";
-      whatsapp.textContent=lang==="kn"?"ತಂತ್ರಜ್ಞರಿಂದ ಬೆಲೆ ಕೇಳಿ (WhatsApp)":"Ask technician for price (WhatsApp)";
-      actions.appendChild(whatsapp);
-      typingNode.insertAdjacentElement("afterend",actions);
-    }
     fixoraChatHistory.push({role:"user",text:message},{role:"model",text:reply});
     if(fixoraChatHistory.length>16)fixoraChatHistory.splice(0,fixoraChatHistory.length-16);
   }catch(error){
